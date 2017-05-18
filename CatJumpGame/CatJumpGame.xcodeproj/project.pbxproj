@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0E0344D71ECC0FAC00F30D1A /* Test.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0E0344D61ECC0FAC00F30D1A /* Test.sks */; };
+		0E0A72E81ECCEF8300022BCE /* Seesaw.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0E0A72E71ECCEF8300022BCE /* Seesaw.sks */; };
+		0E0A72EA1ECCF03700022BCE /* SeesawNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0A72E91ECCF03700022BCE /* SeesawNode.swift */; };
+		0E8244AB1ECD2AC400435526 /* SeesawBaseNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8244AA1ECD2AC400435526 /* SeesawBaseNode.swift */; };
 		0ED507CE1ECBDDA600E141C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED507CD1ECBDDA600E141C3 /* AppDelegate.swift */; };
 		0ED507D01ECBDDA600E141C3 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0ED507CF1ECBDDA600E141C3 /* GameScene.sks */; };
 		0ED507D21ECBDDA600E141C3 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0ED507D11ECBDDA600E141C3 /* Actions.sks */; };
@@ -21,7 +23,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0E0344D61ECC0FAC00F30D1A /* Test.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Test.sks; sourceTree = "<group>"; };
+		0E0A72E71ECCEF8300022BCE /* Seesaw.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Seesaw.sks; sourceTree = "<group>"; };
+		0E0A72E91ECCF03700022BCE /* SeesawNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeesawNode.swift; sourceTree = "<group>"; };
+		0E8244AA1ECD2AC400435526 /* SeesawBaseNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeesawBaseNode.swift; sourceTree = "<group>"; };
 		0ED507CA1ECBDDA600E141C3 /* CatJumpGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatJumpGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ED507CD1ECBDDA600E141C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0ED507CF1ECBDDA600E141C3 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -77,7 +81,9 @@
 				0ED507DC1ECBDDA600E141C3 /* LaunchScreen.storyboard */,
 				0ED507DF1ECBDDA600E141C3 /* Info.plist */,
 				0EEC293C1ECBED900003623D /* Cat1.sks */,
-				0E0344D61ECC0FAC00F30D1A /* Test.sks */,
+				0E0A72E71ECCEF8300022BCE /* Seesaw.sks */,
+				0E0A72E91ECCF03700022BCE /* SeesawNode.swift */,
+				0E8244AA1ECD2AC400435526 /* SeesawBaseNode.swift */,
 			);
 			path = CatJumpGame;
 			sourceTree = "<group>";
@@ -149,7 +155,7 @@
 				0ED507DB1ECBDDA600E141C3 /* Assets.xcassets in Resources */,
 				0ED507DE1ECBDDA600E141C3 /* LaunchScreen.storyboard in Resources */,
 				0ED507D21ECBDDA600E141C3 /* Actions.sks in Resources */,
-				0E0344D71ECC0FAC00F30D1A /* Test.sks in Resources */,
+				0E0A72E81ECCEF8300022BCE /* Seesaw.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,7 +167,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0ED507D41ECBDDA600E141C3 /* GameScene.swift in Sources */,
+				0E0A72EA1ECCF03700022BCE /* SeesawNode.swift in Sources */,
 				0ED507D61ECBDDA600E141C3 /* GameViewController.swift in Sources */,
+				0E8244AB1ECD2AC400435526 /* SeesawBaseNode.swift in Sources */,
 				0ED507CE1ECBDDA600E141C3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
