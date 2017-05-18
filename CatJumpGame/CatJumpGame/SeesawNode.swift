@@ -29,8 +29,8 @@ InteractiveNode {
         }
         print(bodies.count)
         compound.physicsBody = SKPhysicsBody(bodies: bodies)
-        compound.physicsBody!.collisionBitMask = PhysicsCategory.Edge | PhysicsCategory.Seesaw
-        compound.physicsBody!.categoryBitMask = PhysicsCategory.Seesaw
+        compound.physicsBody!.collisionBitMask = PhysicsCategory.Edge | PhysicsCategory.Obstacle
+        compound.physicsBody!.categoryBitMask = PhysicsCategory.Obstacle
         compound.physicsBody!.isDynamic = true
         compound.isUserInteractionEnabled = true
         compound.zPosition = 1

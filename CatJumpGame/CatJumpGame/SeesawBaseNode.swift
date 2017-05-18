@@ -10,8 +10,8 @@ import SpriteKit
 class SeesawBaseNode: SKSpriteNode, EventListenerNode,
 InteractiveNode {
     
-    private var leftWoodNode = SKSpriteNode(imageNamed: "seesaw")
-    private var rightWoodNode = SKSpriteNode(imageNamed: "seesaw")
+    private var leftWoodNode = SKSpriteNode(imageNamed: "leftWood")
+    private var rightWoodNode = SKSpriteNode(imageNamed: "rightWood")
     
     func didMoveToScene() {
         guard let scene = scene else {
@@ -24,7 +24,7 @@ InteractiveNode {
         leftWoodNode.physicsBody?.affectedByGravity = true
         leftWoodNode.physicsBody?.isDynamic = true
         leftWoodNode.physicsBody?.categoryBitMask = PhysicsCategory.LeftWood
-        leftWoodNode.physicsBody?.collisionBitMask = PhysicsCategory.Edge | PhysicsCategory.Seesaw
+        leftWoodNode.physicsBody?.collisionBitMask = PhysicsCategory.Edge | PhysicsCategory.Obstacle
         self.addChild(leftWoodNode)
         
         rightWoodNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -33,7 +33,7 @@ InteractiveNode {
         rightWoodNode.physicsBody?.affectedByGravity = true
         rightWoodNode.physicsBody?.isDynamic = true
         rightWoodNode.physicsBody?.categoryBitMask = PhysicsCategory.RightWood
-        rightWoodNode.physicsBody?.collisionBitMask = PhysicsCategory.Edge | PhysicsCategory.Seesaw
+        rightWoodNode.physicsBody?.collisionBitMask = PhysicsCategory.Edge | PhysicsCategory.Obstacle
         self.addChild(rightWoodNode)
         
         let woodJoint = SKPhysicsJointFixed.joint(withBodyA: leftWoodNode.physicsBody!, bodyB: rightWoodNode.physicsBody!, anchor: CGPoint.zero)
@@ -45,6 +45,13 @@ InteractiveNode {
         let baseJoint2 = SKPhysicsJointFixed.joint(withBodyA: rightWoodNode.physicsBody!, bodyB: self.physicsBody!, anchor: CGPoint.zero)
         scene.physicsWorld.add(baseJoint2)
     }
+    
+    func bounce() {
+        leftWoodNode.physicsBody!.applyImpulse(CGVector(dx: 0, dy: 250),
+                                               at: CGPoint(x: size.width/2, y: size.height))
+
+    }
+    
     func interact() {
     }
     
