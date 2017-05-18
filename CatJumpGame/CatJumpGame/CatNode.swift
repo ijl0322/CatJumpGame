@@ -16,5 +16,9 @@ class CatNode: SKSpriteNode, EventListenerNode {
         parent!.physicsBody?.categoryBitMask = PhysicsCategory.Cat1
         parent!.physicsBody?.collisionBitMask = PhysicsCategory.Edge | PhysicsCategory.LeftWood | PhysicsCategory.RightWood | PhysicsCategory.Obstacle
         
+        let rotationConstraint = SKConstraint.zRotation(
+            SKRange(lowerLimit: -30.toRadians(), upperLimit: 30.toRadians()))
+        parent!.constraints = [rotationConstraint]
+        
     }
 }
