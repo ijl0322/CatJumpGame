@@ -16,6 +16,9 @@ struct PhysicsCategory {
     static let LeftWood: UInt32 = 0b100 //4
     static let RightWood: UInt32 = 0b1000 //8
     static let Cat1: UInt32 = 0b10000 //16
+    static let Cat2: UInt32 = 0b100000 //32
+    static let Bread: UInt32 = 0b1000000 //64
+    static let LeftWoodBound: UInt32 = 0b10000000 //128
 }
 
 protocol EventListenerNode {
@@ -30,6 +33,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     var ballNode: SKSpriteNode?
     var seesawBaseNode: SeesawBaseNode?
     var cat1Node: CatNode?
+    var score = 0
     
     override func didMove(to view: SKView) {
         
@@ -65,13 +69,52 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         }
         let touchLocation = touch.location(in: self)
         ballNode?.position = touchLocation
-        seesawBaseNode?.bounce()
         
+        //cat1Node?.gravityLess()
+        //seesawBaseNode?.bounce()
+        print("Disabling the contact")
+        seesawBaseNode?.physicsBody?.contactTestBitMask = 0
+        cat1Node?.parent!.physicsBody?.contactTestBitMask = PhysicsCategory.Bread
+        seesawBaseNode?.releaseCat()
+        cat1Node?.throwCat()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+            print("Enabling the contact")
+            self.seesawBaseNode?.physicsBody?.contactTestBitMask = PhysicsCategory.Cat1
+            self.cat1Node?.parent!.physicsBody?.contactTestBitMask = PhysicsCategory.Bread | PhysicsCategory.LeftWood
+        })
+    }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        let collision = contact.bodyA.categoryBitMask
+            | contact.bodyB.categoryBitMask
         
+        if collision == PhysicsCategory.Cat1 | PhysicsCategory.Bread {
+            let breadNode = contact.bodyA.categoryBitMask ==
+                PhysicsCategory.Bread ? contact.bodyA.node :
+                contact.bodyB.node
+            let breadAte = breadNode as? BreadNode
+            score += (breadAte?.remove())!
+            print("My Score: \(score)")
+        }
+        
+        if collision == PhysicsCategory.Cat1 | PhysicsCategory.LeftWood {
+            cat1Node?.zRotation = 0
+            cat1Node?.parent?.position = CGPoint(x: (cat1Node?.parent?.position.x)! ,y: (cat1Node?.parent?.position.y)! - 60)
+            seesawBaseNode?.zRotation = 0
+            seesawBaseNode?.fixCat(catPhysicsBody: (cat1Node?.parent?.physicsBody!)!)
+            //cat1Node?.parent!.physicsBody!.isDynamic = false
+        }
+    }
+    
+    func didEnd(_ contact: SKPhysicsContact) {
+        //let collision = contact.bodyA.categoryBitMask
+          //  | contact.bodyB.categoryBitMask
+
     }
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        
     }
     
     func debugDrawPlayableArea(playableRect: CGRect) {

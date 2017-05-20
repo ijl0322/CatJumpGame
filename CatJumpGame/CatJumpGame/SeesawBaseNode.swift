@@ -12,6 +12,13 @@ InteractiveNode {
     
     private var leftWoodNode = SKSpriteNode(imageNamed: "leftWood")
     private var rightWoodNode = SKSpriteNode(imageNamed: "rightWood")
+    private var leftContactPointNode = SKSpriteNode()
+    private var rightContactPointNode = SKSpriteNode()
+    var cat1Joint: SKPhysicsJointFixed?
+    var catSpringJoint: SKPhysicsJointSpring?
+    var cat1Fixed: Bool {
+        return cat1Joint != nil
+    }
     
     func didMoveToScene() {
         guard let scene = scene else {
@@ -26,6 +33,17 @@ InteractiveNode {
         leftWoodNode.physicsBody?.categoryBitMask = PhysicsCategory.LeftWood
         leftWoodNode.physicsBody?.collisionBitMask = PhysicsCategory.Edge | PhysicsCategory.Obstacle
         self.addChild(leftWoodNode)
+        
+//        leftContactPointNode.size = CGSize(width: leftWoodNode.size.width, height: 330)
+//        leftContactPointNode.anchorPoint = CGPoint(x: 0.5, y: 0)
+//        leftContactPointNode.position = CGPoint(x: -leftWoodNode.size.width/2, y: leftContactPointNode.size.height - leftWoodNode.size.height * 2)
+//        leftContactPointNode.physicsBody = SKPhysicsBody(rectangleOf: leftContactPointNode.frame.size)
+//        self.addChild(leftContactPointNode)
+//        leftContactPointNode.physicsBody?.categoryBitMask = PhysicsCategory.LeftWoodBound
+//        leftContactPointNode.physicsBody?.collisionBitMask = 0
+//        
+//        let edgeJoint = SKPhysicsJointFixed.joint(withBodyA: leftWoodNode.physicsBody!, bodyB: leftContactPointNode.physicsBody!, anchor: CGPoint.zero)
+//        scene.physicsWorld.add(edgeJoint)
         
         rightWoodNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         rightWoodNode.position = CGPoint(x: rightWoodNode.size.width/2, y: rightWoodNode.size.height)
@@ -47,9 +65,32 @@ InteractiveNode {
     }
     
     func bounce() {
-        leftWoodNode.physicsBody!.applyImpulse(CGVector(dx: 0, dy: 250),
+        leftWoodNode.physicsBody!.applyImpulse(CGVector(dx: 0, dy: 400),
                                                at: CGPoint(x: size.width/2, y: size.height))
+        //releaseCat()
+        
 
+    }
+    
+    func fixCat(catPhysicsBody: SKPhysicsBody) {
+        guard let scene = scene else {
+            return
+        }
+        
+        if !cat1Fixed{
+            let pinPoint = CGPoint(
+                x: leftWoodNode.position.x,
+                y: leftWoodNode.position.y * 2)
+            cat1Joint = SKPhysicsJointFixed.joint(withBodyA: leftWoodNode.physicsBody!, bodyB: catPhysicsBody, anchor: pinPoint)
+            scene.physicsWorld.add(cat1Joint!)
+        }
+    }
+    
+    func releaseCat() {
+        if cat1Fixed {
+            scene!.physicsWorld.remove(cat1Joint!)
+            cat1Joint = nil
+        }
     }
     
     func interact() {
