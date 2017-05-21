@@ -16,19 +16,25 @@ class CatNode: SKSpriteNode, EventListenerNode {
         parent!.physicsBody = SKPhysicsBody(texture: catBodyTexture,
                                             size: catBodyTexture.size())
         parent!.physicsBody?.categoryBitMask = PhysicsCategory.Cat1
-        parent!.physicsBody?.collisionBitMask = PhysicsCategory.Edge | PhysicsCategory.LeftWood | PhysicsCategory.RightWood | PhysicsCategory.Obstacle
+        parent!.physicsBody?.collisionBitMask = PhysicsCategory.Edge | PhysicsCategory.Obstacle | PhysicsCategory.Floor | PhysicsCategory.Floor
         parent!.physicsBody?.contactTestBitMask = PhysicsCategory.Bread | PhysicsCategory.LeftWood | PhysicsCategory.RightWood
-        parent!.physicsBody?.friction = 1.0
         
         let rotationConstraint = SKConstraint.zRotation(
             SKRange(lowerLimit: -30.toRadians(), upperLimit: 30.toRadians()))
         parent!.constraints = [rotationConstraint]
-        
     }
     
     func throwCat() {
-        parent!.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 4000))
+        parent!.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 6000))
     }
+    
+//    func sitOnSeesaw(seesaw: SeesawNode) {
+//        let position = seesaw.position
+//        var localPoint = parent!.convert(position, from: scene!)
+//        localPoint.y += seesaw.frame.height
+//        localPoint.x -= seesaw.frame.width/4
+//        run(SKAction.move(to: localPoint, duration: 0.1))
+//    }
     
     func gravityLess() {
         print("Start Gravityless")

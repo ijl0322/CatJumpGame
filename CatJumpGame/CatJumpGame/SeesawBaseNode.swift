@@ -30,27 +30,27 @@ InteractiveNode {
         leftWoodNode.physicsBody = SKPhysicsBody(rectangleOf: leftWoodNode.frame.size)
         leftWoodNode.physicsBody?.affectedByGravity = true
         leftWoodNode.physicsBody?.isDynamic = true
-        leftWoodNode.physicsBody?.categoryBitMask = PhysicsCategory.LeftWood
+        leftWoodNode.physicsBody?.categoryBitMask = PhysicsCategory.Obstacle
         leftWoodNode.physicsBody?.collisionBitMask = PhysicsCategory.Edge | PhysicsCategory.Obstacle
         self.addChild(leftWoodNode)
         
-//        leftContactPointNode.size = CGSize(width: leftWoodNode.size.width, height: 330)
-//        leftContactPointNode.anchorPoint = CGPoint(x: 0.5, y: 0)
-//        leftContactPointNode.position = CGPoint(x: -leftWoodNode.size.width/2, y: leftContactPointNode.size.height - leftWoodNode.size.height * 2)
-//        leftContactPointNode.physicsBody = SKPhysicsBody(rectangleOf: leftContactPointNode.frame.size)
-//        self.addChild(leftContactPointNode)
-//        leftContactPointNode.physicsBody?.categoryBitMask = PhysicsCategory.LeftWoodBound
-//        leftContactPointNode.physicsBody?.collisionBitMask = 0
-//        
-//        let edgeJoint = SKPhysicsJointFixed.joint(withBodyA: leftWoodNode.physicsBody!, bodyB: leftContactPointNode.physicsBody!, anchor: CGPoint.zero)
-//        scene.physicsWorld.add(edgeJoint)
+        leftContactPointNode.size = CGSize(width: 30, height: 10)
+        leftContactPointNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        leftContactPointNode.position = CGPoint(x: -leftWoodNode.frame.size.width/2, y: leftWoodNode.frame.size.height)
+        leftContactPointNode.physicsBody = SKPhysicsBody(rectangleOf: leftContactPointNode.frame.size)
+        self.addChild(leftContactPointNode)
+        leftContactPointNode.physicsBody?.categoryBitMask = PhysicsCategory.LeftWood
+        leftContactPointNode.physicsBody?.collisionBitMask = 0
+
+        let edgeJoint = SKPhysicsJointFixed.joint(withBodyA: leftWoodNode.physicsBody!, bodyB: leftContactPointNode.physicsBody!, anchor: CGPoint.zero)
+        scene.physicsWorld.add(edgeJoint)
         
         rightWoodNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         rightWoodNode.position = CGPoint(x: rightWoodNode.size.width/2, y: rightWoodNode.size.height)
         rightWoodNode.physicsBody = SKPhysicsBody(rectangleOf: rightWoodNode.frame.size)
         rightWoodNode.physicsBody?.affectedByGravity = true
         rightWoodNode.physicsBody?.isDynamic = true
-        rightWoodNode.physicsBody?.categoryBitMask = PhysicsCategory.RightWood
+        rightWoodNode.physicsBody?.categoryBitMask = PhysicsCategory.Obstacle
         rightWoodNode.physicsBody?.collisionBitMask = PhysicsCategory.Edge | PhysicsCategory.Obstacle
         self.addChild(rightWoodNode)
         

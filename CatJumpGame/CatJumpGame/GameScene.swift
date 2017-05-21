@@ -18,7 +18,7 @@ struct PhysicsCategory {
     static let Cat1: UInt32 = 0b10000 //16
     static let Cat2: UInt32 = 0b100000 //32
     static let Bread: UInt32 = 0b1000000 //64
-    static let LeftWoodBound: UInt32 = 0b10000000 //128
+    static let Floor: UInt32 = 0b10000000 //128
 }
 
 protocol EventListenerNode {
@@ -32,6 +32,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     
     var ballNode: SKSpriteNode?
     var seesawBaseNode: SeesawBaseNode?
+    var seesawNode: SeesawNode?
     var cat1Node: CatNode?
     var score = 0
     
@@ -56,6 +57,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         
         ballNode = childNode(withName: "ball") as? SKSpriteNode
         seesawBaseNode = childNode(withName: "seesawBase") as? SeesawBaseNode
+        seesawNode = childNode(withName: "seesaw") as? SeesawNode
         cat1Node = childNode(withName: "//cat1_body") as? CatNode
 
         
@@ -68,20 +70,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             return
         }
         let touchLocation = touch.location(in: self)
-        ballNode?.position = touchLocation
+        //ballNode?.position = touchLocation
         
-        //cat1Node?.gravityLess()
-        //seesawBaseNode?.bounce()
-        print("Disabling the contact")
-        seesawBaseNode?.physicsBody?.contactTestBitMask = 0
-        cat1Node?.parent!.physicsBody?.contactTestBitMask = PhysicsCategory.Bread
-        seesawBaseNode?.releaseCat()
-        cat1Node?.throwCat()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
-            print("Enabling the contact")
-            self.seesawBaseNode?.physicsBody?.contactTestBitMask = PhysicsCategory.Cat1
-            self.cat1Node?.parent!.physicsBody?.contactTestBitMask = PhysicsCategory.Bread | PhysicsCategory.LeftWood
-        })
+        seesawNode?.position.x = touchLocation.x
+        releaseCat()
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -98,12 +90,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         }
         
         if collision == PhysicsCategory.Cat1 | PhysicsCategory.LeftWood {
-            cat1Node?.zRotation = 0
-            cat1Node?.parent?.position = CGPoint(x: (cat1Node?.parent?.position.x)! ,y: (cat1Node?.parent?.position.y)! - 60)
-            seesawBaseNode?.zRotation = 0
-            seesawBaseNode?.fixCat(catPhysicsBody: (cat1Node?.parent?.physicsBody!)!)
-            //cat1Node?.parent!.physicsBody!.isDynamic = false
+            cat1Node?.parent?.position = CGPoint(x: (cat1Node?.parent?.position.x)! ,y: 0)
+            seesawNode?.fixCat(catNode: cat1Node!)
         }
+        
+        if collision == PhysicsCategory.Cat1 | PhysicsCategory.Floor {
+            print("Cat fell!")
+        }
+    }
+    
+    func releaseCat() {
+        print("Disabling the contact")
+        seesawNode?.physicsBody?.contactTestBitMask = 0
+        cat1Node?.parent!.physicsBody?.contactTestBitMask = PhysicsCategory.Bread
+        seesawNode?.releaseCat()
+        seesawNode?.physicsBody?.isDynamic = true
+        cat1Node?.throwCat()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+            print("Enabling the contact")
+            self.seesawNode?.physicsBody?.contactTestBitMask = PhysicsCategory.Cat1
+            self.cat1Node?.parent!.physicsBody?.contactTestBitMask = PhysicsCategory.Bread | PhysicsCategory.LeftWood
+        })
     }
     
     func didEnd(_ contact: SKPhysicsContact) {
