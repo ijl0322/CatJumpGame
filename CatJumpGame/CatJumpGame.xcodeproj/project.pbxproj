@@ -30,7 +30,6 @@
 		0E511C661ECE088000F3E7A9 /* CatNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E511C651ECE088000F3E7A9 /* CatNode.swift */; };
 		0E511C681ECE0FBF00F3E7A9 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E511C671ECE0FBF00F3E7A9 /* Int+Extension.swift */; };
 		0E6F45911ECE18A80071F818 /* BreadNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6F45901ECE18A80071F818 /* BreadNode.swift */; };
-		0E8244AB1ECD2AC400435526 /* SeesawBaseNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8244AA1ECD2AC400435526 /* SeesawBaseNode.swift */; };
 		0ED507CE1ECBDDA600E141C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED507CD1ECBDDA600E141C3 /* AppDelegate.swift */; };
 		0ED507D01ECBDDA600E141C3 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0ED507CF1ECBDDA600E141C3 /* GameScene.sks */; };
 		0ED507D41ECBDDA600E141C3 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED507D31ECBDDA600E141C3 /* GameScene.swift */; };
@@ -65,7 +64,6 @@
 		0E511C651ECE088000F3E7A9 /* CatNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatNode.swift; sourceTree = "<group>"; };
 		0E511C671ECE0FBF00F3E7A9 /* Int+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		0E6F45901ECE18A80071F818 /* BreadNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreadNode.swift; sourceTree = "<group>"; };
-		0E8244AA1ECD2AC400435526 /* SeesawBaseNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeesawBaseNode.swift; sourceTree = "<group>"; };
 		0ED507CA1ECBDDA600E141C3 /* CatJumpGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatJumpGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ED507CD1ECBDDA600E141C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0ED507CF1ECBDDA600E141C3 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -152,7 +150,6 @@
 				0E0A72E71ECCEF8300022BCE /* Seesaw.sks */,
 				0E0A72E91ECCF03700022BCE /* SeesawNode.swift */,
 				0E12EEA41ED13EB600B1BB40 /* Array2D.swift */,
-				0E8244AA1ECD2AC400435526 /* SeesawBaseNode.swift */,
 				0E511C651ECE088000F3E7A9 /* CatNode.swift */,
 				0E6F45901ECE18A80071F818 /* BreadNode.swift */,
 				0E12EEAB1ED140F600B1BB40 /* Bread.swift */,
@@ -258,7 +255,6 @@
 				0E511C5F1ECE008A00F3E7A9 /* SKColor+Extensions.swift in Sources */,
 				0E511C5B1ECE008A00F3E7A9 /* CGVector+Extensions.swift in Sources */,
 				0E6F45911ECE18A80071F818 /* BreadNode.swift in Sources */,
-				0E8244AB1ECD2AC400435526 /* SeesawBaseNode.swift in Sources */,
 				0E511C611ECE008A00F3E7A9 /* SKTAudio.swift in Sources */,
 				0E511C591ECE008A00F3E7A9 /* CGFloat+Extensions.swift in Sources */,
 				0E511C661ECE088000F3E7A9 /* CatNode.swift in Sources */,

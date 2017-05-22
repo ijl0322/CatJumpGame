@@ -70,12 +70,8 @@ class BreadNode: SKSpriteNode, EventListenerNode {
         let wiggleForever = SKAction.repeatForever(fullWiggle)
         self.run(wiggleForever, withKey: "wiggle")
         
-        findPoints()
     }
     
-    func findPoints() {
-        
-    }
     
     func remove() -> Int{
         if notAte {

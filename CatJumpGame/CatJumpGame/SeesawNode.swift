@@ -22,12 +22,17 @@ class SeesawNode: SKSpriteNode, EventListenerNode {
             return
         }
         
+        // Set up physics body for the seesaw
+        
         let seesawBodyTexture = SKTexture(imageNamed: "seesaw_physics")
         physicsBody = SKPhysicsBody(texture: seesawBodyTexture,
                                             size: seesawBodyTexture.size())
         physicsBody?.categoryBitMask = PhysicsCategory.Obstacle
         physicsBody?.collisionBitMask = PhysicsCategory.Cat1 | PhysicsCategory.Obstacle | PhysicsCategory.Floor
         physicsBody?.contactTestBitMask = 0
+        
+        
+        // Add contact points for cat1 and cat2
         
         leftContactPointNode.size = CGSize(width: 30, height: 10)
         leftContactPointNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -38,9 +43,20 @@ class SeesawNode: SKSpriteNode, EventListenerNode {
         leftContactPointNode.physicsBody?.collisionBitMask = 0
         self.addChild(leftContactPointNode)
         
-        let edgeJoint = SKPhysicsJointFixed.joint(withBodyA: physicsBody!, bodyB: leftContactPointNode.physicsBody!, anchor: self.position)
-        scene.physicsWorld.add(edgeJoint)
+        rightContactPointNode.size = CGSize(width: 30, height: 10)
+        rightContactPointNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        rightContactPointNode.position = CGPoint(x: self.frame.size.width/4, y: self.frame.size.height/2)
+        rightContactPointNode.physicsBody = SKPhysicsBody(rectangleOf: rightContactPointNode.frame.size)
         
+        rightContactPointNode.physicsBody?.categoryBitMask = PhysicsCategory.RightWood
+        rightContactPointNode.physicsBody?.collisionBitMask = 0
+        self.addChild(rightContactPointNode)
+        
+        let leftEdgeJoint = SKPhysicsJointFixed.joint(withBodyA: physicsBody!, bodyB: leftContactPointNode.physicsBody!, anchor: self.position)
+        scene.physicsWorld.add(leftEdgeJoint)
+        
+        let rightEdgeJoint = SKPhysicsJointFixed.joint(withBodyA: physicsBody!, bodyB: rightContactPointNode.physicsBody!, anchor: self.position)
+        scene.physicsWorld.add(rightEdgeJoint)
         
         let moveConstaint = SKConstraint.positionY(SKRange(value: self.frame.size.height/2 + 100,
                                                     variance: 0))
