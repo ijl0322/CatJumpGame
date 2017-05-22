@@ -29,7 +29,12 @@ protocol InteractiveNode {
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate{
-    
+
+    let TileWidth: CGFloat = 100.0
+    let TileHeight: CGFloat = 100.0
+    let space: CGFloat = 50.0
+    let level = Level(filename: "Level_1")
+    var playableMargin: CGFloat = 0.0
     var ballNode: SKSpriteNode?
     var seesawBaseNode: SeesawBaseNode?
     var seesawNode: SeesawNode?
@@ -40,7 +45,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         
         let maxAspectRatio: CGFloat = 9.0/16.0
         let maxAspectRatioWidth = size.height * maxAspectRatio
-        let playableMargin: CGFloat = (size.width
+        playableMargin = (size.width
             - maxAspectRatioWidth)/2
         let playableRect = CGRect(x:  playableMargin, y: 0,
                                   width: maxAspectRatioWidth, height: size.height)
@@ -60,6 +65,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         seesawNode = childNode(withName: "seesaw") as? SeesawNode
         cat1Node = childNode(withName: "//cat1_body") as? CatNode
 
+        let allBreads = level.loadBread()
+        addBread(breads: allBreads)
         
         debugDrawPlayableArea(playableRect: playableRect)
         view.showsPhysics = true
@@ -76,6 +83,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         releaseCat()
     }
     
+    func addBread(breads: Set<Bread>) {
+        for bread in breads {
+            let size = CGSize(width: TileWidth, height: TileHeight)
+            let sprite = BreadNode(size: size, breadType: bread.breadType)
+            sprite.position = pointFor(column: bread.column, row: bread.row)
+            self.scene?.addChild(sprite)
+            bread.sprite = sprite
+        }
+    }
+    
+    func pointFor(column: Int, row: Int) -> CGPoint {
+        return CGPoint(
+            x: CGFloat(column)*(TileWidth + space) + TileWidth/2 + playableMargin,
+            y: CGFloat(row)*TileHeight + TileHeight/2 + size.height/2)
+    }
+    
     func didBegin(_ contact: SKPhysicsContact) {
         let collision = contact.bodyA.categoryBitMask
             | contact.bodyB.categoryBitMask
@@ -85,6 +108,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
                 PhysicsCategory.Bread ? contact.bodyA.node :
                 contact.bodyB.node
             let breadAte = breadNode as? BreadNode
+            cat1Node?.dropSlightly()
             score += (breadAte?.remove())!
             print("My Score: \(score)")
         }

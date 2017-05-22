@@ -13,6 +13,8 @@
 		0E12EEA51ED13EB600B1BB40 /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E12EEA41ED13EB600B1BB40 /* Array2D.swift */; };
 		0E12EEA81ED13EDA00B1BB40 /* Level_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E12EEA71ED13EDA00B1BB40 /* Level_1.json */; };
 		0E12EEAA1ED13F0C00B1BB40 /* Dictionary+JsonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E12EEA91ED13F0C00B1BB40 /* Dictionary+JsonExtension.swift */; };
+		0E12EEAC1ED140F600B1BB40 /* Bread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E12EEAB1ED140F600B1BB40 /* Bread.swift */; };
+		0E12EEAE1ED143D600B1BB40 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E12EEAD1ED143D600B1BB40 /* Level.swift */; };
 		0E511C591ECE008A00F3E7A9 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E511C4D1ECE008A00F3E7A9 /* CGFloat+Extensions.swift */; };
 		0E511C5A1ECE008A00F3E7A9 /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E511C4E1ECE008A00F3E7A9 /* CGPoint+Extensions.swift */; };
 		0E511C5B1ECE008A00F3E7A9 /* CGVector+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E511C4F1ECE008A00F3E7A9 /* CGVector+Extensions.swift */; };
@@ -31,7 +33,6 @@
 		0E8244AB1ECD2AC400435526 /* SeesawBaseNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8244AA1ECD2AC400435526 /* SeesawBaseNode.swift */; };
 		0ED507CE1ECBDDA600E141C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED507CD1ECBDDA600E141C3 /* AppDelegate.swift */; };
 		0ED507D01ECBDDA600E141C3 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0ED507CF1ECBDDA600E141C3 /* GameScene.sks */; };
-		0ED507D21ECBDDA600E141C3 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0ED507D11ECBDDA600E141C3 /* Actions.sks */; };
 		0ED507D41ECBDDA600E141C3 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED507D31ECBDDA600E141C3 /* GameScene.swift */; };
 		0ED507D61ECBDDA600E141C3 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED507D51ECBDDA600E141C3 /* GameViewController.swift */; };
 		0ED507D91ECBDDA600E141C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ED507D71ECBDDA600E141C3 /* Main.storyboard */; };
@@ -47,6 +48,8 @@
 		0E12EEA41ED13EB600B1BB40 /* Array2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array2D.swift; sourceTree = "<group>"; };
 		0E12EEA71ED13EDA00B1BB40 /* Level_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_1.json; sourceTree = "<group>"; };
 		0E12EEA91ED13F0C00B1BB40 /* Dictionary+JsonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+JsonExtension.swift"; sourceTree = "<group>"; };
+		0E12EEAB1ED140F600B1BB40 /* Bread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bread.swift; sourceTree = "<group>"; };
+		0E12EEAD1ED143D600B1BB40 /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		0E511C4D1ECE008A00F3E7A9 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		0E511C4E1ECE008A00F3E7A9 /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
 		0E511C4F1ECE008A00F3E7A9 /* CGVector+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+Extensions.swift"; sourceTree = "<group>"; };
@@ -66,7 +69,6 @@
 		0ED507CA1ECBDDA600E141C3 /* CatJumpGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatJumpGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ED507CD1ECBDDA600E141C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0ED507CF1ECBDDA600E141C3 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		0ED507D11ECBDDA600E141C3 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		0ED507D31ECBDDA600E141C3 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		0ED507D51ECBDDA600E141C3 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		0ED507D81ECBDDA600E141C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -140,7 +142,6 @@
 				0E511C4C1ECE008A00F3E7A9 /* SKTUtils */,
 				0ED507CD1ECBDDA600E141C3 /* AppDelegate.swift */,
 				0ED507CF1ECBDDA600E141C3 /* GameScene.sks */,
-				0ED507D11ECBDDA600E141C3 /* Actions.sks */,
 				0ED507D31ECBDDA600E141C3 /* GameScene.swift */,
 				0ED507D51ECBDDA600E141C3 /* GameViewController.swift */,
 				0ED507D71ECBDDA600E141C3 /* Main.storyboard */,
@@ -154,6 +155,8 @@
 				0E8244AA1ECD2AC400435526 /* SeesawBaseNode.swift */,
 				0E511C651ECE088000F3E7A9 /* CatNode.swift */,
 				0E6F45901ECE18A80071F818 /* BreadNode.swift */,
+				0E12EEAB1ED140F600B1BB40 /* Bread.swift */,
+				0E12EEAD1ED143D600B1BB40 /* Level.swift */,
 			);
 			path = CatJumpGame;
 			sourceTree = "<group>";
@@ -225,7 +228,6 @@
 				0ED507DB1ECBDDA600E141C3 /* Assets.xcassets in Resources */,
 				0E11B1BF1ECE2573002A644B /* pop.mp3 in Resources */,
 				0ED507DE1ECBDDA600E141C3 /* LaunchScreen.storyboard in Resources */,
-				0ED507D21ECBDDA600E141C3 /* Actions.sks in Resources */,
 				0E0A72E81ECCEF8300022BCE /* Seesaw.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -243,12 +245,14 @@
 				0E511C5D1ECE008A00F3E7A9 /* SKAction+Extensions.swift in Sources */,
 				0ED507D41ECBDDA600E141C3 /* GameScene.swift in Sources */,
 				0E511C601ECE008A00F3E7A9 /* SKNode+Extensions.swift in Sources */,
+				0E12EEAE1ED143D600B1BB40 /* Level.swift in Sources */,
 				0E0A72EA1ECCF03700022BCE /* SeesawNode.swift in Sources */,
 				0E12EEA51ED13EB600B1BB40 /* Array2D.swift in Sources */,
 				0E511C631ECE008A00F3E7A9 /* SKTTimingFunctions.swift in Sources */,
 				0E511C5E1ECE008A00F3E7A9 /* SKAction+SpecialEffects.swift in Sources */,
 				0E511C5C1ECE008A00F3E7A9 /* Int+Extensions.swift in Sources */,
 				0E511C641ECE008A00F3E7A9 /* Vector3.swift in Sources */,
+				0E12EEAC1ED140F600B1BB40 /* Bread.swift in Sources */,
 				0ED507D61ECBDDA600E141C3 /* GameViewController.swift in Sources */,
 				0E12EEAA1ED13F0C00B1BB40 /* Dictionary+JsonExtension.swift in Sources */,
 				0E511C5F1ECE008A00F3E7A9 /* SKColor+Extensions.swift in Sources */,

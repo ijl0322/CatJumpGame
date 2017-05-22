@@ -25,7 +25,11 @@ class CatNode: SKSpriteNode, EventListenerNode {
     }
     
     func throwCat() {
-        parent!.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 6000))
+        parent!.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 5000))
+    }
+    
+    func dropSlightly() {
+        parent!.physicsBody?.applyImpulse(CGVector(dx: 0, dy: -300))
     }
     
 //    func sitOnSeesaw(seesaw: SeesawNode) {
