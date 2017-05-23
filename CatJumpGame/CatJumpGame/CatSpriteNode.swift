@@ -163,11 +163,29 @@ class CatSpriteNode: SKSpriteNode, EventListenerNode {
     //MARK: - Actions
     
     func jump() {
-        physicsBody?.applyImpulse(CGVector(dx: 0, dy: 5000))
+        var direction = 0.0
+        if seatSide == .left {
+            direction = 1000
+        } else {
+            direction = -1000
+        }
+        physicsBody?.applyImpulse(CGVector(dx: direction, dy: 4000))
     }
     
     func dropSlightly() {
         physicsBody?.applyImpulse(CGVector(dx: 0, dy: -300))
+    }
+    
+    func enableSeesawContact() {
+        if seatSide == .left {
+            physicsBody?.contactTestBitMask = PhysicsCategory.Bread | PhysicsCategory.LeftWood
+        } else {
+            physicsBody?.contactTestBitMask = PhysicsCategory.Bread | PhysicsCategory.RightWood
+        }
+    }
+    
+    func disableSeesawContact() {
+        physicsBody?.contactTestBitMask = PhysicsCategory.Bread
     }
     
     //MARK: - Animations

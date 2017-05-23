@@ -61,40 +61,41 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         })
         
         seesawNode = childNode(withName: "seesaw") as? SeesawNode
+
         
         let rightCatxPosition = (seesawNode?.position.x)! + ((seesawNode?.frame.width)!/4)
         let leftCatxPosition = (seesawNode?.position.x)! - ((seesawNode?.frame.width)!/4)
-        let catyPosition = (seesawNode?.position.y)! + (330)/2.5
+        let catyPosition = (seesawNode?.position.y)! + (330)/2
        
         rightCatNode = CatSpriteNode(catType: .cat2, isLeftCat: false)
-        rightCatNode.position = CGPoint(x: 800, y: 800)
+        rightCatNode.position = CGPoint(x: rightCatxPosition, y: catyPosition)
         rightCatNode.zPosition = 20
         self.scene?.addChild(rightCatNode)
-        //rightCatNode.physicsBody?.isDynamic = false
-        print(rightCatNode.position.x)
-        
+
+
         leftCatNode = CatSpriteNode(catType: .cat1, isLeftCat: true)
         leftCatNode.position = CGPoint(x: leftCatxPosition, y: catyPosition)
         leftCatNode.zPosition = 30
         self.scene?.addChild(leftCatNode)
-        //leftCatNode.physicsBody?.isDynamic = false
-        print(leftCatNode.position.x)
+
+
         let allBreads = level.loadBread()
         addBread(breads: allBreads)
         
+        //MARK: - Debug
+        
         debugDrawPlayableArea(playableRect: playableRect)
-        view.showsPhysics = true
+        //view.showsPhysics = true
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else {
             return
         }
+
         let touchLocation = touch.location(in: self)
-        //ballNode?.position = touchLocation
-        
         seesawNode?.position.x = touchLocation.x
-        releaseCat()
+        releaseCat(catNode: rightCatNode)
         rightCatNode.jump()
     }
     
@@ -119,7 +120,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             | contact.bodyB.categoryBitMask
         
         if collision == PhysicsCategory.LeftCat | PhysicsCategory.Bread {
-            eatBread(contact: contact, catNode: rightCatNode)
+            eatBread(contact: contact, catNode: leftCatNode)
         }
         
         if collision == PhysicsCategory.RightCat | PhysicsCategory.Bread {
@@ -135,6 +136,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         }
         
         if collision == PhysicsCategory.LeftCat | PhysicsCategory.Floor {
+            print("Cat fell!")
+        }
+        
+        if collision == PhysicsCategory.RightCat | PhysicsCategory.Floor {
             print("Cat fell!")
         }
     }
@@ -164,15 +169,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         }
     }
     
-    func releaseCat() {
+    func releaseCat(catNode: CatSpriteNode) {
         
-        rightCatNode?.physicsBody?.contactTestBitMask = PhysicsCategory.Bread
-        seesawNode?.releaseCat()
-        rightCatNode?.jump()
+        catNode.disableSeesawContact()
+        seesawNode?.releaseCat(catSide: catNode.seatSide)
+        catNode.jump()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
             //print("Enabling the contact")
-            self.rightCatNode?.physicsBody?.contactTestBitMask = PhysicsCategory.Bread | PhysicsCategory.RightWood
+            catNode.enableSeesawContact()
         })
     }
     

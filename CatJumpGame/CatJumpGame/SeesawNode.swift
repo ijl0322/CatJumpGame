@@ -10,9 +10,13 @@ import SpriteKit
 class SeesawNode: SKSpriteNode, EventListenerNode {
     private var leftContactPointNode = SKSpriteNode()
     private var rightContactPointNode = SKSpriteNode()
-    var cat1Joint: SKPhysicsJointFixed?
-    var cat1Fixed: Bool {
-        return cat1Joint != nil
+    var leftCatJoint: SKPhysicsJointFixed?
+    var rightCatJoint: SKPhysicsJointFixed?
+    var leftCatFixed: Bool {
+        return leftCatJoint != nil
+    }
+    var rightCatFixed: Bool {
+        return rightCatJoint != nil
     }
     
     func didMoveToScene() {
@@ -32,7 +36,7 @@ class SeesawNode: SKSpriteNode, EventListenerNode {
         physicsBody?.contactTestBitMask = 0
         
         
-        // Add contact points for cat1 and cat2
+        // Add contact points for left cat and right cat
         
         leftContactPointNode.size = CGSize(width: 30, height: 10)
         leftContactPointNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -60,41 +64,49 @@ class SeesawNode: SKSpriteNode, EventListenerNode {
         
         let moveConstaint = SKConstraint.positionY(SKRange(value: self.frame.size.height/2 + 100,
                                                     variance: 0))
-        self.constraints = [moveConstaint]
+        let rotationConstraint = SKConstraint.zRotation(
+            SKRange(lowerLimit: -30.toRadians(), upperLimit: 30.toRadians()))
+
+        self.constraints = [moveConstaint, rotationConstraint]
     }
-    
-//    func fixCat(catNode: CatNode) {
-//        guard let scene = scene else {
-//            return
-//        }
-//        
-//        if !cat1Fixed{
-//            catNode.parent?.zRotation = 0
-//            self.zRotation = 0
-//            cat1Joint = SKPhysicsJointFixed.joint(withBodyA: physicsBody!, bodyB: (catNode.parent?.physicsBody)!, anchor: self.position)
-//            scene.physicsWorld.add(cat1Joint!)
-//        }
-//    }
     
     func fixCat(catNode: CatSpriteNode) {
         guard let scene = scene else {
             return
         }
         
-        if !cat1Fixed{
-            catNode.zRotation = 0
-            self.zRotation = 0
-            cat1Joint = SKPhysicsJointFixed.joint(withBodyA: physicsBody!, bodyB: (catNode.physicsBody)!, anchor: self.position)
-            scene.physicsWorld.add(cat1Joint!)
+        if catNode.seatSide == .left {
+            if !leftCatFixed{
+                catNode.zRotation = 0
+                self.zRotation = 0
+                leftCatJoint = SKPhysicsJointFixed.joint(withBodyA: physicsBody!, bodyB: (catNode.physicsBody)!, anchor: self.position)
+                scene.physicsWorld.add(leftCatJoint!)
+            }
+        } else {
+            if !rightCatFixed{
+                catNode.zRotation = 0
+                self.zRotation = 0
+                rightCatJoint = SKPhysicsJointFixed.joint(withBodyA: physicsBody!, bodyB: (catNode.physicsBody)!, anchor: self.position)
+                scene.physicsWorld.add(rightCatJoint!)
+            }
         }
     }
     
-    func releaseCat() {
-        if cat1Fixed {
-            scene!.physicsWorld.remove(cat1Joint!)
-            cat1Joint = nil
+    func releaseCat(catSide: SeatSide) {
+        
+        switch catSide {
+        case .left:
+            if leftCatFixed {
+                scene!.physicsWorld.remove(leftCatJoint!)
+                leftCatJoint = nil
+            }
+            return
+        case .right:
+            if rightCatFixed {
+                scene!.physicsWorld.remove(rightCatJoint!)
+                rightCatJoint = nil
+            }
+            return
         }
     }
-
-
 }

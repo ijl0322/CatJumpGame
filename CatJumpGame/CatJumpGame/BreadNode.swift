@@ -72,7 +72,6 @@ class BreadNode: SKSpriteNode, EventListenerNode {
         
     }
     
-    
     func remove() -> Int{
         if notAte {
             print("Ate bread")
