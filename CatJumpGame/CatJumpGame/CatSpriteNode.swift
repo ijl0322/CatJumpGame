@@ -72,7 +72,7 @@ class CatSpriteNode: SKSpriteNode, EventListenerNode {
     var tailNode: SKSpriteNode!
     
 
-    
+    // MARK: - Initialization
     
     init(catType: CatType) {
         let size = CGSize(width: 330, height: 330)
@@ -133,13 +133,63 @@ class CatSpriteNode: SKSpriteNode, EventListenerNode {
         normalStateAnimation()
     }
     
+    //MARK: - Actions
+    
+    func jump() {
+        physicsBody?.applyImpulse(CGVector(dx: 0, dy: 5000))
+    }
+    
+    func dropSlightly() {
+        physicsBody?.applyImpulse(CGVector(dx: 0, dy: -300))
+    }
+    
+    //MARK: - Animations
+    
     func normalStateAnimation() {
+        
+        // Eyes
+        
         let textures = self.catType.blink
         let blinkAnimation = SKAction.animate(with: textures,
                                            timePerFrame: 0.1)
         let waitAnimation = SKAction.wait(forDuration: 3)
         let sequence = SKAction.sequence([blinkAnimation, blinkAnimation, waitAnimation])
+        eyesNode.run(SKAction.repeatForever(sequence), withKey: "normal-eyes")
         
-        eyesNode.run(SKAction.repeatForever(sequence))
+        
+        // Tail
+        
+        let tailWaitAnimation = SKAction.wait(forDuration: 2)
+        let tailRotationAnimation = SKAction.rotate(byAngle: 7.toRadians(), duration: 1.5)
+        let tailRotationReversed = tailRotationAnimation.reversed()
+        let fullTailAnimation = SKAction.sequence([tailWaitAnimation, tailRotationAnimation,
+                                                   tailRotationReversed])
+        tailNode.run(SKAction.repeatForever(fullTailAnimation), withKey: "normal-tail")
+        
+        
+        // Mouth
+        
+        let mouthWaitAnimation = SKAction.wait(forDuration: 1.5)
+        let mouthMoveAnimation = SKAction.moveBy(x: 0, y: -3, duration: 0.2)
+        let mouthMoveReversed = mouthMoveAnimation.reversed()
+        
+        let fullMouthAnimation = SKAction.sequence([mouthWaitAnimation, mouthMoveAnimation,
+                                                    mouthMoveReversed, mouthWaitAnimation])
+        mouthNode.run(SKAction.repeatForever(fullMouthAnimation), withKey: "normal-mouth")
+        
+        // Body
+        
+        let bodyBounceAnimation = SKAction.moveBy(x: 0, y: 5, duration: 0.5)
+        let bodyBounceReversed = bodyBounceAnimation.reversed()
+        let fullBodyAnimation = SKAction.sequence([bodyBounceAnimation, bodyBounceReversed])
+        
+        bodyNode.run(SKAction.repeatForever(fullBodyAnimation), withKey: "normal-body")
+        
+        // Feet
+        let feetBounceAnimation = SKAction.moveBy(x: 0, y: -5, duration: 0.5)
+        let feetBounceReversed = feetBounceAnimation.reversed()
+        let fullfeetAnimation = SKAction.sequence([feetBounceAnimation, feetBounceReversed])
+        
+        feetNode.run(SKAction.repeatForever(fullfeetAnimation), withKey: "normal-feet")
     }
 }

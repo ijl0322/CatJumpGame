@@ -21,22 +21,18 @@ class Level {
         guard let tilesArray = dictionary["tiles"] as? [[Int]] else { return }
         
         for (row, rowArray) in tilesArray.enumerated() {
-            print(row, rowArray)
             let tileRow = NumRows - row - 1
             for (column, value) in rowArray.enumerated() {
                 tiles[column, tileRow] = value
-                print(column, tileRow)
             }
         }
     }
-    
     
     func breadAt(column: Int, row: Int) -> Bread? {
         assert(column >= 0 && column < NumColumns)
         assert(row >= 0 && row < NumRows)
         return breads[column, row]
     }
-    
     
     func loadBread() -> Set<Bread> {
         var set = Set<Bread>()

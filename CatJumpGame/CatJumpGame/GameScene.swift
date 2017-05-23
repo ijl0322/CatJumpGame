@@ -86,7 +86,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         //ballNode?.position = touchLocation
         
         seesawNode?.position.x = touchLocation.x
-        releaseCat()
+        //releaseCat()
+        catTestNode?.jump()
     }
     
     func addBread(breads: Set<Bread>) {
@@ -120,6 +121,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         }
         
         if collision == PhysicsCategory.Cat1 | PhysicsCategory.LeftWood {
+            print("Cat collided")
             cat1Node?.parent?.position = CGPoint(x: (cat1Node?.parent?.position.x)! ,y: 0)
             seesawNode?.fixCat(catNode: cat1Node!)
         }
