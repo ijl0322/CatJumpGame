@@ -15,6 +15,7 @@
 		0E12EEAA1ED13F0C00B1BB40 /* Dictionary+JsonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E12EEA91ED13F0C00B1BB40 /* Dictionary+JsonExtension.swift */; };
 		0E12EEAC1ED140F600B1BB40 /* Bread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E12EEAB1ED140F600B1BB40 /* Bread.swift */; };
 		0E12EEAE1ED143D600B1BB40 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E12EEAD1ED143D600B1BB40 /* Level.swift */; };
+		0E3143F01ED3D8AC004E584C /* CatSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3143EF1ED3D8AC004E584C /* CatSpriteNode.swift */; };
 		0E511C591ECE008A00F3E7A9 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E511C4D1ECE008A00F3E7A9 /* CGFloat+Extensions.swift */; };
 		0E511C5A1ECE008A00F3E7A9 /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E511C4E1ECE008A00F3E7A9 /* CGPoint+Extensions.swift */; };
 		0E511C5B1ECE008A00F3E7A9 /* CGVector+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E511C4F1ECE008A00F3E7A9 /* CGVector+Extensions.swift */; };
@@ -30,6 +31,7 @@
 		0E511C661ECE088000F3E7A9 /* CatNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E511C651ECE088000F3E7A9 /* CatNode.swift */; };
 		0E511C681ECE0FBF00F3E7A9 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E511C671ECE0FBF00F3E7A9 /* Int+Extension.swift */; };
 		0E6F45911ECE18A80071F818 /* BreadNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6F45901ECE18A80071F818 /* BreadNode.swift */; };
+		0ECBA3D11ED38EDE0067C983 /* Cat.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0ECBA3D01ED38EDD0067C983 /* Cat.sks */; };
 		0ED507CE1ECBDDA600E141C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED507CD1ECBDDA600E141C3 /* AppDelegate.swift */; };
 		0ED507D01ECBDDA600E141C3 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0ED507CF1ECBDDA600E141C3 /* GameScene.sks */; };
 		0ED507D41ECBDDA600E141C3 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED507D31ECBDDA600E141C3 /* GameScene.swift */; };
@@ -49,6 +51,7 @@
 		0E12EEA91ED13F0C00B1BB40 /* Dictionary+JsonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+JsonExtension.swift"; sourceTree = "<group>"; };
 		0E12EEAB1ED140F600B1BB40 /* Bread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bread.swift; sourceTree = "<group>"; };
 		0E12EEAD1ED143D600B1BB40 /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
+		0E3143EF1ED3D8AC004E584C /* CatSpriteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatSpriteNode.swift; sourceTree = "<group>"; };
 		0E511C4D1ECE008A00F3E7A9 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		0E511C4E1ECE008A00F3E7A9 /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
 		0E511C4F1ECE008A00F3E7A9 /* CGVector+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+Extensions.swift"; sourceTree = "<group>"; };
@@ -64,6 +67,7 @@
 		0E511C651ECE088000F3E7A9 /* CatNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatNode.swift; sourceTree = "<group>"; };
 		0E511C671ECE0FBF00F3E7A9 /* Int+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		0E6F45901ECE18A80071F818 /* BreadNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreadNode.swift; sourceTree = "<group>"; };
+		0ECBA3D01ED38EDD0067C983 /* Cat.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Cat.sks; sourceTree = "<group>"; };
 		0ED507CA1ECBDDA600E141C3 /* CatJumpGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatJumpGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ED507CD1ECBDDA600E141C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0ED507CF1ECBDDA600E141C3 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -147,6 +151,7 @@
 				0ED507DC1ECBDDA600E141C3 /* LaunchScreen.storyboard */,
 				0ED507DF1ECBDDA600E141C3 /* Info.plist */,
 				0EEC293C1ECBED900003623D /* Cat1.sks */,
+				0ECBA3D01ED38EDD0067C983 /* Cat.sks */,
 				0E0A72E71ECCEF8300022BCE /* Seesaw.sks */,
 				0E0A72E91ECCF03700022BCE /* SeesawNode.swift */,
 				0E12EEA41ED13EB600B1BB40 /* Array2D.swift */,
@@ -154,6 +159,7 @@
 				0E6F45901ECE18A80071F818 /* BreadNode.swift */,
 				0E12EEAB1ED140F600B1BB40 /* Bread.swift */,
 				0E12EEAD1ED143D600B1BB40 /* Level.swift */,
+				0E3143EF1ED3D8AC004E584C /* CatSpriteNode.swift */,
 			);
 			path = CatJumpGame;
 			sourceTree = "<group>";
@@ -221,6 +227,7 @@
 				0ED507D91ECBDDA600E141C3 /* Main.storyboard in Resources */,
 				0E12EEA81ED13EDA00B1BB40 /* Level_1.json in Resources */,
 				0ED507D01ECBDDA600E141C3 /* GameScene.sks in Resources */,
+				0ECBA3D11ED38EDE0067C983 /* Cat.sks in Resources */,
 				0EEC293D1ECBED900003623D /* Cat1.sks in Resources */,
 				0ED507DB1ECBDDA600E141C3 /* Assets.xcassets in Resources */,
 				0E11B1BF1ECE2573002A644B /* pop.mp3 in Resources */,
@@ -255,6 +262,7 @@
 				0E511C5F1ECE008A00F3E7A9 /* SKColor+Extensions.swift in Sources */,
 				0E511C5B1ECE008A00F3E7A9 /* CGVector+Extensions.swift in Sources */,
 				0E6F45911ECE18A80071F818 /* BreadNode.swift in Sources */,
+				0E3143F01ED3D8AC004E584C /* CatSpriteNode.swift in Sources */,
 				0E511C611ECE008A00F3E7A9 /* SKTAudio.swift in Sources */,
 				0E511C591ECE008A00F3E7A9 /* CGFloat+Extensions.swift in Sources */,
 				0E511C661ECE088000F3E7A9 /* CatNode.swift in Sources */,

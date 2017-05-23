@@ -36,9 +36,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     let level = Level(filename: "Level_1")
     var playableMargin: CGFloat = 0.0
     var ballNode: SKSpriteNode?
-    var seesawBaseNode: SeesawBaseNode?
     var seesawNode: SeesawNode?
     var cat1Node: CatNode?
+    var catTestNode: CatSpriteNode?
+    var testBread: BreadNode?
     var score = 0
     
     override func didMove(to view: SKView) {
@@ -60,8 +61,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             }
         })
         
+        catTestNode = CatSpriteNode(catType: .cat1)
+        catTestNode?.position = CGPoint(x: 500, y: 500)
+        catTestNode?.zPosition = 100
+        self.scene?.addChild((catTestNode)!)
+        
+        
         ballNode = childNode(withName: "ball") as? SKSpriteNode
-        seesawBaseNode = childNode(withName: "seesawBase") as? SeesawBaseNode
         seesawNode = childNode(withName: "seesaw") as? SeesawNode
         cat1Node = childNode(withName: "//cat1_body") as? CatNode
 
