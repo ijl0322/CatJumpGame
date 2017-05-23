@@ -61,7 +61,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             }
         })
         
-        catTestNode = CatSpriteNode(catType: .cat1)
+        catTestNode = CatSpriteNode(catType: .cat2)
         catTestNode?.position = CGPoint(x: 500, y: 500)
         catTestNode?.zPosition = 100
         self.scene?.addChild((catTestNode)!)

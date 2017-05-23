@@ -43,6 +43,15 @@ enum CatType: Int, CustomStringConvertible {
         return "\(spriteName)_tail"
     }
     
+    var blink: [SKTexture] {
+        var textures:[SKTexture] = []
+        for i in 1...3 {
+            textures.append(SKTexture(imageNamed: "\(spriteName)_blinking\(i)"))
+        }
+        textures.append(SKTexture(imageNamed: "\(spriteName)_blinking\(1)"))
+        return textures
+    }
+    
     var description: String {
         return spriteName
     }
@@ -52,6 +61,9 @@ enum CatType: Int, CustomStringConvertible {
 import SpriteKit
 class CatSpriteNode: SKSpriteNode, EventListenerNode {
     var isPinned = false
+    var catType: CatType!
+    
+    // Nodes
     var bodyNode: SKSpriteNode!
     var headNode: SKSpriteNode!
     var eyesNode: SKSpriteNode!
@@ -59,10 +71,14 @@ class CatSpriteNode: SKSpriteNode, EventListenerNode {
     var feetNode: SKSpriteNode!
     var tailNode: SKSpriteNode!
     
+
+    
     
     init(catType: CatType) {
         let size = CGSize(width: 330, height: 330)
-        super.init(texture: nil, color: UIColor.red, size: size)
+        self.catType = catType
+        
+        super.init(texture: nil, color: UIColor.clear, size: size)
         bodyNode = SKSpriteNode(imageNamed: catType.body)
         bodyNode.position = CGPoint(x: 0, y: -80)
         self.addChild(bodyNode)
@@ -89,7 +105,7 @@ class CatSpriteNode: SKSpriteNode, EventListenerNode {
         
         tailNode = SKSpriteNode(imageNamed: catType.tail)
         tailNode.position = CGPoint(x: -50, y: -45.5)
-        tailNode.zPosition = 0
+        tailNode.zPosition = -1
         tailNode.anchorPoint = CGPoint(x: 1, y: 0)
         bodyNode.addChild(tailNode)
         
@@ -113,5 +129,17 @@ class CatSpriteNode: SKSpriteNode, EventListenerNode {
         let rotationConstraint = SKConstraint.zRotation(
             SKRange(lowerLimit: -30.toRadians(), upperLimit: 30.toRadians()))
         self.constraints = [rotationConstraint]
+        
+        normalStateAnimation()
+    }
+    
+    func normalStateAnimation() {
+        let textures = self.catType.blink
+        let blinkAnimation = SKAction.animate(with: textures,
+                                           timePerFrame: 0.1)
+        let waitAnimation = SKAction.wait(forDuration: 3)
+        let sequence = SKAction.sequence([blinkAnimation, blinkAnimation, waitAnimation])
+        
+        eyesNode.run(SKAction.repeatForever(sequence))
     }
 }
