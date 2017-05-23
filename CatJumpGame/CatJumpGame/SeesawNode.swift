@@ -28,7 +28,7 @@ class SeesawNode: SKSpriteNode, EventListenerNode {
         physicsBody = SKPhysicsBody(texture: seesawBodyTexture,
                                             size: seesawBodyTexture.size())
         physicsBody?.categoryBitMask = PhysicsCategory.Obstacle
-        physicsBody?.collisionBitMask = PhysicsCategory.Cat1 | PhysicsCategory.Obstacle | PhysicsCategory.Floor
+        physicsBody?.collisionBitMask = PhysicsCategory.LeftCat | PhysicsCategory.RightCat | PhysicsCategory.Obstacle | PhysicsCategory.Floor
         physicsBody?.contactTestBitMask = 0
         
         
@@ -63,15 +63,28 @@ class SeesawNode: SKSpriteNode, EventListenerNode {
         self.constraints = [moveConstaint]
     }
     
-    func fixCat(catNode: CatNode) {
+//    func fixCat(catNode: CatNode) {
+//        guard let scene = scene else {
+//            return
+//        }
+//        
+//        if !cat1Fixed{
+//            catNode.parent?.zRotation = 0
+//            self.zRotation = 0
+//            cat1Joint = SKPhysicsJointFixed.joint(withBodyA: physicsBody!, bodyB: (catNode.parent?.physicsBody)!, anchor: self.position)
+//            scene.physicsWorld.add(cat1Joint!)
+//        }
+//    }
+    
+    func fixCat(catNode: CatSpriteNode) {
         guard let scene = scene else {
             return
         }
         
         if !cat1Fixed{
-            catNode.parent?.zRotation = 0
+            catNode.zRotation = 0
             self.zRotation = 0
-            cat1Joint = SKPhysicsJointFixed.joint(withBodyA: physicsBody!, bodyB: (catNode.parent?.physicsBody)!, anchor: self.position)
+            cat1Joint = SKPhysicsJointFixed.joint(withBodyA: physicsBody!, bodyB: (catNode.physicsBody)!, anchor: self.position)
             scene.physicsWorld.add(cat1Joint!)
         }
     }

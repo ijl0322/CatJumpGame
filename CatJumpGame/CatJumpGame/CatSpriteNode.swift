@@ -6,6 +6,18 @@
 //  Copyright © 2017 isabeljlee. All rights reserved.
 //
 
+enum SeatSide: Int {
+    case left = 0, right
+    
+    init?(raw: Int) {
+        self.init(rawValue: raw)
+    }
+    
+    var physicsBody: SKTexture {
+        let physicsBodyImage = ["leftCat_physics", "leftCat_physics"]
+        return SKTexture(imageNamed: physicsBodyImage[rawValue])
+    }
+}
 
 enum CatType: Int, CustomStringConvertible {
     case unknown = 0, cat1, cat2
@@ -62,6 +74,7 @@ import SpriteKit
 class CatSpriteNode: SKSpriteNode, EventListenerNode {
     var isPinned = false
     var catType: CatType!
+    var seatSide: SeatSide!
     
     // Nodes
     var bodyNode: SKSpriteNode!
@@ -74,7 +87,7 @@ class CatSpriteNode: SKSpriteNode, EventListenerNode {
 
     // MARK: - Initialization
     
-    init(catType: CatType) {
+    init(catType: CatType, isLeftCat: Bool) {
         let size = CGSize(width: 330, height: 330)
         self.catType = catType
         
@@ -109,6 +122,12 @@ class CatSpriteNode: SKSpriteNode, EventListenerNode {
         tailNode.anchorPoint = CGPoint(x: 1, y: 0)
         bodyNode.addChild(tailNode)
         
+        if isLeftCat {
+            seatSide = .left
+        } else {
+            seatSide = .right
+        }
+        
         didMoveToScene()
     }
     
@@ -119,12 +138,19 @@ class CatSpriteNode: SKSpriteNode, EventListenerNode {
     func didMoveToScene() {
         print("new cat added to scene")
         
-        let catBodyTexture = SKTexture(imageNamed: "cat1_physics")
+        let catBodyTexture = seatSide.physicsBody
         physicsBody = SKPhysicsBody(texture: catBodyTexture,
                                             size: catBodyTexture.size())
-        physicsBody?.categoryBitMask = PhysicsCategory.Cat1
-        physicsBody?.collisionBitMask = PhysicsCategory.Edge | PhysicsCategory.Obstacle | PhysicsCategory.Floor | PhysicsCategory.Floor
+        
+        physicsBody?.collisionBitMask = PhysicsCategory.Edge | PhysicsCategory.Obstacle | PhysicsCategory.Floor
         physicsBody?.contactTestBitMask = PhysicsCategory.Bread | PhysicsCategory.LeftWood | PhysicsCategory.RightWood
+        
+        if seatSide == .left {
+            physicsBody?.categoryBitMask = PhysicsCategory.LeftCat
+        } else {
+            physicsBody?.categoryBitMask = PhysicsCategory.RightCat
+            self.xScale = -1
+        }
         
         let rotationConstraint = SKConstraint.zRotation(
             SKRange(lowerLimit: -30.toRadians(), upperLimit: 30.toRadians()))

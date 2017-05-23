@@ -15,8 +15,8 @@ struct PhysicsCategory {
     static let Obstacle: UInt32 = 0b10 //2
     static let LeftWood: UInt32 = 0b100 //4
     static let RightWood: UInt32 = 0b1000 //8
-    static let Cat1: UInt32 = 0b10000 //16
-    static let Cat2: UInt32 = 0b100000 //32
+    static let LeftCat: UInt32 = 0b10000 //16
+    static let RightCat: UInt32 = 0b100000 //32
     static let Bread: UInt32 = 0b1000000 //64
     static let Floor: UInt32 = 0b10000000 //128
 }
@@ -61,7 +61,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             }
         })
         
-        catTestNode = CatSpriteNode(catType: .cat2)
+        catTestNode = CatSpriteNode(catType: .cat1, isLeftCat: false)
         catTestNode?.position = CGPoint(x: 500, y: 500)
         catTestNode?.zPosition = 100
         self.scene?.addChild((catTestNode)!)
@@ -70,6 +70,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         ballNode = childNode(withName: "ball") as? SKSpriteNode
         seesawNode = childNode(withName: "seesaw") as? SeesawNode
         cat1Node = childNode(withName: "//cat1_body") as? CatNode
+        cat1Node?.parent?.physicsBody?.isDynamic = false
 
         let allBreads = level.loadBread()
         addBread(breads: allBreads)
@@ -86,7 +87,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         //ballNode?.position = touchLocation
         
         seesawNode?.position.x = touchLocation.x
-        //releaseCat()
+        releaseCat()
         catTestNode?.jump()
     }
     
@@ -110,7 +111,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         let collision = contact.bodyA.categoryBitMask
             | contact.bodyB.categoryBitMask
         
-        if collision == PhysicsCategory.Cat1 | PhysicsCategory.Bread {
+        if collision == PhysicsCategory.LeftCat | PhysicsCategory.Bread {
             let breadNode = contact.bodyA.categoryBitMask ==
                 PhysicsCategory.Bread ? contact.bodyA.node :
                 contact.bodyB.node
@@ -120,28 +121,45 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             print("My Score: \(score)")
         }
         
-        if collision == PhysicsCategory.Cat1 | PhysicsCategory.LeftWood {
-            print("Cat collided")
-            cat1Node?.parent?.position = CGPoint(x: (cat1Node?.parent?.position.x)! ,y: 0)
-            seesawNode?.fixCat(catNode: cat1Node!)
+        if collision == PhysicsCategory.LeftCat | PhysicsCategory.LeftWood {
+            
+            //cat1Node?.parent?.position = CGPoint(x: (cat1Node?.parent?.position.x)! ,y: 0)
+            //seesawNode?.fixCat(catNode: cat1Node!)
+            //print(catTestNode?.position.y)
+            //print(seesawNode?.position.y)
+            
+            let xPosition = (seesawNode?.position.x)! - ((seesawNode?.frame.width)!/4)
+            let yPosition = (seesawNode?.position.y)! + (catTestNode?.frame.height)!/2.5
+            catTestNode?.position = CGPoint(x: xPosition, y: yPosition)
+            seesawNode?.fixCat(catNode: catTestNode!)
         }
         
-        if collision == PhysicsCategory.Cat1 | PhysicsCategory.Floor {
+        if collision == PhysicsCategory.LeftCat | PhysicsCategory.Floor {
             print("Cat fell!")
         }
     }
     
     func releaseCat() {
-        print("Disabling the contact")
-        seesawNode?.physicsBody?.contactTestBitMask = 0
-        cat1Node?.parent!.physicsBody?.contactTestBitMask = PhysicsCategory.Bread
+//        print("Disabling the contact")
+//        seesawNode?.physicsBody?.contactTestBitMask = 0
+//        cat1Node?.parent!.physicsBody?.contactTestBitMask = PhysicsCategory.Bread
+//        seesawNode?.releaseCat()
+//        seesawNode?.physicsBody?.isDynamic = true
+//        cat1Node?.throwCat()
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+//            print("Enabling the contact")
+//            self.seesawNode?.physicsBody?.contactTestBitMask = PhysicsCategory.Cat1
+//            self.cat1Node?.parent!.physicsBody?.contactTestBitMask = PhysicsCategory.Bread | PhysicsCategory.LeftWood
+//        })
+        
+        
+        catTestNode?.physicsBody?.contactTestBitMask = PhysicsCategory.Bread
         seesawNode?.releaseCat()
-        seesawNode?.physicsBody?.isDynamic = true
-        cat1Node?.throwCat()
+        catTestNode?.jump()
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
             print("Enabling the contact")
-            self.seesawNode?.physicsBody?.contactTestBitMask = PhysicsCategory.Cat1
-            self.cat1Node?.parent!.physicsBody?.contactTestBitMask = PhysicsCategory.Bread | PhysicsCategory.LeftWood
+            self.catTestNode?.physicsBody?.contactTestBitMask = PhysicsCategory.Bread | PhysicsCategory.LeftWood
         })
     }
     

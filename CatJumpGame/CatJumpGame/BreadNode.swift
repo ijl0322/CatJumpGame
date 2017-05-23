@@ -60,7 +60,7 @@ class BreadNode: SKSpriteNode, EventListenerNode {
         physicsBody?.isDynamic = false
         physicsBody?.categoryBitMask = PhysicsCategory.Bread
         physicsBody?.collisionBitMask = 0
-        physicsBody?.contactTestBitMask = PhysicsCategory.Cat1 | PhysicsCategory.Cat2
+        physicsBody?.contactTestBitMask = PhysicsCategory.LeftCat | PhysicsCategory.RightCat
         
         let randomTime = CGFloat.random(min: 0.1, max: 0.5)
         let leftWiggle = SKAction.rotate(byAngle: 10.toRadians(), duration: 0.5)
