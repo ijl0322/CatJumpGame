@@ -142,13 +142,14 @@ class CatSpriteNode: SKSpriteNode, EventListenerNode {
         physicsBody = SKPhysicsBody(texture: catBodyTexture,
                                             size: catBodyTexture.size())
         
-        physicsBody?.collisionBitMask = PhysicsCategory.Edge | PhysicsCategory.Obstacle | PhysicsCategory.Floor
-        physicsBody?.contactTestBitMask = PhysicsCategory.Bread | PhysicsCategory.LeftWood | PhysicsCategory.RightWood
+        physicsBody?.collisionBitMask = PhysicsCategory.Edge | PhysicsCategory.Obstacle | PhysicsCategory.Floor | PhysicsCategory.RightCat | PhysicsCategory.LeftCat
         
         if seatSide == .left {
             physicsBody?.categoryBitMask = PhysicsCategory.LeftCat
+            physicsBody?.contactTestBitMask = PhysicsCategory.Bread | PhysicsCategory.LeftWood
         } else {
             physicsBody?.categoryBitMask = PhysicsCategory.RightCat
+            physicsBody?.contactTestBitMask = PhysicsCategory.Bread | PhysicsCategory.RightWood
             self.xScale = -1
         }
         
