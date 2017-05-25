@@ -70,6 +70,7 @@ class BreadNode: SKSpriteNode, EventListenerNode {
         let wiggleForever = SKAction.repeatForever(fullWiggle)
         self.run(wiggleForever, withKey: "wiggle")
         
+        self.name = "bread"
     }
     
     func remove() -> Int{

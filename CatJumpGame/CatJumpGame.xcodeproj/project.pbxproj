@@ -15,6 +15,8 @@
 		0E12EEAA1ED13F0C00B1BB40 /* Dictionary+JsonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E12EEA91ED13F0C00B1BB40 /* Dictionary+JsonExtension.swift */; };
 		0E12EEAC1ED140F600B1BB40 /* Bread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E12EEAB1ED140F600B1BB40 /* Bread.swift */; };
 		0E12EEAE1ED143D600B1BB40 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E12EEAD1ED143D600B1BB40 /* Level.swift */; };
+		0E1DD8301ED76BDA003AE270 /* GameEndNotificationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1DD82F1ED76BDA003AE270 /* GameEndNotificationNode.swift */; };
+		0E1DD8321ED77279003AE270 /* gameEndNotification.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0E1DD8311ED77279003AE270 /* gameEndNotification.sks */; };
 		0E3143F01ED3D8AC004E584C /* CatSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3143EF1ED3D8AC004E584C /* CatSpriteNode.swift */; };
 		0E511C591ECE008A00F3E7A9 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E511C4D1ECE008A00F3E7A9 /* CGFloat+Extensions.swift */; };
 		0E511C5A1ECE008A00F3E7A9 /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E511C4E1ECE008A00F3E7A9 /* CGPoint+Extensions.swift */; };
@@ -54,6 +56,8 @@
 		0E12EEA91ED13F0C00B1BB40 /* Dictionary+JsonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+JsonExtension.swift"; sourceTree = "<group>"; };
 		0E12EEAB1ED140F600B1BB40 /* Bread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bread.swift; sourceTree = "<group>"; };
 		0E12EEAD1ED143D600B1BB40 /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
+		0E1DD82F1ED76BDA003AE270 /* GameEndNotificationNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEndNotificationNode.swift; sourceTree = "<group>"; };
+		0E1DD8311ED77279003AE270 /* gameEndNotification.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = gameEndNotification.sks; sourceTree = "<group>"; };
 		0E3143EF1ED3D8AC004E584C /* CatSpriteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatSpriteNode.swift; sourceTree = "<group>"; };
 		0E511C4D1ECE008A00F3E7A9 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		0E511C4E1ECE008A00F3E7A9 /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
@@ -106,6 +110,26 @@
 			name = Levels;
 			sourceTree = "<group>";
 		};
+		0E1DD8331ED77488003AE270 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0E68670D1ED51B9E002E7886 /* MKOutlinedLabelNode.swift */,
+				0E12EEA41ED13EB600B1BB40 /* Array2D.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		0E1DD8341ED774AE003AE270 /* PrototypeScenes */ = {
+			isa = PBXGroup;
+			children = (
+				0EEC293C1ECBED900003623D /* Cat1.sks */,
+				0ECBA3D01ED38EDD0067C983 /* Cat.sks */,
+				0E0A72E71ECCEF8300022BCE /* Seesaw.sks */,
+				0E1DD8311ED77279003AE270 /* gameEndNotification.sks */,
+			);
+			name = PrototypeScenes;
+			sourceTree = "<group>";
+		};
 		0E511C4C1ECE008A00F3E7A9 /* SKTUtils */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,10 +171,11 @@
 		0ED507CC1ECBDDA600E141C3 /* CatJumpGame */ = {
 			isa = PBXGroup;
 			children = (
+				0E1DD8341ED774AE003AE270 /* PrototypeScenes */,
+				0E1DD8331ED77488003AE270 /* Helpers */,
 				0E12EEA61ED13EBD00B1BB40 /* Levels */,
 				0E511C4C1ECE008A00F3E7A9 /* SKTUtils */,
 				0ED507CD1ECBDDA600E141C3 /* AppDelegate.swift */,
-				0E68670D1ED51B9E002E7886 /* MKOutlinedLabelNode.swift */,
 				0ED507CF1ECBDDA600E141C3 /* GameScene.sks */,
 				0E68670B1ED51850002E7886 /* BradBunR.ttf */,
 				0ED507D31ECBDDA600E141C3 /* GameScene.swift */,
@@ -159,16 +184,13 @@
 				0ED507DA1ECBDDA600E141C3 /* Assets.xcassets */,
 				0ED507DC1ECBDDA600E141C3 /* LaunchScreen.storyboard */,
 				0ED507DF1ECBDDA600E141C3 /* Info.plist */,
-				0EEC293C1ECBED900003623D /* Cat1.sks */,
-				0ECBA3D01ED38EDD0067C983 /* Cat.sks */,
-				0E0A72E71ECCEF8300022BCE /* Seesaw.sks */,
 				0E0A72E91ECCF03700022BCE /* SeesawNode.swift */,
-				0E12EEA41ED13EB600B1BB40 /* Array2D.swift */,
 				0E511C651ECE088000F3E7A9 /* CatNode.swift */,
 				0E6F45901ECE18A80071F818 /* BreadNode.swift */,
 				0E12EEAB1ED140F600B1BB40 /* Bread.swift */,
 				0E12EEAD1ED143D600B1BB40 /* Level.swift */,
 				0E3143EF1ED3D8AC004E584C /* CatSpriteNode.swift */,
+				0E1DD82F1ED76BDA003AE270 /* GameEndNotificationNode.swift */,
 			);
 			path = CatJumpGame;
 			sourceTree = "<group>";
@@ -239,6 +261,7 @@
 				0ED507D01ECBDDA600E141C3 /* GameScene.sks in Resources */,
 				0ECBA3D11ED38EDE0067C983 /* Cat.sks in Resources */,
 				0EEC293D1ECBED900003623D /* Cat1.sks in Resources */,
+				0E1DD8321ED77279003AE270 /* gameEndNotification.sks in Resources */,
 				0ED507DB1ECBDDA600E141C3 /* Assets.xcassets in Resources */,
 				0E68670C1ED518C5002E7886 /* BradBunR.ttf in Resources */,
 				0E11B1BF1ECE2573002A644B /* pop.mp3 in Resources */,
@@ -270,6 +293,7 @@
 				0E511C641ECE008A00F3E7A9 /* Vector3.swift in Sources */,
 				0E12EEAC1ED140F600B1BB40 /* Bread.swift in Sources */,
 				0ED507D61ECBDDA600E141C3 /* GameViewController.swift in Sources */,
+				0E1DD8301ED76BDA003AE270 /* GameEndNotificationNode.swift in Sources */,
 				0E12EEAA1ED13F0C00B1BB40 /* Dictionary+JsonExtension.swift in Sources */,
 				0E511C5F1ECE008A00F3E7A9 /* SKColor+Extensions.swift in Sources */,
 				0E511C5B1ECE008A00F3E7A9 /* CGVector+Extensions.swift in Sources */,

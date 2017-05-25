@@ -11,6 +11,26 @@ import Foundation
 let NumColumns = 8
 let NumRows = 9
 
+enum LevelCompleteType: Int, CustomStringConvertible {
+    case lose = 0, oneStar, twoStar, threeStar
+    
+    init?(raw: Int) {
+        self.init(rawValue: raw)
+    }
+
+    var description: String {
+        let status = ["lose", "oneStar", "twoStar", "threeSrar"]
+        
+        return status[rawValue]
+    }
+    
+    var coins: Int {
+        let cointsReceived = [0, 1000, 1200, 1500]
+        return cointsReceived[rawValue]
+    }
+}
+
+
 class Level {
     fileprivate var breads = Array2D<Bread>(columns: NumColumns, rows: NumRows)
     fileprivate var tiles = Array2D<Int>(columns: NumColumns, rows: NumRows)
@@ -55,5 +75,17 @@ class Level {
         
         print("Hightest score for this level: \(highestScore)")
         return set
+    }
+    
+    func levelCompleteStatus(score: Int) -> LevelCompleteType{
+        if Double(score) >= Double(highestScore){
+            return .threeStar
+        } else if Double(score) >= Double(highestScore) * 0.9 {
+            return .twoStar
+        } else if Double(score) >= Double(highestScore) * 0.75 {
+            return .oneStar
+        } else {
+            return .lose
+        }
     }
 }

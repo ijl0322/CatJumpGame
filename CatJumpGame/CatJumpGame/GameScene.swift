@@ -46,6 +46,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     var seesawNode: SeesawNode?
     var rightCatNode: CatSpriteNode!
     var leftCatNode: CatSpriteNode!
+    var gameEndNotificationNode: GameEndNotificationNode?
     
     //Game State
     var score = 0
@@ -206,6 +207,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             print("Cat fell!")
             if gameState == .play {
                 gameState = .lose
+                displayLose()
+                print(level.levelCompleteStatus(score: score))
             }
         }
         
@@ -214,25 +217,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             
             if gameState == .play {
                 gameState = .lose
+                displayLose()
+                print(level.levelCompleteStatus(score: score))
             }
         }
         
-        if collision == PhysicsCategory.LeftCat | PhysicsCategory.RightCat {
-            print("Cats collided")
-            switch (seesawNode?.catInTheAir())!{
-            case .left:
-                print("left cat jump")
-                //leftCatNode.bounceOff()
-            case .right:
-                print("right cat bounce")
-                //rightCatNode.bounceOff()
-            case .both:
-                return
-            }
-        }
+//        if collision == PhysicsCategory.LeftCat | PhysicsCategory.RightCat {
+//            print("Cats collided")
+//            switch (seesawNode?.catInTheAir())!{
+//            case .left:
+//                print("left cat jump")
+//                //leftCatNode.bounceOff()
+//            case .right:
+//                print("right cat bounce")
+//                //rightCatNode.bounceOff()
+//            case .both:
+//                return
+//            }
+//        }
     }
     
-    
+    func displayLose() {
+        gameEndNotificationNode = GameEndNotificationNode(score: score, levelSatus: level.levelCompleteStatus(score: score))
+        gameEndNotificationNode?.zPosition = 150
+        self.scene?.addChild(gameEndNotificationNode!)
+    }
     
     func eatBread(contact: SKPhysicsContact, catNode: CatSpriteNode?) {
         let breadNode = contact.bodyA.categoryBitMask ==
@@ -288,6 +297,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         if gameState == .pause {
             isPaused = true
             return
+        }
+        
+        if score >= level.highestScore {
+            print("You win!")
         }
     }
     
