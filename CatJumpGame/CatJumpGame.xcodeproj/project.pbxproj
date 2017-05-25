@@ -130,6 +130,18 @@
 			name = PrototypeScenes;
 			sourceTree = "<group>";
 		};
+		0E1DD8351ED7770C003AE270 /* SKNodes */ = {
+			isa = PBXGroup;
+			children = (
+				0E6F45901ECE18A80071F818 /* BreadNode.swift */,
+				0E511C651ECE088000F3E7A9 /* CatNode.swift */,
+				0E0A72E91ECCF03700022BCE /* SeesawNode.swift */,
+				0E3143EF1ED3D8AC004E584C /* CatSpriteNode.swift */,
+				0E1DD82F1ED76BDA003AE270 /* GameEndNotificationNode.swift */,
+			);
+			name = SKNodes;
+			sourceTree = "<group>";
+		};
 		0E511C4C1ECE008A00F3E7A9 /* SKTUtils */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +183,7 @@
 		0ED507CC1ECBDDA600E141C3 /* CatJumpGame */ = {
 			isa = PBXGroup;
 			children = (
+				0E1DD8351ED7770C003AE270 /* SKNodes */,
 				0E1DD8341ED774AE003AE270 /* PrototypeScenes */,
 				0E1DD8331ED77488003AE270 /* Helpers */,
 				0E12EEA61ED13EBD00B1BB40 /* Levels */,
@@ -184,13 +197,8 @@
 				0ED507DA1ECBDDA600E141C3 /* Assets.xcassets */,
 				0ED507DC1ECBDDA600E141C3 /* LaunchScreen.storyboard */,
 				0ED507DF1ECBDDA600E141C3 /* Info.plist */,
-				0E0A72E91ECCF03700022BCE /* SeesawNode.swift */,
-				0E511C651ECE088000F3E7A9 /* CatNode.swift */,
-				0E6F45901ECE18A80071F818 /* BreadNode.swift */,
 				0E12EEAB1ED140F600B1BB40 /* Bread.swift */,
 				0E12EEAD1ED143D600B1BB40 /* Level.swift */,
-				0E3143EF1ED3D8AC004E584C /* CatSpriteNode.swift */,
-				0E1DD82F1ED76BDA003AE270 /* GameEndNotificationNode.swift */,
 			);
 			path = CatJumpGame;
 			sourceTree = "<group>";
