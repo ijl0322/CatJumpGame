@@ -7,15 +7,14 @@
 //
 
 enum SeatSide: Int {
-    case left = 0, right
+    case left = 0, right, both
     
     init?(raw: Int) {
         self.init(rawValue: raw)
     }
     
     var physicsBody: SKTexture {
-        let physicsBodyImage = ["leftCat_physics", "leftCat_physics"]
-        return SKTexture(imageNamed: physicsBodyImage[rawValue])
+        return SKTexture(imageNamed: "cat_physicsBody")
     }
 }
 
@@ -75,6 +74,7 @@ class CatSpriteNode: SKSpriteNode, EventListenerNode {
     var isPinned = false
     var catType: CatType!
     var seatSide: SeatSide!
+    var canJump = true
     
     // Nodes
     var bodyNode: SKSpriteNode!
@@ -146,10 +146,10 @@ class CatSpriteNode: SKSpriteNode, EventListenerNode {
         
         if seatSide == .left {
             physicsBody?.categoryBitMask = PhysicsCategory.LeftCat
-            physicsBody?.contactTestBitMask = PhysicsCategory.Bread | PhysicsCategory.LeftWood
+            physicsBody?.contactTestBitMask = PhysicsCategory.Bread | PhysicsCategory.LeftWood | PhysicsCategory.RightCat | PhysicsCategory.Floor
         } else {
             physicsBody?.categoryBitMask = PhysicsCategory.RightCat
-            physicsBody?.contactTestBitMask = PhysicsCategory.Bread | PhysicsCategory.RightWood
+            physicsBody?.contactTestBitMask = PhysicsCategory.Bread | PhysicsCategory.RightWood | PhysicsCategory.LeftCat | PhysicsCategory.Floor
             self.xScale = -1
         }
         
@@ -163,13 +163,15 @@ class CatSpriteNode: SKSpriteNode, EventListenerNode {
     //MARK: - Actions
     
     func jump() {
-        var direction = 0.0
+        physicsBody?.applyImpulse(CGVector(dx: 0, dy: 5000))
+    }
+    
+    func bounceOff() {
         if seatSide == .left {
-            direction = 1000
+            physicsBody?.applyImpulse(CGVector(dx: -400, dy: 200))
         } else {
-            direction = -1000
+            physicsBody?.applyImpulse(CGVector(dx: 400, dy: 200))
         }
-        physicsBody?.applyImpulse(CGVector(dx: direction, dy: 4000))
     }
     
     func dropSlightly() {
@@ -178,14 +180,18 @@ class CatSpriteNode: SKSpriteNode, EventListenerNode {
     
     func enableSeesawContact() {
         if seatSide == .left {
-            physicsBody?.contactTestBitMask = PhysicsCategory.Bread | PhysicsCategory.LeftWood
+            physicsBody?.contactTestBitMask = PhysicsCategory.Bread | PhysicsCategory.LeftWood | PhysicsCategory.RightCat | PhysicsCategory.Floor
         } else {
-            physicsBody?.contactTestBitMask = PhysicsCategory.Bread | PhysicsCategory.RightWood
+            physicsBody?.contactTestBitMask = PhysicsCategory.Bread | PhysicsCategory.RightWood | PhysicsCategory.LeftCat | PhysicsCategory.Floor
         }
     }
     
     func disableSeesawContact() {
-        physicsBody?.contactTestBitMask = PhysicsCategory.Bread
+        if seatSide == .left {
+            physicsBody?.contactTestBitMask = PhysicsCategory.Bread | PhysicsCategory.RightCat | PhysicsCategory.Floor
+        } else {
+            physicsBody?.contactTestBitMask = PhysicsCategory.Bread | PhysicsCategory.LeftCat | PhysicsCategory.Floor
+        }
     }
     
     //MARK: - Animations

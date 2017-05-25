@@ -15,6 +15,8 @@ class Level {
     fileprivate var breads = Array2D<Bread>(columns: NumColumns, rows: NumRows)
     fileprivate var tiles = Array2D<Int>(columns: NumColumns, rows: NumRows)
     
+    var highestScore = 0
+    
     init(filename: String) {
         guard let dictionary = Dictionary<String, AnyObject>.loadJSONFromBundle(filename: filename) else { return }
         
@@ -45,10 +47,13 @@ class Level {
                         let bread = Bread(column: column, row: row, breadType: breadType)
                         breads[column, row] = bread
                         set.insert(bread)
+                        highestScore += breadType.points
                     }
                 }
             }
         }
+        
+        print("Hightest score for this level: \(highestScore)")
         return set
     }
 }

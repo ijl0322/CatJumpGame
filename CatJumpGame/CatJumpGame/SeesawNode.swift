@@ -92,6 +92,28 @@ class SeesawNode: SKSpriteNode, EventListenerNode {
         }
     }
     
+    func moveWithinBounds(targetLocation: CGFloat, leftBound: CGFloat, rightBound: CGFloat) {
+        if targetLocation > leftBound && targetLocation < rightBound {
+        run(SKAction.moveTo(x: targetLocation, duration: 0.7))
+        }
+        else if targetLocation < leftBound {
+        run(SKAction.moveTo(x: leftBound, duration: 0.7))
+        }
+        else if targetLocation > rightBound {
+        run(SKAction.moveTo(x: rightBound, duration: 0.7))
+        }
+    }
+    
+    func catInTheAir() -> SeatSide {
+        if !leftCatFixed {
+            return .left
+        } else if !rightCatFixed {
+            return .right
+        } else {
+            return .both
+        }
+    }
+    
     func releaseCat(catSide: SeatSide) {
         
         switch catSide {
@@ -106,6 +128,8 @@ class SeesawNode: SKSpriteNode, EventListenerNode {
                 scene!.physicsWorld.remove(rightCatJoint!)
                 rightCatJoint = nil
             }
+            return
+        default:
             return
         }
     }
