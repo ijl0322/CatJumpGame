@@ -94,14 +94,19 @@ class SeesawNode: SKSpriteNode, EventListenerNode {
     
     func moveWithinBounds(targetLocation: CGFloat, leftBound: CGFloat, rightBound: CGFloat) {
         if targetLocation > leftBound && targetLocation < rightBound {
-        run(SKAction.moveTo(x: targetLocation, duration: 0.7))
+            run(SKAction.moveTo(x: targetLocation, duration: 0.7), withKey: "seesaw-move")
         }
         else if targetLocation < leftBound {
-        run(SKAction.moveTo(x: leftBound, duration: 0.7))
+        run(SKAction.moveTo(x: leftBound, duration: 0.7), withKey: "seesaw-move")
         }
         else if targetLocation > rightBound {
-        run(SKAction.moveTo(x: rightBound, duration: 0.7))
+        run(SKAction.moveTo(x: rightBound, duration: 0.7), withKey: "seesaw-move")
         }
+    }
+    
+    func stopMovement(){
+        removeAction(forKey: "seesaw-move")
+        physicsBody?.isDynamic = false
     }
     
     func catInTheAir() -> SeatSide {

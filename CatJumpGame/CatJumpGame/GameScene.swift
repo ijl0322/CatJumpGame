@@ -96,14 +96,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         let allBreads = level.loadBread()
         addBread(breads: allBreads)
         
-//        let livesLabel = SKLabelNode(fontNamed: "Brady Bunch Remastered")
-//        livesLabel.text = "9999"
-//        livesLabel.fontColor = SKColor.black
-//        livesLabel.fontSize = 80
-//        livesLabel.zPosition = 150
-//        livesLabel.position = CGPoint(x: 1217, y: 25)
-//        addChild(livesLabel)
-        
         scoreLabel.borderColor = UIColor.red
         scoreLabel.fontColor = UIColor.white
         scoreLabel.outlinedText = "\(score)"
@@ -112,16 +104,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         addChild(scoreLabel)
         
         //MARK: - Debug
-        
         //debugDrawPlayableArea(playableRect: playableRect)
         view.showsPhysics = true
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        reactToTouches(touches: touches)
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        reactToTouches(touches: touches)
+    }
+    
+    func reactToTouches(touches: Set<UITouch>) {
         guard let touch = touches.first else {
             return
         }
-
+        
         let touchLocation = touch.location(in: self)
         
         switch gameState {
@@ -135,26 +134,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             seesawNode?.moveWithinBounds(targetLocation: touchLocation.x, leftBound: seesawLeftBound,
                                          rightBound: seesawRightBound)
         case .lose:
-            seesawNode?.physicsBody?.isDynamic = false
-        default:
-            return
-        }
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first else {
-            return
-        }
-        
-        let touchLocation = touch.location(in: self)
-        switch gameState {
-        case .start:
-            seesawNode?.physicsBody?.isDynamic = true
-            gameState = .play
-            isPaused = false
-        case .play:
-            seesawNode?.moveWithinBounds(targetLocation: touchLocation.x, leftBound: seesawLeftBound,
-                                         rightBound: seesawRightBound)
+            if let touchedNode =
+                atPoint(touch.location(in: self)) as? SKSpriteNode {
+                if touchedNode.name == ButtonName.replay {
+                    transitionToScene(level: 1)
+                }
+            }
         default:
             return
         }
@@ -207,7 +192,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             print("Cat fell!")
             if gameState == .play {
                 gameState = .lose
-                displayLose()
+                loseGame()
                 print(level.levelCompleteStatus(score: score))
             }
         }
@@ -217,30 +202,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             
             if gameState == .play {
                 gameState = .lose
-                displayLose()
+                loseGame()
                 print(level.levelCompleteStatus(score: score))
             }
         }
         
-//        if collision == PhysicsCategory.LeftCat | PhysicsCategory.RightCat {
-//            print("Cats collided")
-//            switch (seesawNode?.catInTheAir())!{
-//            case .left:
-//                print("left cat jump")
-//                //leftCatNode.bounceOff()
-//            case .right:
-//                print("right cat bounce")
-//                //rightCatNode.bounceOff()
-//            case .both:
-//                return
-//            }
-//        }
     }
     
-    func displayLose() {
-        gameEndNotificationNode = GameEndNotificationNode(score: score, levelSatus: level.levelCompleteStatus(score: score))
+    func loseGame() {
+        gameEndNotificationNode = GameEndNotificationNode(score: score, levelStatus: level.levelCompleteStatus(score: score))
         gameEndNotificationNode?.zPosition = 150
         self.scene?.addChild(gameEndNotificationNode!)
+        gameEndNotificationNode?.animateStarsReceived()
     }
     
     func eatBread(contact: SKPhysicsContact, catNode: CatSpriteNode?) {
@@ -250,6 +223,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         let breadAte = breadNode as? BreadNode
         catNode?.dropSlightly()
         score += (breadAte?.remove())!
+        scoreLabel.borderOffset = CGPoint(x: 1, y: 1)
         scoreLabel.outlinedText = "\(score)"
         
         //print("My Score: \(score)")
@@ -299,9 +273,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             return
         }
         
+        if gameState == .lose {
+            seesawNode?.stopMovement()
+        }
+        
         if score >= level.highestScore {
             print("You win!")
         }
+    }
+    
+    func transitionToScene(level: Int) {
+        guard let newScene = SKScene(fileNamed: "GameScene")
+            as? GameScene else {
+                fatalError("Level: \(level) not found")
+        }
+        newScene.scaleMode = .aspectFill
+        view!.presentScene(newScene,
+                           transition: SKTransition.flipVertical(withDuration: 0.5))
     }
     
     func debugDrawPlayableArea(playableRect: CGRect) {
