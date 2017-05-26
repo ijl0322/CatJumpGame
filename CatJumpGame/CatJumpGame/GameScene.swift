@@ -116,9 +116,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         timeLabel.position = CGPoint(x: 364, y: 25)
         addChild(timeLabel)
         
-        
-        
-        
         //MARK: - Debug
         //debugDrawPlayableArea(playableRect: playableRect)
         view.showsPhysics = true
@@ -229,6 +226,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         gameEndNotificationNode?.zPosition = 150
         self.scene?.addChild(gameEndNotificationNode!)
         gameEndNotificationNode?.animateStarsReceived()
+        gameEndNotificationNode?.animateBonus(time: timeLimit - elapsedTime)
     }
     
     func eatBread(contact: SKPhysicsContact, catNode: CatSpriteNode?) {

@@ -36,6 +36,8 @@
 		0E68670C1ED518C5002E7886 /* BradBunR.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E68670B1ED51850002E7886 /* BradBunR.ttf */; };
 		0E68670E1ED51B9E002E7886 /* MKOutlinedLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E68670D1ED51B9E002E7886 /* MKOutlinedLabelNode.swift */; };
 		0E6F45911ECE18A80071F818 /* BreadNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6F45901ECE18A80071F818 /* BreadNode.swift */; };
+		0EB857B41ED87E530003B4BD /* Resume.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0EB857B31ED87E530003B4BD /* Resume.sks */; };
+		0EB857B61ED87F9E0003B4BD /* GamePausedNotificationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB857B51ED87F9E0003B4BD /* GamePausedNotificationNode.swift */; };
 		0ECBA3D11ED38EDE0067C983 /* Cat.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0ECBA3D01ED38EDD0067C983 /* Cat.sks */; };
 		0ED507CE1ECBDDA600E141C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED507CD1ECBDDA600E141C3 /* AppDelegate.swift */; };
 		0ED507D01ECBDDA600E141C3 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0ED507CF1ECBDDA600E141C3 /* GameScene.sks */; };
@@ -78,6 +80,8 @@
 		0E68670B1ED51850002E7886 /* BradBunR.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BradBunR.ttf; sourceTree = "<group>"; };
 		0E68670D1ED51B9E002E7886 /* MKOutlinedLabelNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKOutlinedLabelNode.swift; sourceTree = "<group>"; };
 		0E6F45901ECE18A80071F818 /* BreadNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreadNode.swift; sourceTree = "<group>"; };
+		0EB857B31ED87E530003B4BD /* Resume.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Resume.sks; sourceTree = "<group>"; };
+		0EB857B51ED87F9E0003B4BD /* GamePausedNotificationNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePausedNotificationNode.swift; sourceTree = "<group>"; };
 		0ECBA3D01ED38EDD0067C983 /* Cat.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Cat.sks; sourceTree = "<group>"; };
 		0ED507CA1ECBDDA600E141C3 /* CatJumpGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatJumpGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ED507CD1ECBDDA600E141C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -125,6 +129,7 @@
 		0E1DD8341ED774AE003AE270 /* PrototypeScenes */ = {
 			isa = PBXGroup;
 			children = (
+				0EB857B31ED87E530003B4BD /* Resume.sks */,
 				0EEC293C1ECBED900003623D /* Cat1.sks */,
 				0ECBA3D01ED38EDD0067C983 /* Cat.sks */,
 				0E0A72E71ECCEF8300022BCE /* Seesaw.sks */,
@@ -141,6 +146,7 @@
 				0E0A72E91ECCF03700022BCE /* SeesawNode.swift */,
 				0E3143EF1ED3D8AC004E584C /* CatSpriteNode.swift */,
 				0E1DD82F1ED76BDA003AE270 /* GameEndNotificationNode.swift */,
+				0EB857B51ED87F9E0003B4BD /* GamePausedNotificationNode.swift */,
 			);
 			name = SKNodes;
 			sourceTree = "<group>";
@@ -278,6 +284,7 @@
 				0E11B1BF1ECE2573002A644B /* pop.mp3 in Resources */,
 				0E5705C51ED7B6140027DDF5 /* Level_3.json in Resources */,
 				0ED507DE1ECBDDA600E141C3 /* LaunchScreen.storyboard in Resources */,
+				0EB857B41ED87E530003B4BD /* Resume.sks in Resources */,
 				0E0A72E81ECCEF8300022BCE /* Seesaw.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,6 +310,7 @@
 				0E511C5E1ECE008A00F3E7A9 /* SKAction+SpecialEffects.swift in Sources */,
 				0E511C5C1ECE008A00F3E7A9 /* Int+Extensions.swift in Sources */,
 				0E511C641ECE008A00F3E7A9 /* Vector3.swift in Sources */,
+				0EB857B61ED87F9E0003B4BD /* GamePausedNotificationNode.swift in Sources */,
 				0E12EEAC1ED140F600B1BB40 /* Bread.swift in Sources */,
 				0ED507D61ECBDDA600E141C3 /* GameViewController.swift in Sources */,
 				0E1DD8301ED76BDA003AE270 /* GameEndNotificationNode.swift in Sources */,

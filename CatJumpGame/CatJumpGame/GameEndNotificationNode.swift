@@ -27,6 +27,7 @@ class GameEndNotificationNode: SKSpriteNode, EventListenerNode {
     var replayButton: SKSpriteNode!
     var nextButton: SKSpriteNode!
     var leaderBoardButton: SKSpriteNode!
+    var score = 0
     var levelStatus: LevelCompleteType = .lose
     
     
@@ -37,8 +38,9 @@ class GameEndNotificationNode: SKSpriteNode, EventListenerNode {
         }
         
         self.levelStatus = levelStatus
+        self.score = score
         super.init(texture: texture, color: UIColor.clear, size: CGSize(width: 910, height: 1270))
-        self.position = CGPoint(x: 768, y: 1000)
+        self.position = CGPoint(x: 768, y: 1200)
         addCoinsLabel(coins: levelStatus.coins)
         addScoreLabel(score: score)
         addTimeLabel(time: time)
@@ -76,6 +78,38 @@ class GameEndNotificationNode: SKSpriteNode, EventListenerNode {
         let shrink = enlarge.reversed()
         let starAnimation = SKAction.sequence([wait, changeColor, enlarge, shrink])
         star.run(starAnimation)
+    }
+    
+    func animateBonus(time: Int) {
+        if levelStatus != .threeStar {
+            return
+        }
+        
+        let bonus = SKLabelNode(fontNamed: "BradyBunchRemastered")
+        bonus.text = "+\(time*10)"
+        bonus.fontColor = SKColor.red
+        bonus.fontSize = 144
+        bonus.zPosition = 30
+        bonus.position = CGPoint(x: 414, y: -57)
+        bonus.setScale(0)
+        addChild(bonus)
+        
+        let waitAction = SKAction.wait(forDuration: 2.4)
+        let setScale = SKAction.scale(to: 1.0, duration: 0.1)
+        let enlargeAction = SKAction.scale(by: 2, duration: 0.4)
+        let shrinkAction = enlargeAction.reversed()
+        bonus.run(SKAction.sequence([waitAction, setScale, enlargeAction, shrinkAction]), completion: { () -> Void in
+            self.scoreLabel.removeFromParent()
+            self.scoreLabel = MKOutlinedLabelNode(fontNamed: "BradyBunchRemastered", fontSize: 130)
+            self.scoreLabel.borderWidth = 10
+            self.scoreLabel.borderOffset = CGPoint(x: -3, y: -3)
+            self.scoreLabel.borderColor = UIColor.red
+            self.scoreLabel.fontColor = UIColor.white
+            self.scoreLabel.outlinedText = "\(self.score + time * 10)"
+            self.scoreLabel.zPosition = 15
+            self.scoreLabel.position = CGPoint(x: 143, y: -327)
+            self.addChild(self.scoreLabel)
+        })
     }
     
     func addButtons() {

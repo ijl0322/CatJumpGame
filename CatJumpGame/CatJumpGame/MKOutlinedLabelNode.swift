@@ -51,10 +51,10 @@ class MKOutlinedLabelNode: SKLabelNode {
                 border.position = positionBorder(border: border)
                 switch self.borderStyle {
                     case borderStyleType.over:
-                        border.zPosition = self.zPosition + 1
+                        border.zPosition = self.zPosition - 3
                         break
                     default:
-                        border.zPosition = self.zPosition - 1
+                        border.zPosition = self.zPosition - 3
                 }
                 
                 addChild(border)
