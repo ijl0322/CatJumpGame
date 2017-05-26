@@ -12,6 +12,8 @@ enum ButtonName {
     static let leaderBoard = "leaderBoardButton"
     static let levels = "levelsButton"
     static let replay = "replayButton"
+    static let no = "noButton"
+    static let yes = "yesButton"
 }
 
 import SpriteKit

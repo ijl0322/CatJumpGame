@@ -9,22 +9,11 @@
 import SpriteKit
 class GamePausedNotificationNode: SKSpriteNode, EventListenerNode {
     
-    var scoreLabel = MKOutlinedLabelNode(fontNamed: "BradyBunchRemastered", fontSize: 130)
-    var timeLabel = MKOutlinedLabelNode(fontNamed: "BradyBunchRemastered", fontSize: 130)
-    var coinsLabel = MKOutlinedLabelNode(fontNamed: "BradyBunchRemastered", fontSize: 130)
-    var star1: SKSpriteNode!
-    var star2: SKSpriteNode!
-    var star3: SKSpriteNode!
-    var levelsButton: SKSpriteNode!
-    var replayButton: SKSpriteNode!
-    var nextButton: SKSpriteNode!
-    var leaderBoardButton: SKSpriteNode!
-    var score = 0
-    var levelStatus: LevelCompleteType = .lose
-    
-    
-    init(score: Int, levelStatus: LevelCompleteType, time: Int) {
-        let texture = SKTexture(imageNamed: "pausedNotification")
+    var yesButton: SKSpriteNode!
+    var noButton: SKSpriteNode!
+
+    init() {
+        let texture = SKTexture(imageNamed: "pausedNotice")
         super.init(texture: texture, color: UIColor.clear, size: CGSize(width: 910, height: 800))
         self.position = CGPoint(x: 768, y: 1200)
         addButtons()
@@ -36,30 +25,18 @@ class GamePausedNotificationNode: SKSpriteNode, EventListenerNode {
     }
     
     func addButtons() {
-        levelsButton = SKSpriteNode(imageNamed: ButtonName.levels)
-        levelsButton.position = CGPoint(x: -310, y: -534)
-        levelsButton.zPosition = 30
-        levelsButton.name = ButtonName.levels
+        yesButton = SKSpriteNode(imageNamed: ButtonName.yes)
+        yesButton.position = CGPoint(x: -280, y: -340)
+        yesButton.zPosition = 1
+        yesButton.name = ButtonName.yes
         
-        addChild(levelsButton)
+        addChild(yesButton)
         
-        replayButton = SKSpriteNode(imageNamed: ButtonName.replay)
-        replayButton.position = CGPoint(x: -105, y: -534)
-        replayButton.zPosition = 30
-        replayButton.name = ButtonName.replay
-        addChild(replayButton)
-        
-        nextButton = SKSpriteNode(imageNamed: ButtonName.next)
-        nextButton.position = CGPoint(x: 105, y: -534)
-        nextButton.zPosition = 30
-        nextButton.name = ButtonName.next
-        addChild(nextButton)
-        
-        leaderBoardButton = SKSpriteNode(imageNamed: ButtonName.leaderBoard)
-        leaderBoardButton.position = CGPoint(x: 310, y: -534)
-        leaderBoardButton.zPosition = 30
-        leaderBoardButton.name = ButtonName.leaderBoard
-        addChild(leaderBoardButton)
+        noButton = SKSpriteNode(imageNamed: ButtonName.no)
+        noButton.position = CGPoint(x: 280, y: -340)
+        noButton.zPosition = 1
+        noButton.name = ButtonName.no
+        addChild(noButton)
     }
     
     func didMoveToScene() {

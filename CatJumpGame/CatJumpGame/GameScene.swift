@@ -51,11 +51,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     var rightCatNode: CatSpriteNode!
     var leftCatNode: CatSpriteNode!
     var gameEndNotificationNode: GameEndNotificationNode?
+    let pausedNotice = GamePausedNotificationNode()
     
     //Game State
     var score = 0
     var gameState: GameState = .start
-
+    
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     override func didMove(to view: SKView) {
         
@@ -116,6 +121,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         timeLabel.position = CGPoint(x: 364, y: 25)
         addChild(timeLabel)
         
+        addObservers()
+        
         //MARK: - Debug
         //debugDrawPlayableArea(playableRect: playableRect)
         view.showsPhysics = true
@@ -150,6 +157,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             if let touchedNode =
                 atPoint(touch.location(in: self)) as? SKSpriteNode {
                 if touchedNode.name == ButtonName.replay {
+                    transitionToScene(level: 3)
+                }
+            }
+        case .reload:
+            if let touchedNode =
+                atPoint(touch.location(in: self)) as? SKSpriteNode {
+                if touchedNode.name == ButtonName.yes {
+                    print("Resume game")
+                    pausedNotice.removeFromParent()
+                    isPaused = false
+                    gameState = .play
+                } else if touchedNode.name == ButtonName.no {
                     transitionToScene(level: 3)
                 }
             }
@@ -276,10 +295,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         })
     }
     
-    func didEnd(_ contact: SKPhysicsContact) {
-
-    }
-    
     override func update(_ currentTime: TimeInterval) {
         
         if gameState == .play {
@@ -287,7 +302,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             updateTime(currentTime: currentTime)
         }
         
-        if gameState == .pause {
+        if gameState == .pause || gameState == .reload {
             isPaused = true
             return
         }
@@ -344,5 +359,44 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         shape.strokeColor = SKColor.red
         shape.lineWidth = 10.0
         addChild(shape)
+    }
+}
+
+extension GameScene {
+    
+    func addObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(applicationDidBecomeActive),
+                                               name: .UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(applicationWillResignActive),
+                                               name: .UIApplicationWillResignActive, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(applicationDidEnterBackground),
+                                               name: .UIApplicationDidEnterBackground, object: nil)
+    }
+    
+    func applicationDidBecomeActive() {
+        if gameState == .pause {
+            gameState = .reload
+            pausedNotice.zPosition = 90
+            addChild(pausedNotice)
+        }
+        print("* applicationDidBecomeActive")
+    }
+    
+    func applicationWillResignActive() {
+        
+        isPaused = true
+        if gameState == .play {
+            gameState = .pause
+            print("pausing game")
+        }
+        
+        print("* applicationWillResignActive")
+    }
+    
+    func applicationDidEnterBackground() {
+        print("* applicationDidEnterBackground")
     }
 }
