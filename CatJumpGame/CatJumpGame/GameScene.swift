@@ -95,12 +95,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         rightCatNode.zPosition = 20
         self.scene?.addChild(rightCatNode)
 
-
         leftCatNode = CatSpriteNode(catType: .cat1, isLeftCat: true)
         leftCatNode.position = CGPoint(x: leftCatxPosition, y: catyPosition)
         leftCatNode.zPosition = 30
         self.scene?.addChild(leftCatNode)
-
 
         let allBreads = level.loadBread()
         addBread(breads: allBreads)
