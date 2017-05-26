@@ -57,73 +57,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     var score = 0
     var gameState: GameState = .start
     
-    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
     
     override func didMove(to view: SKView) {
-        
-        let maxAspectRatio: CGFloat = 9.0/16.0
-        let maxAspectRatioWidth = size.height * maxAspectRatio
-        playableMargin = (size.width
-            - maxAspectRatioWidth)/2
-        let playableRect = CGRect(x:  playableMargin, y: 0,
-                                  width: maxAspectRatioWidth, height: size.height)
-
-        physicsBody = SKPhysicsBody(edgeLoopFrom: playableRect)
-        physicsWorld.contactDelegate = self
-        physicsBody!.categoryBitMask = PhysicsCategory.Edge
-        
-        enumerateChildNodes(withName: "//*", using: { node, _ in
-            if let eventListenerNode = node as? EventListenerNode {
-                eventListenerNode.didMoveToScene()
-            }
-        })
-        
-        seesawNode = childNode(withName: "seesaw") as? SeesawNode
-        seesawLeftBound = playableMargin + (seesawNode?.frame.width)!/2
-        seesawRightBound = size.width - playableMargin - (seesawNode?.frame.width)!/2
-        seesawNode?.physicsBody?.isDynamic = false
-        
-        let rightCatxPosition = (seesawNode?.position.x)! + ((seesawNode?.frame.width)!/4)
-        let leftCatxPosition = (seesawNode?.position.x)! - ((seesawNode?.frame.width)!/4)
-        let catyPosition = (seesawNode?.position.y)! + (330)/2
-       
-        rightCatNode = CatSpriteNode(catType: .cat2, isLeftCat: false)
-        rightCatNode.position = CGPoint(x: rightCatxPosition, y: catyPosition)
-        rightCatNode.zPosition = 20
-        self.scene?.addChild(rightCatNode)
-
-        leftCatNode = CatSpriteNode(catType: .cat1, isLeftCat: true)
-        leftCatNode.position = CGPoint(x: leftCatxPosition, y: catyPosition)
-        leftCatNode.zPosition = 30
-        self.scene?.addChild(leftCatNode)
-
-        let allBreads = level.loadBread()
-        addBread(breads: allBreads)
-        
-        scoreLabel.borderColor = UIColor.red
-        scoreLabel.fontColor = UIColor.white
-        scoreLabel.outlinedText = "\(score)"
-        scoreLabel.zPosition = 15
-        scoreLabel.position = CGPoint(x: 1217, y: 25)
-        addChild(scoreLabel)
-        
-        timeLimit = level.timeLimit
-        
-        timeLabel.borderColor = UIColor.red
-        timeLabel.fontColor = UIColor.white
-        timeLabel.outlinedText = timeLimit.secondsToFormatedString()
-        timeLabel.zPosition = 15
-        timeLabel.position = CGPoint(x: 364, y: 25)
-        addChild(timeLabel)
-        
-        addObservers()
-        
-        //MARK: - Debug
-        //debugDrawPlayableArea(playableRect: playableRect)
-        view.showsPhysics = true
+        setUpScene(view: view)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -132,64 +71,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         reactToTouches(touches: touches)
-    }
-    
-    func reactToTouches(touches: Set<UITouch>) {
-        guard let touch = touches.first else {
-            return
-        }
-        
-        let touchLocation = touch.location(in: self)
-        
-        switch gameState {
-        case .start:
-            seesawNode?.physicsBody?.isDynamic = true
-            gameState = .play
-            isPaused = false
-            seesawNode?.fixCat(catNode: rightCatNode)
-            releaseCat(catNode: leftCatNode)
-        case .play:
-            seesawNode?.moveWithinBounds(targetLocation: touchLocation.x, leftBound: seesawLeftBound,
-                                         rightBound: seesawRightBound)
-        case .end:
-            if let touchedNode =
-                atPoint(touch.location(in: self)) as? SKSpriteNode {
-                if touchedNode.name == ButtonName.replay {
-                    transitionToScene(level: 3)
-                }
-            }
-        case .reload:
-            if let touchedNode =
-                atPoint(touch.location(in: self)) as? SKSpriteNode {
-                if touchedNode.name == ButtonName.yes {
-                    print("Resume game")
-                    pausedNotice.removeFromParent()
-                    isPaused = false
-                    startTime = nil
-                    gameState = .play
-                } else if touchedNode.name == ButtonName.no {
-                    transitionToScene(level: 2)
-                }
-            }
-        default:
-            return
-        }
-    }
-    
-    func addBread(breads: Set<Bread>) {
-        for bread in breads {
-            let size = CGSize(width: TileWidth, height: TileHeight)
-            let sprite = BreadNode(size: size, breadType: bread.breadType)
-            sprite.position = pointFor(column: bread.column, row: bread.row)
-            self.scene?.addChild(sprite)
-            bread.sprite = sprite
-        }
-    }
-    
-    func pointFor(column: Int, row: Int) -> CGPoint {
-        return CGPoint(
-            x: CGFloat(column)*(TileWidth + space) + TileWidth/2 + playableMargin,
-            y: CGFloat(row)*TileHeight + TileHeight/2 + size.height/2)
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -238,62 +119,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         
     }
     
-    func endGame() {
-
-        gameEndNotificationNode = GameEndNotificationNode(score: score, levelStatus: level.levelCompleteStatus(score: score), time: timeLimit - elapsedTime)
-        gameEndNotificationNode?.zPosition = 150
-        self.scene?.addChild(gameEndNotificationNode!)
-        gameEndNotificationNode?.animateStarsReceived()
-        gameEndNotificationNode?.animateBonus(time: timeLimit - elapsedTime)
-    }
-    
-    func eatBread(contact: SKPhysicsContact, catNode: CatSpriteNode?) {
-        let breadNode = contact.bodyA.categoryBitMask ==
-            PhysicsCategory.Bread ? contact.bodyA.node :
-            contact.bodyB.node
-        let breadAte = breadNode as? BreadNode
-        catNode?.dropSlightly()
-        score += (breadAte?.remove())!
-        scoreLabel.borderOffset = CGPoint(x: 1, y: 1)
-        scoreLabel.outlinedText = "\(score)"
-        
-        //print("My Score: \(score)")
-    }
-    
-    func fixCat(catSeatSide: SeatSide) {
-        switch catSeatSide {
-        case .left:
-            let xPosition = (seesawNode?.position.x)! - ((seesawNode?.frame.width)!/4)
-            let yPosition = (seesawNode?.position.y)! + (leftCatNode.frame.height)/2.5
-            leftCatNode?.position = CGPoint(x: xPosition, y: yPosition)
-            leftCatNode.canJump = true
-            seesawNode?.fixCat(catNode: leftCatNode!)
-        case .right:
-            let xPosition = (seesawNode?.position.x)! + ((seesawNode?.frame.width)!/4)
-            let yPosition = (seesawNode?.position.y)! + (rightCatNode.frame.height)/2.5
-            rightCatNode?.position = CGPoint(x: xPosition, y: yPosition)
-            rightCatNode.canJump = true
-            seesawNode?.fixCat(catNode: rightCatNode!)
-        default:
-            return
-        }
-    }
-    
-    func releaseCat(catNode: CatSpriteNode) {
-        
-        catNode.disableSeesawContact()
-        seesawNode?.releaseCat(catSide: catNode.seatSide)
-        if catNode.canJump {
-            catNode.jump()
-            catNode.canJump = false
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
-            //print("Enabling the contact")
-            catNode.enableSeesawContact()
-        })
-    }
-    
     override func update(_ currentTime: TimeInterval) {
         
         if gameState == .play {
@@ -319,16 +144,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             return
         }
     }
+}
+
+//MARK: - Game Helper Functions
+
+extension GameScene {
     
-    func checkGameState() {
-        
-        if score >= level.highestScore {
-            gameState = .win
-        }
-        
-        if timeLimit - elapsedTime <= 0 {
-            gameState = .lose
-        }
+    //Mark: - Game State Manegement Helper
+    func endGame() {
+        gameEndNotificationNode = GameEndNotificationNode(score: score, levelStatus: level.levelCompleteStatus(score: score), time: timeLimit - elapsedTime)
+        gameEndNotificationNode?.zPosition = 150
+        self.scene?.addChild(gameEndNotificationNode!)
+        gameEndNotificationNode?.animateStarsReceived()
+        gameEndNotificationNode?.animateBonus(time: timeLimit - elapsedTime)
     }
     
     func updateTime(currentTime: TimeInterval) {
@@ -360,7 +188,195 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         shape.lineWidth = 10.0
         addChild(shape)
     }
+    
+    func checkGameState() {
+        
+        if score >= level.highestScore {
+            gameState = .win
+        }
+        
+        if timeLimit - elapsedTime <= 0 {
+            gameState = .lose
+        }
+    }
+    
+    //MARK: - Cat Animation Helper
+    
+    func eatBread(contact: SKPhysicsContact, catNode: CatSpriteNode?) {
+        let breadNode = contact.bodyA.categoryBitMask ==
+            PhysicsCategory.Bread ? contact.bodyA.node :
+            contact.bodyB.node
+        let breadAte = breadNode as? BreadNode
+        catNode?.dropSlightly()
+        score += (breadAte?.remove())!
+        scoreLabel.borderOffset = CGPoint(x: 1, y: 1)
+        scoreLabel.outlinedText = "\(score)"
+        //print("My Score: \(score)")
+    }
+    
+    func releaseCat(catNode: CatSpriteNode) {
+        
+        catNode.disableSeesawContact()
+        seesawNode?.releaseCat(catSide: catNode.seatSide)
+        if catNode.canJump {
+            catNode.jump()
+            catNode.canJump = false
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+            //print("Enabling the contact")
+            catNode.enableSeesawContact()
+        })
+    }
+    
+    func fixCat(catSeatSide: SeatSide) {
+        switch catSeatSide {
+        case .left:
+            let xPosition = (seesawNode?.position.x)! - ((seesawNode?.frame.width)!/4)
+            let yPosition = (seesawNode?.position.y)! + (leftCatNode.frame.height)/2.5
+            leftCatNode?.position = CGPoint(x: xPosition, y: yPosition)
+            leftCatNode.canJump = true
+            seesawNode?.fixCat(catNode: leftCatNode!)
+        case .right:
+            let xPosition = (seesawNode?.position.x)! + ((seesawNode?.frame.width)!/4)
+            let yPosition = (seesawNode?.position.y)! + (rightCatNode.frame.height)/2.5
+            rightCatNode?.position = CGPoint(x: xPosition, y: yPosition)
+            rightCatNode.canJump = true
+            seesawNode?.fixCat(catNode: rightCatNode!)
+        default:
+            return
+        }
+    }
+    
+    // MARK: - Bread Helper
+    
+    func addBread(breads: Set<Bread>) {
+        for bread in breads {
+            let size = CGSize(width: TileWidth, height: TileHeight)
+            let sprite = BreadNode(size: size, breadType: bread.breadType)
+            sprite.position = pointFor(column: bread.column, row: bread.row)
+            self.scene?.addChild(sprite)
+            bread.sprite = sprite
+        }
+    }
+    
+    func pointFor(column: Int, row: Int) -> CGPoint {
+        return CGPoint(
+            x: CGFloat(column)*(TileWidth + space) + TileWidth/2 + playableMargin,
+            y: CGFloat(row)*TileHeight + TileHeight/2 + size.height/2)
+    }
+    
+    //MARK: - Game Scene Setup
+    
+    func setUpScene(view: SKView) {
+        
+        let maxAspectRatio: CGFloat = 9.0/16.0
+        let maxAspectRatioWidth = size.height * maxAspectRatio
+        playableMargin = (size.width
+            - maxAspectRatioWidth)/2
+        let playableRect = CGRect(x:  playableMargin, y: 0,
+                                  width: maxAspectRatioWidth, height: size.height)
+        
+        physicsBody = SKPhysicsBody(edgeLoopFrom: playableRect)
+        physicsWorld.contactDelegate = self
+        physicsBody!.categoryBitMask = PhysicsCategory.Edge
+        
+        enumerateChildNodes(withName: "//*", using: { node, _ in
+            if let eventListenerNode = node as? EventListenerNode {
+                eventListenerNode.didMoveToScene()
+            }
+        })
+        
+        seesawNode = childNode(withName: "seesaw") as? SeesawNode
+        seesawLeftBound = playableMargin + (seesawNode?.frame.width)!/2
+        seesawRightBound = size.width - playableMargin - (seesawNode?.frame.width)!/2
+        seesawNode?.physicsBody?.isDynamic = false
+        
+        let rightCatxPosition = (seesawNode?.position.x)! + ((seesawNode?.frame.width)!/4)
+        let leftCatxPosition = (seesawNode?.position.x)! - ((seesawNode?.frame.width)!/4)
+        let catyPosition = (seesawNode?.position.y)! + (330)/2
+        
+        rightCatNode = CatSpriteNode(catType: .cat2, isLeftCat: false)
+        rightCatNode.position = CGPoint(x: rightCatxPosition, y: catyPosition)
+        rightCatNode.zPosition = 20
+        self.scene?.addChild(rightCatNode)
+        
+        leftCatNode = CatSpriteNode(catType: .cat1, isLeftCat: true)
+        leftCatNode.position = CGPoint(x: leftCatxPosition, y: catyPosition)
+        leftCatNode.zPosition = 30
+        self.scene?.addChild(leftCatNode)
+        
+        let allBreads = level.loadBread()
+        addBread(breads: allBreads)
+        
+        scoreLabel.borderColor = UIColor.red
+        scoreLabel.fontColor = UIColor.white
+        scoreLabel.outlinedText = "\(score)"
+        scoreLabel.zPosition = 15
+        scoreLabel.position = CGPoint(x: 1217, y: 25)
+        addChild(scoreLabel)
+        
+        timeLimit = level.timeLimit
+        
+        timeLabel.borderColor = UIColor.red
+        timeLabel.fontColor = UIColor.white
+        timeLabel.outlinedText = timeLimit.secondsToFormatedString()
+        timeLabel.zPosition = 15
+        timeLabel.position = CGPoint(x: 364, y: 25)
+        addChild(timeLabel)
+        
+        addObservers()
+        
+        //debugDrawPlayableArea(playableRect: playableRect)
+        view.showsPhysics = true
+    }
+    
+    //MARK: - Touches Helper
+    
+    func reactToTouches(touches: Set<UITouch>) {
+        guard let touch = touches.first else {
+            return
+        }
+        
+        let touchLocation = touch.location(in: self)
+        
+        switch gameState {
+        case .start:
+            seesawNode?.physicsBody?.isDynamic = true
+            gameState = .play
+            isPaused = false
+            seesawNode?.fixCat(catNode: rightCatNode)
+            releaseCat(catNode: leftCatNode)
+        case .play:
+            seesawNode?.moveWithinBounds(targetLocation: touchLocation.x, leftBound: seesawLeftBound,
+                                         rightBound: seesawRightBound)
+        case .end:
+            if let touchedNode =
+                atPoint(touch.location(in: self)) as? SKSpriteNode {
+                if touchedNode.name == ButtonName.replay {
+                    transitionToScene(level: 3)
+                }
+            }
+        case .reload:
+            if let touchedNode =
+                atPoint(touch.location(in: self)) as? SKSpriteNode {
+                if touchedNode.name == ButtonName.yes {
+                    print("Resume game")
+                    pausedNotice.removeFromParent()
+                    isPaused = false
+                    startTime = nil
+                    gameState = .play
+                } else if touchedNode.name == ButtonName.no {
+                    transitionToScene(level: 2)
+                }
+            }
+        default:
+            return
+        }
+    }
 }
+
+//MARK: - Game State Handling
 
 extension GameScene {
     
