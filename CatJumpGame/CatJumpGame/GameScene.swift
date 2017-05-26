@@ -22,7 +22,7 @@ struct PhysicsCategory {
 }
 
 enum GameState: Int {
-    case initial=0, start, play, win, lose, reload, pause
+    case initial=0, start, play, win, lose, reload, pause, end
 }
 
 protocol EventListenerNode {
@@ -37,11 +37,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     let TileWidth: CGFloat = 100.0
     let TileHeight: CGFloat = 100.0
     let space: CGFloat = 50.0
-    let level = Level(filename: "Level_2")
+    let level = Level(filename: "Level_3")
     let scoreLabel = MKOutlinedLabelNode(fontNamed: "BradyBunchRemastered", fontSize: 80)
+    let timeLabel = MKOutlinedLabelNode(fontNamed: "BradyBunchRemastered", fontSize: 80)
     var playableMargin: CGFloat = 0.0
     var seesawLeftBound: CGFloat = 0.0
     var seesawRightBound: CGFloat = 0.0
+    var elapsedTime: Int = 0
+    var startTime: Int?
+    var timeLimit = 10
     var ballNode: SKSpriteNode?
     var seesawNode: SeesawNode?
     var rightCatNode: CatSpriteNode!
@@ -103,6 +107,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         scoreLabel.position = CGPoint(x: 1217, y: 25)
         addChild(scoreLabel)
         
+        timeLimit = level.timeLimit
+        
+        timeLabel.borderColor = UIColor.red
+        timeLabel.fontColor = UIColor.white
+        timeLabel.outlinedText = timeLimit.secondsToFormatedString()
+        timeLabel.zPosition = 15
+        timeLabel.position = CGPoint(x: 364, y: 25)
+        addChild(timeLabel)
+        
+        
+        
+        
         //MARK: - Debug
         //debugDrawPlayableArea(playableRect: playableRect)
         view.showsPhysics = true
@@ -133,11 +149,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         case .play:
             seesawNode?.moveWithinBounds(targetLocation: touchLocation.x, leftBound: seesawLeftBound,
                                          rightBound: seesawRightBound)
-        case .lose:
+        case .end:
             if let touchedNode =
                 atPoint(touch.location(in: self)) as? SKSpriteNode {
                 if touchedNode.name == ButtonName.replay {
-                    transitionToScene(level: 1)
+                    transitionToScene(level: 3)
                 }
             }
         default:
@@ -192,7 +208,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             print("Cat fell!")
             if gameState == .play {
                 gameState = .lose
-                loseGame()
                 print(level.levelCompleteStatus(score: score))
             }
         }
@@ -202,15 +217,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             
             if gameState == .play {
                 gameState = .lose
-                loseGame()
                 print(level.levelCompleteStatus(score: score))
             }
         }
         
     }
     
-    func loseGame() {
-        gameEndNotificationNode = GameEndNotificationNode(score: score, levelStatus: level.levelCompleteStatus(score: score))
+    func endGame() {
+
+        gameEndNotificationNode = GameEndNotificationNode(score: score, levelStatus: level.levelCompleteStatus(score: score), time: timeLimit - elapsedTime)
         gameEndNotificationNode?.zPosition = 150
         self.scene?.addChild(gameEndNotificationNode!)
         gameEndNotificationNode?.animateStarsReceived()
@@ -268,18 +283,49 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     }
     
     override func update(_ currentTime: TimeInterval) {
+        
+        if gameState == .play {
+            checkGameState()
+            updateTime(currentTime: currentTime)
+        }
+        
         if gameState == .pause {
             isPaused = true
             return
         }
         
-        if gameState == .lose {
-            seesawNode?.stopMovement()
+        if gameState == .win {
+            endGame()
+            gameState = .end
+            return
         }
         
-        if score >= level.highestScore {
-            print("You win!")
+        if gameState == .lose {
+            seesawNode?.stopMovement()
+            endGame()
+            gameState = .end
+            return
         }
+    }
+    
+    func checkGameState() {
+        
+        if score >= level.highestScore {
+            gameState = .win
+        }
+        
+        if timeLimit - elapsedTime <= 0 {
+            gameState = .lose
+        }
+    }
+    
+    func updateTime(currentTime: TimeInterval) {
+        if let startTime = startTime {
+            elapsedTime = Int(currentTime) - startTime
+        } else {
+            startTime = Int(currentTime) - elapsedTime
+        }
+        timeLabel.outlinedText = (timeLimit - elapsedTime).secondsToFormatedString()
     }
     
     func transitionToScene(level: Int) {

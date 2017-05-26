@@ -36,11 +36,14 @@ class Level {
     fileprivate var tiles = Array2D<Int>(columns: NumColumns, rows: NumRows)
     
     var highestScore = 0
+    var timeLimit = 0
     
     init(filename: String) {
         guard let dictionary = Dictionary<String, AnyObject>.loadJSONFromBundle(filename: filename) else { return }
         
         guard let tilesArray = dictionary["tiles"] as? [[Int]] else { return }
+        guard let time = dictionary["timeLimit"] as? Int else {return}
+        self.timeLimit = time
         
         for (row, rowArray) in tilesArray.enumerated() {
             let tileRow = NumRows - row - 1

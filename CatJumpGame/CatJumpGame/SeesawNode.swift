@@ -12,6 +12,7 @@ class SeesawNode: SKSpriteNode, EventListenerNode {
     private var rightContactPointNode = SKSpriteNode()
     var leftCatJoint: SKPhysicsJointFixed?
     var rightCatJoint: SKPhysicsJointFixed?
+    
     var leftCatFixed: Bool {
         return leftCatJoint != nil
     }

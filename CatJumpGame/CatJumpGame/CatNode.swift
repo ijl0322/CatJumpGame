@@ -32,20 +32,12 @@ class CatNode: SKSpriteNode, EventListenerNode {
         parent!.physicsBody?.applyImpulse(CGVector(dx: 0, dy: -300))
     }
     
-//    func sitOnSeesaw(seesaw: SeesawNode) {
-//        let position = seesaw.position
-//        var localPoint = parent!.convert(position, from: scene!)
-//        localPoint.y += seesaw.frame.height
-//        localPoint.x -= seesaw.frame.width/4
-//        run(SKAction.move(to: localPoint, duration: 0.1))
-//    }
-    
     func gravityLess() {
         print("Start Gravityless")
-        parent!.physicsBody?.affectedByGravity = false
+        physicsBody?.affectedByGravity = false
         DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
             print("End Gravityless")
-            self.parent!.physicsBody?.affectedByGravity = true
+            self.physicsBody?.affectedByGravity = true
         })
     }
 }

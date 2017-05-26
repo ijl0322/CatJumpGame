@@ -30,7 +30,7 @@ class GameEndNotificationNode: SKSpriteNode, EventListenerNode {
     var levelStatus: LevelCompleteType = .lose
     
     
-    init(score: Int, levelStatus: LevelCompleteType) {
+    init(score: Int, levelStatus: LevelCompleteType, time: Int) {
         var texture = SKTexture(imageNamed: "levelComplete")
         if levelStatus == .lose {
             texture = SKTexture(imageNamed: "levelFailed")
@@ -41,7 +41,7 @@ class GameEndNotificationNode: SKSpriteNode, EventListenerNode {
         self.position = CGPoint(x: 768, y: 1000)
         addCoinsLabel(coins: levelStatus.coins)
         addScoreLabel(score: score)
-        addTimeLabel(time: 100)
+        addTimeLabel(time: time)
         addGreyStars()
         addButtons()
         didMoveToScene()

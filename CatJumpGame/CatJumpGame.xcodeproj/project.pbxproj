@@ -32,6 +32,7 @@
 		0E511C641ECE008A00F3E7A9 /* Vector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E511C581ECE008A00F3E7A9 /* Vector3.swift */; };
 		0E511C661ECE088000F3E7A9 /* CatNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E511C651ECE088000F3E7A9 /* CatNode.swift */; };
 		0E511C681ECE0FBF00F3E7A9 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E511C671ECE0FBF00F3E7A9 /* Int+Extension.swift */; };
+		0E5705C51ED7B6140027DDF5 /* Level_3.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E5705C41ED7B6140027DDF5 /* Level_3.json */; };
 		0E68670C1ED518C5002E7886 /* BradBunR.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E68670B1ED51850002E7886 /* BradBunR.ttf */; };
 		0E68670E1ED51B9E002E7886 /* MKOutlinedLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E68670D1ED51B9E002E7886 /* MKOutlinedLabelNode.swift */; };
 		0E6F45911ECE18A80071F818 /* BreadNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6F45901ECE18A80071F818 /* BreadNode.swift */; };
@@ -73,6 +74,7 @@
 		0E511C581ECE008A00F3E7A9 /* Vector3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector3.swift; sourceTree = "<group>"; };
 		0E511C651ECE088000F3E7A9 /* CatNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatNode.swift; sourceTree = "<group>"; };
 		0E511C671ECE0FBF00F3E7A9 /* Int+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
+		0E5705C41ED7B6140027DDF5 /* Level_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_3.json; sourceTree = "<group>"; };
 		0E68670B1ED51850002E7886 /* BradBunR.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BradBunR.ttf; sourceTree = "<group>"; };
 		0E68670D1ED51B9E002E7886 /* MKOutlinedLabelNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKOutlinedLabelNode.swift; sourceTree = "<group>"; };
 		0E6F45901ECE18A80071F818 /* BreadNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreadNode.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			children = (
 				0E12EEA71ED13EDA00B1BB40 /* Level_1.json */,
 				0EE1B8E01ED4FCEA0047DE32 /* Level_2.json */,
+				0E5705C41ED7B6140027DDF5 /* Level_3.json */,
 			);
 			name = Levels;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				0ED507DB1ECBDDA600E141C3 /* Assets.xcassets in Resources */,
 				0E68670C1ED518C5002E7886 /* BradBunR.ttf in Resources */,
 				0E11B1BF1ECE2573002A644B /* pop.mp3 in Resources */,
+				0E5705C51ED7B6140027DDF5 /* Level_3.json in Resources */,
 				0ED507DE1ECBDDA600E141C3 /* LaunchScreen.storyboard in Resources */,
 				0E0A72E81ECCEF8300022BCE /* Seesaw.sks in Resources */,
 			);

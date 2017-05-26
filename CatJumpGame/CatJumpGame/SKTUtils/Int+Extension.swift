@@ -20,10 +20,10 @@ public extension Int {
         if self >= 0 {
             let minutes = (self/60) % 60
             let seconds = self % 60
-            let timeText = String(format: "%02d:%02d", minutes, seconds)
+            let timeText = String(format: "%01d:%02d", minutes, seconds)
             return timeText
         } else {
-            return "00:00"
+            return "0:00"
         }
     }
 }
