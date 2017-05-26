@@ -37,7 +37,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     let TileWidth: CGFloat = 100.0
     let TileHeight: CGFloat = 100.0
     let space: CGFloat = 50.0
-    let level = Level(filename: "Level_3")
+    var level = Level(num: 3)
     let scoreLabel = MKOutlinedLabelNode(fontNamed: "BradyBunchRemastered", fontSize: 80)
     let timeLabel = MKOutlinedLabelNode(fontNamed: "BradyBunchRemastered", fontSize: 80)
     var playableMargin: CGFloat = 0.0
@@ -167,9 +167,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
                     print("Resume game")
                     pausedNotice.removeFromParent()
                     isPaused = false
+                    startTime = nil
                     gameState = .play
                 } else if touchedNode.name == ButtonName.no {
-                    transitionToScene(level: 3)
+                    transitionToScene(level: 2)
                 }
             }
         default:
@@ -347,6 +348,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
                 fatalError("Level: \(level) not found")
         }
         newScene.scaleMode = .aspectFill
+        newScene.level = Level(num: level)
         view!.presentScene(newScene,
                            transition: SKTransition.flipVertical(withDuration: 0.5))
     }

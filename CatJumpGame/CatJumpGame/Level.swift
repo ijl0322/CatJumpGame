@@ -38,7 +38,9 @@ class Level {
     var highestScore = 0
     var timeLimit = 0
     
-    init(filename: String) {
+    init(num: Int) {
+        
+        let filename = "Level_\(num)"
         guard let dictionary = Dictionary<String, AnyObject>.loadJSONFromBundle(filename: filename) else { return }
         
         guard let tilesArray = dictionary["tiles"] as? [[Int]] else { return }
