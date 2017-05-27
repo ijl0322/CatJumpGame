@@ -48,7 +48,6 @@ class GameEndNotificationNode: SKSpriteNode {
         addTimeLabel(time: time)
         addGreyStars()
         addButtons()
-        didMoveToScene()
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -193,7 +192,4 @@ class GameEndNotificationNode: SKSpriteNode {
         addChild(coinsLabel)
     }
     
-    func didMoveToScene() {
-
-    }
 }

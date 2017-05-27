@@ -223,6 +223,17 @@ extension GameScene {
                            transition: SKTransition.flipVertical(withDuration: 0.5))
     }
     
+    func transitionToLevelSelect() {
+        print("Transitionaing to level select")
+        guard let newScene = SKScene(fileNamed: "LevelSelectionScene")
+            as? LevelSelectionScene else {
+                fatalError("Cannot load level selection scene")
+        }
+        newScene.scaleMode = .aspectFill
+        view!.presentScene(newScene,
+                           transition: SKTransition.flipVertical(withDuration: 0.5))
+    }
+    
     func debugDrawPlayableArea(playableRect: CGRect) {
         let shape = SKShapeNode()
         let path = CGMutablePath()
@@ -327,12 +338,6 @@ extension GameScene {
         physicsWorld.contactDelegate = self
         physicsBody!.categoryBitMask = PhysicsCategory.Edge
         
-//        enumerateChildNodes(withName: "//*", using: { node, _ in
-//            if let eventListenerNode = node as? EventListenerNode {
-//                eventListenerNode.didMoveToScene()
-//            }
-//        })
-        
         timeLimit = level.timeLimit
         
         addMKLabels()
@@ -405,6 +410,10 @@ extension GameScene {
                 atPoint(touch.location(in: self)) as? SKSpriteNode {
                 if touchedNode.name == ButtonName.replay {
                     transitionToScene(level: level.levelNum)
+                } else if touchedNode.name == ButtonName.next {
+                    transitionToScene(level: level.levelNum + 1)
+                } else if touchedNode.name == ButtonName.levels {
+                    transitionToLevelSelect()
                 }
             }
         case .reload:
