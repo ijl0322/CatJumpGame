@@ -56,14 +56,14 @@ class LevelSelectionScene: SKScene, SKPhysicsContactDelegate{
     
     func transitionToScene(level: Int) {
         print("Transitionaing to new scene")
-        guard let newScene = SKScene(fileNamed: "GameScene")
-            as? GameScene else {
-                fatalError("Level: \(level) not found")
+        if let newScene = GameScene.loadLevel(num: level) as! GameScene? ?? SKScene(fileNamed: "GameScene") as? GameScene  {
+            newScene.scaleMode = .aspectFill
+            newScene.level = Level(num: level)
+            _ = newScene.level.loadBread()
+            view!.presentScene(newScene,
+                               transition: SKTransition.flipVertical(withDuration: 0.5))
+            
         }
-        newScene.scaleMode = .aspectFill
-        newScene.level = Level(num: level)
-        view!.presentScene(newScene,
-                           transition: SKTransition.flipVertical(withDuration: 0.5))
     }
     
     override func update(_ currentTime: TimeInterval) {
