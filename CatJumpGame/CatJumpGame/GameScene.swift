@@ -120,7 +120,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     
     override func update(_ currentTime: TimeInterval) {
         
-        print(gameState)
+        //print(gameState)
         
         if gameState == .play {
             checkGameState()
@@ -143,6 +143,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             endGame()
             gameState = .end
             return
+        }
+        
+        if gameState == .end {
+            UserData.shared.updateHighScoreForLevel(level.levelNum, score: score)
         }
     }
     
@@ -199,7 +203,7 @@ extension GameScene {
         gameEndNotificationNode?.zPosition = 150
         self.scene?.addChild(gameEndNotificationNode!)
         gameEndNotificationNode?.animateStarsReceived()
-        gameEndNotificationNode?.animateBonus(time: timeLimit - elapsedTime)
+        score += (gameEndNotificationNode?.animateBonus(time: timeLimit - elapsedTime))!
     }
     
     func updateTime(currentTime: TimeInterval) {

@@ -11,5 +11,5 @@
 
   "targetScore" : 1000,
   "moves" : 15,
-  "timeLimit" : 30,
+  "timeLimit" : 100,
 }

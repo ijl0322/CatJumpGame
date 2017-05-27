@@ -81,9 +81,9 @@ class GameEndNotificationNode: SKSpriteNode {
         star.run(starAnimation)
     }
     
-    func animateBonus(time: Int) {
+    func animateBonus(time: Int) -> Int{
         if levelStatus != .threeStar {
-            return
+            return 0
         }
         
         let bonus = SKLabelNode(fontNamed: "BradyBunchRemastered")
@@ -111,6 +111,8 @@ class GameEndNotificationNode: SKSpriteNode {
             self.scoreLabel.position = CGPoint(x: 143, y: -327)
             self.addChild(self.scoreLabel)
         })
+        
+        return time * 10
     }
     
     func addButtons() {

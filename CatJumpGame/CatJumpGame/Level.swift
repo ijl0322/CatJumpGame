@@ -56,7 +56,7 @@ class Level {
         levelNum = num
         
         guard let dictionary = Dictionary<String, AnyObject>.loadJSONFromBundle(filename: filename) else { return }
-        
+ 
         guard let tilesArray = dictionary["tiles"] as? [[Int]] else { return }
         guard let time = dictionary["timeLimit"] as? Int else {return}
         self.timeLimit = time
@@ -77,7 +77,7 @@ class Level {
     
     func loadBread() -> Set<Bread> {
         var set = Set<Bread>()
-        
+        highestScore = 0
         for row in 0..<NumRows {
             for column in 0..<NumColumns {
                 if tiles[column, row] != 0{

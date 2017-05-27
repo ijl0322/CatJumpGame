@@ -20,6 +20,9 @@
 		0E1DD8301ED76BDA003AE270 /* GameEndNotificationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1DD82F1ED76BDA003AE270 /* GameEndNotificationNode.swift */; };
 		0E1DD8321ED77279003AE270 /* gameEndNotification.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0E1DD8311ED77279003AE270 /* gameEndNotification.sks */; };
 		0E3143F01ED3D8AC004E584C /* CatSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3143EF1ED3D8AC004E584C /* CatSpriteNode.swift */; };
+		0E51127A1EDA2D7D00CA19C6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E5112791EDA2D7D00CA19C6 /* GoogleService-Info.plist */; };
+		0E51127E1EDA301900CA19C6 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E51127D1EDA301900CA19C6 /* FirebaseManager.swift */; };
+		0E5112801EDA3C3F00CA19C6 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E51127F1EDA3C3F00CA19C6 /* UserData.swift */; };
 		0E511C591ECE008A00F3E7A9 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E511C4D1ECE008A00F3E7A9 /* CGFloat+Extensions.swift */; };
 		0E511C5A1ECE008A00F3E7A9 /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E511C4E1ECE008A00F3E7A9 /* CGPoint+Extensions.swift */; };
 		0E511C5B1ECE008A00F3E7A9 /* CGVector+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E511C4F1ECE008A00F3E7A9 /* CGVector+Extensions.swift */; };
@@ -50,12 +53,13 @@
 		0ED507DB1ECBDDA600E141C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ED507DA1ECBDDA600E141C3 /* Assets.xcassets */; };
 		0ED507DE1ECBDDA600E141C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ED507DC1ECBDDA600E141C3 /* LaunchScreen.storyboard */; };
 		0EE1B8E11ED4FCEA0047DE32 /* Level_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 0EE1B8E01ED4FCEA0047DE32 /* Level_2.json */; };
-		0EE2BD3A1ED9C76B007AF6A7 /* LevelSelectionNode.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0EE2BD391ED9C76B007AF6A7 /* LevelSelectionNode.sks */; };
 		0EE2BD3E1ED9CB34007AF6A7 /* LevelButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE2BD3D1ED9CB34007AF6A7 /* LevelButtonNode.swift */; };
 		0EEC293D1ECBED900003623D /* Cat1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0EEC293C1ECBED900003623D /* Cat1.sks */; };
+		C12C7C68C161058C55D64D85 /* Pods_CatJumpGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6196CAA3420BBD19F27673 /* Pods_CatJumpGame.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		094B41AF39657125CECC1517 /* Pods-CatJumpGame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CatJumpGame.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CatJumpGame/Pods-CatJumpGame.debug.xcconfig"; sourceTree = "<group>"; };
 		0E0A72E71ECCEF8300022BCE /* Seesaw.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Seesaw.sks; sourceTree = "<group>"; };
 		0E0A72E91ECCF03700022BCE /* SeesawNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeesawNode.swift; sourceTree = "<group>"; };
 		0E11B1BE1ECE2573002A644B /* pop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pop.mp3; sourceTree = "<group>"; };
@@ -69,6 +73,9 @@
 		0E1DD82F1ED76BDA003AE270 /* GameEndNotificationNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEndNotificationNode.swift; sourceTree = "<group>"; };
 		0E1DD8311ED77279003AE270 /* gameEndNotification.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = gameEndNotification.sks; sourceTree = "<group>"; };
 		0E3143EF1ED3D8AC004E584C /* CatSpriteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatSpriteNode.swift; sourceTree = "<group>"; };
+		0E5112791EDA2D7D00CA19C6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0E51127D1EDA301900CA19C6 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		0E51127F1EDA3C3F00CA19C6 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		0E511C4D1ECE008A00F3E7A9 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		0E511C4E1ECE008A00F3E7A9 /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
 		0E511C4F1ECE008A00F3E7A9 /* CGVector+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+Extensions.swift"; sourceTree = "<group>"; };
@@ -101,9 +108,10 @@
 		0ED507DD1ECBDDA600E141C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0ED507DF1ECBDDA600E141C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0EE1B8E01ED4FCEA0047DE32 /* Level_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_2.json; sourceTree = "<group>"; };
-		0EE2BD391ED9C76B007AF6A7 /* LevelSelectionNode.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelSelectionNode.sks; sourceTree = "<group>"; };
 		0EE2BD3D1ED9CB34007AF6A7 /* LevelButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelButtonNode.swift; sourceTree = "<group>"; };
 		0EEC293C1ECBED900003623D /* Cat1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Cat1.sks; sourceTree = "<group>"; };
+		9D420646326DF16C9275D278 /* Pods-CatJumpGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CatJumpGame.release.xcconfig"; path = "Pods/Target Support Files/Pods-CatJumpGame/Pods-CatJumpGame.release.xcconfig"; sourceTree = "<group>"; };
+		9F6196CAA3420BBD19F27673 /* Pods_CatJumpGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CatJumpGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C12C7C68C161058C55D64D85 /* Pods_CatJumpGame.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,9 +196,11 @@
 		0ED507C11ECBDDA600E141C3 = {
 			isa = PBXGroup;
 			children = (
-				0EE2BD391ED9C76B007AF6A7 /* LevelSelectionNode.sks */,
+				0E5112791EDA2D7D00CA19C6 /* GoogleService-Info.plist */,
 				0ED507CC1ECBDDA600E141C3 /* CatJumpGame */,
 				0ED507CB1ECBDDA600E141C3 /* Products */,
+				33CE9D5038F227DD2A113E58 /* Pods */,
+				8D85C2569EB3264E7D2C01F8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -223,8 +234,27 @@
 				0E8441B71ED914A700F58E42 /* MenuViewController.swift */,
 				0E14EA601ED92A8E00716762 /* LevelSelectionScene.sks */,
 				0E14EA621ED92AF500716762 /* LevelSelectionScene.swift */,
+				0E51127D1EDA301900CA19C6 /* FirebaseManager.swift */,
+				0E51127F1EDA3C3F00CA19C6 /* UserData.swift */,
 			);
 			path = CatJumpGame;
+			sourceTree = "<group>";
+		};
+		33CE9D5038F227DD2A113E58 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				094B41AF39657125CECC1517 /* Pods-CatJumpGame.debug.xcconfig */,
+				9D420646326DF16C9275D278 /* Pods-CatJumpGame.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		8D85C2569EB3264E7D2C01F8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9F6196CAA3420BBD19F27673 /* Pods_CatJumpGame.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,9 +264,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0ED507E21ECBDDA600E141C3 /* Build configuration list for PBXNativeTarget "CatJumpGame" */;
 			buildPhases = (
+				906ACEB10F18EAB87941029C /* [CP] Check Pods Manifest.lock */,
 				0ED507C61ECBDDA600E141C3 /* Sources */,
 				0ED507C71ECBDDA600E141C3 /* Frameworks */,
 				0ED507C81ECBDDA600E141C3 /* Resources */,
+				180747583E2467F3E589C7FE /* [CP] Embed Pods Frameworks */,
+				637368225C14DEACAD327742 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -296,9 +329,9 @@
 				0E1DD8321ED77279003AE270 /* gameEndNotification.sks in Resources */,
 				0ED507DB1ECBDDA600E141C3 /* Assets.xcassets in Resources */,
 				0E68670C1ED518C5002E7886 /* BradBunR.ttf in Resources */,
-				0EE2BD3A1ED9C76B007AF6A7 /* LevelSelectionNode.sks in Resources */,
 				0E11B1BF1ECE2573002A644B /* pop.mp3 in Resources */,
 				0E14EA611ED92A8E00716762 /* LevelSelectionScene.sks in Resources */,
+				0E51127A1EDA2D7D00CA19C6 /* GoogleService-Info.plist in Resources */,
 				0E5705C51ED7B6140027DDF5 /* Level_3.json in Resources */,
 				0ED507DE1ECBDDA600E141C3 /* LaunchScreen.storyboard in Resources */,
 				0EB857B41ED87E530003B4BD /* Resume.sks in Resources */,
@@ -308,6 +341,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		180747583E2467F3E589C7FE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CatJumpGame/Pods-CatJumpGame-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		637368225C14DEACAD327742 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CatJumpGame/Pods-CatJumpGame-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		906ACEB10F18EAB87941029C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0ED507C61ECBDDA600E141C3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -315,6 +396,7 @@
 			files = (
 				0E511C681ECE0FBF00F3E7A9 /* Int+Extension.swift in Sources */,
 				0E511C5A1ECE008A00F3E7A9 /* CGPoint+Extensions.swift in Sources */,
+				0E5112801EDA3C3F00CA19C6 /* UserData.swift in Sources */,
 				0EE2BD3E1ED9CB34007AF6A7 /* LevelButtonNode.swift in Sources */,
 				0E511C621ECE008A00F3E7A9 /* SKTEffects.swift in Sources */,
 				0E8441B81ED914A700F58E42 /* MenuViewController.swift in Sources */,
@@ -322,6 +404,7 @@
 				0E68670E1ED51B9E002E7886 /* MKOutlinedLabelNode.swift in Sources */,
 				0ED507D41ECBDDA600E141C3 /* GameScene.swift in Sources */,
 				0E511C601ECE008A00F3E7A9 /* SKNode+Extensions.swift in Sources */,
+				0E51127E1EDA301900CA19C6 /* FirebaseManager.swift in Sources */,
 				0E12EEAE1ED143D600B1BB40 /* Level.swift in Sources */,
 				0E14EA631ED92AF500716762 /* LevelSelectionScene.swift in Sources */,
 				0E0A72EA1ECCF03700022BCE /* SeesawNode.swift in Sources */,
@@ -465,6 +548,7 @@
 		};
 		0ED507E31ECBDDA600E141C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 094B41AF39657125CECC1517 /* Pods-CatJumpGame.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = K39564QAF6;
@@ -478,6 +562,7 @@
 		};
 		0ED507E41ECBDDA600E141C3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D420646326DF16C9275D278 /* Pods-CatJumpGame.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = K39564QAF6;
