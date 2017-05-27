@@ -25,13 +25,6 @@ enum GameState: Int {
     case initial=0, start, play, win, lose, reload, pause, end
 }
 
-//protocol EventListenerNode {
-//    func didMoveToScene()
-//}
-//protocol InteractiveNode {
-//    func interact()
-//}
-
 class GameScene: SKScene, SKPhysicsContactDelegate{
 
     let TileWidth: CGFloat = 100.0
@@ -59,9 +52,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     override func didMove(to view: SKView) {
         if gameState == .initial {
             setUpScene(view: view)
+        } else if gameState == .pause && seesawNode == nil{
+            gameState = .reload
+            pausedNotice = GamePausedNotificationNode()
+            pausedNotice?.zPosition = 90
+            addChild(pausedNotice!)
+            addMKLabels()
+            addCatAndSeesaw()
         }
-        
-        
+    
         view.showsPhysics = true
     }
     
@@ -120,6 +119,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     }
     
     override func update(_ currentTime: TimeInterval) {
+        
+        print(gameState)
         
         if gameState == .play {
             checkGameState()
@@ -211,6 +212,7 @@ extension GameScene {
     }
     
     func transitionToScene(level: Int) {
+        print("Transitionaing to new scene")
         guard let newScene = SKScene(fileNamed: "GameScene")
             as? GameScene else {
                 fatalError("Level: \(level) not found")
@@ -467,6 +469,7 @@ extension GameScene {
             leftCatNode.removeFromParent()
             rightCatNode.removeFromParent()
             seesawNode?.removeFromParent()
+            seesawNode = nil
             print("Entering background")
             saveGame()
         }

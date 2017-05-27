@@ -49,8 +49,8 @@ class BreadNode: SKSpriteNode {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        aDecoder.decodeInteger(forKey: "Bread.points")
-        aDecoder.decodeBool(forKey: "Bread.notAte")
+        points = aDecoder.decodeInteger(forKey: "Bread.points")
+        notAte = aDecoder.decodeBool(forKey: "Bread.notAte")
     }
     
     override func encode(with aCoder: NSCoder) {

@@ -174,7 +174,6 @@ class CatSpriteNode: SKSpriteNode {
     func setPhysicsBody() {
         
         let catBodyTexture = seatSide.physicsBody
-        physicsBody = nil
         physicsBody = SKPhysicsBody(texture: catBodyTexture,
                                     size: catBodyTexture.size())
         
@@ -188,6 +187,8 @@ class CatSpriteNode: SKSpriteNode {
             physicsBody?.contactTestBitMask = PhysicsCategory.Bread | PhysicsCategory.RightWood | PhysicsCategory.LeftCat | PhysicsCategory.Floor
             self.xScale = -1
         }
+        
+        physicsBody?.friction  = 0
         
         let rotationConstraint = SKConstraint.zRotation(
             SKRange(lowerLimit: -30.toRadians(), upperLimit: 30.toRadians()))

@@ -12,20 +12,20 @@ let NumColumns = 8
 let NumRows = 9
 
 enum LevelCompleteType: Int, CustomStringConvertible {
-    case lose = 0, oneStar, twoStar, threeStar
+    case lose = 0, oneStar, twoStar, threeStar, locked
     
     init?(raw: Int) {
         self.init(rawValue: raw)
     }
 
     var description: String {
-        let status = ["lose", "oneStar", "twoStar", "threeSrar"]
+        let status = ["lose", "oneStar", "twoStar", "threeSrar", "locked"]
         
         return status[rawValue]
     }
     
     var coins: Int {
-        let cointsReceived = [0, 1000, 1200, 1500]
+        let cointsReceived = [0, 1000, 1200, 1500, 0]
         return cointsReceived[rawValue]
     }
 }
