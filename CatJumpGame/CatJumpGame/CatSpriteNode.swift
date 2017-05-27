@@ -70,7 +70,7 @@ enum CatType: Int, CustomStringConvertible {
 
 
 import SpriteKit
-class CatSpriteNode: SKSpriteNode, EventListenerNode {
+class CatSpriteNode: SKSpriteNode {
     var isPinned = false
     var catType: CatType!
     var seatSide: SeatSide!

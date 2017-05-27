@@ -7,9 +7,9 @@
 //
 
 import SpriteKit
-class SeesawNode: SKSpriteNode, EventListenerNode {
-    var leftContactPointNode = SKSpriteNode()
-    var rightContactPointNode = SKSpriteNode()
+class SeesawNode: SKSpriteNode {
+    private var leftContactPointNode = SKSpriteNode()
+    private var rightContactPointNode = SKSpriteNode()
     var leftCatJoint: SKPhysicsJointFixed?
     var rightCatJoint: SKPhysicsJointFixed?
     
@@ -20,12 +20,17 @@ class SeesawNode: SKSpriteNode, EventListenerNode {
         return rightCatJoint != nil
     }
     
+    init() {
+        let texture = SKTexture(imageNamed: "seesaw")
+        let size = CGSize(width: 600, height: 105)
+        super.init(texture: texture, color: UIColor.clear, size: size)
+        self.position = CGPoint(x: 768, y: 152.5)
+        self.zPosition = 1
+        self.name = "seesaw"
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        leftContactPointNode = childNode(withName: "Seesaw.leftContactPoint") as! SKSpriteNode
-        rightContactPointNode = childNode(withName: "Seesaw.rightContactPoint") as! SKSpriteNode
-        setPhysicsBody()
-        setContactPointJoin()
     }
     
     override func encode(with aCoder: NSCoder) {
@@ -35,27 +40,12 @@ class SeesawNode: SKSpriteNode, EventListenerNode {
     func didMoveToScene() {
         print("seesaw added to scene")
         
-        // Add contact points for left cat and right cat
-        
-        leftContactPointNode.size = CGSize(width: 30, height: 10)
-        leftContactPointNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        leftContactPointNode.position = CGPoint(x: -self.frame.size.width/4, y: self.frame.size.height/2)
-        leftContactPointNode.name = "Seesaw.leftContactPoint"
-        self.addChild(leftContactPointNode)
-        
-        rightContactPointNode.size = CGSize(width: 30, height: 10)
-        rightContactPointNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        rightContactPointNode.position = CGPoint(x: self.frame.size.width/4, y: self.frame.size.height/2)
-        rightContactPointNode.name = "Seesaw.rightContactPoint"
-        self.addChild(rightContactPointNode)
-        
-        setPhysicsBody()
-        setContactPointJoin()
-    }
-    
-    func setPhysicsBody() {
+        guard let scene = scene else {
+            return
+        }
         
         // Set up physics body for the seesaw
+        
         let seesawBodyTexture = SKTexture(imageNamed: "seesaw_physics")
         physicsBody = SKPhysicsBody(texture: seesawBodyTexture,
                                     size: seesawBodyTexture.size())
@@ -63,13 +53,34 @@ class SeesawNode: SKSpriteNode, EventListenerNode {
         physicsBody?.collisionBitMask = PhysicsCategory.LeftCat | PhysicsCategory.RightCat | PhysicsCategory.Obstacle | PhysicsCategory.Floor
         physicsBody?.contactTestBitMask = 0
         
+        
+        // Add contact points for left cat and right cat
+        
+        leftContactPointNode.size = CGSize(width: 30, height: 10)
+        leftContactPointNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        leftContactPointNode.position = CGPoint(x: -self.frame.size.width/4, y: self.frame.size.height/2)
         leftContactPointNode.physicsBody = SKPhysicsBody(rectangleOf: leftContactPointNode.frame.size)
+        
         leftContactPointNode.physicsBody?.categoryBitMask = PhysicsCategory.LeftWood
         leftContactPointNode.physicsBody?.collisionBitMask = 0
+        self.addChild(leftContactPointNode)
         
+        rightContactPointNode.size = CGSize(width: 30, height: 10)
+        rightContactPointNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        rightContactPointNode.position = CGPoint(x: self.frame.size.width/4, y: self.frame.size.height/2)
         rightContactPointNode.physicsBody = SKPhysicsBody(rectangleOf: rightContactPointNode.frame.size)
+        
         rightContactPointNode.physicsBody?.categoryBitMask = PhysicsCategory.RightWood
         rightContactPointNode.physicsBody?.collisionBitMask = 0
+        self.addChild(rightContactPointNode)
+        
+        // Fix the contact point to the seesaw
+        
+        let leftEdgeJoint = SKPhysicsJointFixed.joint(withBodyA: physicsBody!, bodyB: leftContactPointNode.physicsBody!, anchor: self.position)
+        scene.physicsWorld.add(leftEdgeJoint)
+        
+        let rightEdgeJoint = SKPhysicsJointFixed.joint(withBodyA: physicsBody!, bodyB: rightContactPointNode.physicsBody!, anchor: self.position)
+        scene.physicsWorld.add(rightEdgeJoint)
         
         let moveConstaint = SKConstraint.positionY(SKRange(value: self.frame.size.height/2 + 100,
                                                            variance: 0))
@@ -77,18 +88,6 @@ class SeesawNode: SKSpriteNode, EventListenerNode {
             SKRange(lowerLimit: -30.toRadians(), upperLimit: 30.toRadians()))
         
         self.constraints = [moveConstaint, rotationConstraint]
-    }
-    
-    func setContactPointJoin() {
-        guard let scene = scene else {
-            return
-        }
-        
-        let leftEdgeJoint = SKPhysicsJointFixed.joint(withBodyA: physicsBody!, bodyB: leftContactPointNode.physicsBody!, anchor: self.position)
-        scene.physicsWorld.add(leftEdgeJoint)
-        
-        let rightEdgeJoint = SKPhysicsJointFixed.joint(withBodyA: physicsBody!, bodyB: rightContactPointNode.physicsBody!, anchor: self.position)
-        scene.physicsWorld.add(rightEdgeJoint)
     }
     
     func fixCat(catNode: CatSpriteNode) {
@@ -118,10 +117,10 @@ class SeesawNode: SKSpriteNode, EventListenerNode {
             run(SKAction.moveTo(x: targetLocation, duration: 0.7), withKey: "seesaw-move")
         }
         else if targetLocation < leftBound {
-        run(SKAction.moveTo(x: leftBound, duration: 0.7), withKey: "seesaw-move")
+            run(SKAction.moveTo(x: leftBound, duration: 0.7), withKey: "seesaw-move")
         }
         else if targetLocation > rightBound {
-        run(SKAction.moveTo(x: rightBound, duration: 0.7), withKey: "seesaw-move")
+            run(SKAction.moveTo(x: rightBound, duration: 0.7), withKey: "seesaw-move")
         }
     }
     

@@ -36,7 +36,7 @@ enum BreadType: Int, CustomStringConvertible {
 
 
 import SpriteKit
-class BreadNode: SKSpriteNode, EventListenerNode {
+class BreadNode: SKSpriteNode {
     var notAte = true
     var points = 10
     

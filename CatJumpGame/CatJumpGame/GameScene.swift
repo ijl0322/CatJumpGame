@@ -25,12 +25,12 @@ enum GameState: Int {
     case initial=0, start, play, win, lose, reload, pause, end
 }
 
-protocol EventListenerNode {
-    func didMoveToScene()
-}
-protocol InteractiveNode {
-    func interact()
-}
+//protocol EventListenerNode {
+//    func didMoveToScene()
+//}
+//protocol InteractiveNode {
+//    func interact()
+//}
 
 class GameScene: SKScene, SKPhysicsContactDelegate{
 
@@ -56,56 +56,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     var score = 0
     var gameState: GameState = .initial
     
-    override func encode(with aCoder: NSCoder) {
-        super.encode(with: aCoder)
-        aCoder.encode(level.levelNum, forKey: "Scene.level")
-        aCoder.encode(Float(playableMargin), forKey: "Scene.playableMargin")
-        aCoder.encode(Float(seesawLeftBound), forKey: "Scene.seesawLeftBound")
-        aCoder.encode(Float(seesawRightBound), forKey: "Scene.seesawRightBound")
-        aCoder.encode(elapsedTime, forKey: "Scene.elapsedTime")
-        aCoder.encode(timeLimit, forKey: "Scene.timeLimit")
-        aCoder.encode(score, forKey: "Scene.score")
-        aCoder.encode(gameState.rawValue,
-                      forKey: "Scene.gameState")
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        let savedGameState = aDecoder.decodeInteger(
-            forKey: "Scene.gameState")
-        if let gameState = GameState(rawValue: savedGameState),
-            gameState == .pause {
-            self.gameState = gameState
-            level = Level(num: aDecoder.decodeInteger(forKey: "Scene.level"))
-            _ = level.loadBread()
-            playableMargin = CGFloat(aDecoder.decodeFloat(forKey: "Scene.playableMargin"))
-            seesawLeftBound = CGFloat(aDecoder.decodeFloat(forKey: "Scene.seesawLeftBound"))
-            seesawRightBound = CGFloat(aDecoder.decodeFloat(forKey: "Scene.seesawRightBound"))
-            elapsedTime = aDecoder.decodeInteger(forKey: "Scene.elapsedTime")
-            timeLimit = aDecoder.decodeInteger(forKey: "Scene.timeLimit")
-            score = aDecoder.decodeInteger(forKey: "Scene.score")
-            scoreLabel = MKOutlinedLabelNode(fontNamed: "BradyBunchRemastered", fontSize: 80)
-            timeLabel = MKOutlinedLabelNode(fontNamed: "BradyBunchRemastered", fontSize: 80)
-            seesawNode = childNode(withName: "seesaw") as? SeesawNode
-            leftCatNode = childNode(withName: "leftCat") as! CatSpriteNode
-            rightCatNode = childNode(withName: "rightCat") as! CatSpriteNode
-            leftCatNode.setPhysicsBody()
-            rightCatNode.setPhysicsBody()
-        }
-        
-        addObservers()
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     override func didMove(to view: SKView) {
         if gameState == .initial {
             setUpScene(view: view)
         }
-        addMKLabels()
+        
+        
         view.showsPhysics = true
     }
     
@@ -187,6 +143,48 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             gameState = .end
             return
         }
+    }
+    
+    //MARK: - Encode/Decoder
+    
+    override func encode(with aCoder: NSCoder) {
+        super.encode(with: aCoder)
+        aCoder.encode(level.levelNum, forKey: "Scene.level")
+        aCoder.encode(Float(playableMargin), forKey: "Scene.playableMargin")
+        aCoder.encode(Float(seesawLeftBound), forKey: "Scene.seesawLeftBound")
+        aCoder.encode(Float(seesawRightBound), forKey: "Scene.seesawRightBound")
+        aCoder.encode(elapsedTime, forKey: "Scene.elapsedTime")
+        aCoder.encode(timeLimit, forKey: "Scene.timeLimit")
+        aCoder.encode(score, forKey: "Scene.score")
+        aCoder.encode(gameState.rawValue,
+                      forKey: "Scene.gameState")
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        let savedGameState = aDecoder.decodeInteger(
+            forKey: "Scene.gameState")
+        if let gameState = GameState(rawValue: savedGameState),
+            gameState == .pause {
+            self.gameState = gameState
+            level = Level(num: aDecoder.decodeInteger(forKey: "Scene.level"))
+            _ = level.loadBread()
+            playableMargin = CGFloat(aDecoder.decodeFloat(forKey: "Scene.playableMargin"))
+            seesawLeftBound = CGFloat(aDecoder.decodeFloat(forKey: "Scene.seesawLeftBound"))
+            seesawRightBound = CGFloat(aDecoder.decodeFloat(forKey: "Scene.seesawRightBound"))
+            elapsedTime = aDecoder.decodeInteger(forKey: "Scene.elapsedTime")
+            timeLimit = aDecoder.decodeInteger(forKey: "Scene.timeLimit")
+            score = aDecoder.decodeInteger(forKey: "Scene.score")
+            scoreLabel = MKOutlinedLabelNode(fontNamed: "BradyBunchRemastered", fontSize: 80)
+            timeLabel = MKOutlinedLabelNode(fontNamed: "BradyBunchRemastered", fontSize: 80)
+        }
+        
+        addObservers()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -327,16 +325,28 @@ extension GameScene {
         physicsWorld.contactDelegate = self
         physicsBody!.categoryBitMask = PhysicsCategory.Edge
         
-        enumerateChildNodes(withName: "//*", using: { node, _ in
-            if let eventListenerNode = node as? EventListenerNode {
-                eventListenerNode.didMoveToScene()
-            }
-        })
+//        enumerateChildNodes(withName: "//*", using: { node, _ in
+//            if let eventListenerNode = node as? EventListenerNode {
+//                eventListenerNode.didMoveToScene()
+//            }
+//        })
         
-        seesawNode = childNode(withName: "seesaw") as? SeesawNode
+        timeLimit = level.timeLimit
+        
+        addMKLabels()
+        addCatAndSeesaw()
+        
+        let allBreads = level.loadBread()
+        addBread(breads: allBreads)
+    }
+    
+    func addCatAndSeesaw() {
+        seesawNode = SeesawNode()
         seesawLeftBound = playableMargin + (seesawNode?.frame.width)!/2
         seesawRightBound = size.width - playableMargin - (seesawNode?.frame.width)!/2
         seesawNode?.physicsBody?.isDynamic = false
+        self.scene?.addChild(seesawNode!)
+        seesawNode?.didMoveToScene()
         
         let rightCatxPosition = (seesawNode?.position.x)! + ((seesawNode?.frame.width)!/4)
         let leftCatxPosition = (seesawNode?.position.x)! - ((seesawNode?.frame.width)!/4)
@@ -351,11 +361,6 @@ extension GameScene {
         leftCatNode.position = CGPoint(x: leftCatxPosition, y: catyPosition)
         leftCatNode.zPosition = 30
         self.scene?.addChild(leftCatNode)
-        
-        let allBreads = level.loadBread()
-        addBread(breads: allBreads)
-        
-        timeLimit = level.timeLimit
     }
     
     func addMKLabels() {
@@ -441,6 +446,8 @@ extension GameScene {
             pausedNotice = GamePausedNotificationNode()
             pausedNotice?.zPosition = 90
             addChild(pausedNotice!)
+            addMKLabels()
+            addCatAndSeesaw()
         }
     }
     
@@ -457,6 +464,9 @@ extension GameScene {
         if gameState == .pause {
             scoreLabel.removeFromParent()
             timeLabel.removeFromParent()
+            leftCatNode.removeFromParent()
+            rightCatNode.removeFromParent()
+            seesawNode?.removeFromParent()
             print("Entering background")
             saveGame()
         }

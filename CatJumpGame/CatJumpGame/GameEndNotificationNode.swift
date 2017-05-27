@@ -17,7 +17,7 @@ enum ButtonName {
 }
 
 import SpriteKit
-class GameEndNotificationNode: SKSpriteNode, EventListenerNode {
+class GameEndNotificationNode: SKSpriteNode {
     
     var scoreLabel = MKOutlinedLabelNode(fontNamed: "BradyBunchRemastered", fontSize: 130)
     var timeLabel = MKOutlinedLabelNode(fontNamed: "BradyBunchRemastered", fontSize: 130)

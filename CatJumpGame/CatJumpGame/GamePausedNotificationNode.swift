@@ -7,7 +7,7 @@
 //
 
 import SpriteKit
-class GamePausedNotificationNode: SKSpriteNode, EventListenerNode {
+class GamePausedNotificationNode: SKSpriteNode {
     
     var yesButton: SKSpriteNode!
     var noButton: SKSpriteNode!
