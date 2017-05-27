@@ -404,7 +404,7 @@ extension GameScene {
             if let touchedNode =
                 atPoint(touch.location(in: self)) as? SKSpriteNode {
                 if touchedNode.name == ButtonName.replay {
-                    transitionToScene(level: 3)
+                    transitionToScene(level: level.levelNum)
                 }
             }
         case .reload:

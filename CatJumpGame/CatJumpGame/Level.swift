@@ -19,9 +19,20 @@ enum LevelCompleteType: Int, CustomStringConvertible {
     }
 
     var description: String {
-        let status = ["lose", "oneStar", "twoStar", "threeSrar", "locked"]
+        let status = ["noStars", "oneStar", "twoStars", "threeStars", "locked"]
         
         return status[rawValue]
+    }
+    
+    var imageName: String {
+        return description
+    }
+    
+    var baseButtonImageName: String {
+        if rawValue == 4 {
+            return "levelLockedButton"
+        }
+        return "levelBaseButton"
     }
     
     var coins: Int {
