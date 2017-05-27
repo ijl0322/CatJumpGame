@@ -38,31 +38,75 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     let TileHeight: CGFloat = 100.0
     let space: CGFloat = 50.0
     var level = Level(num: 3)
-    let scoreLabel = MKOutlinedLabelNode(fontNamed: "BradyBunchRemastered", fontSize: 80)
-    let timeLabel = MKOutlinedLabelNode(fontNamed: "BradyBunchRemastered", fontSize: 80)
+    var scoreLabel = MKOutlinedLabelNode(fontNamed: "BradyBunchRemastered", fontSize: 80)
+    var timeLabel = MKOutlinedLabelNode(fontNamed: "BradyBunchRemastered", fontSize: 80)
     var playableMargin: CGFloat = 0.0
     var seesawLeftBound: CGFloat = 0.0
     var seesawRightBound: CGFloat = 0.0
     var elapsedTime: Int = 0
     var startTime: Int?
     var timeLimit = 10
-    var ballNode: SKSpriteNode?
     var seesawNode: SeesawNode?
     var rightCatNode: CatSpriteNode!
     var leftCatNode: CatSpriteNode!
     var gameEndNotificationNode: GameEndNotificationNode?
-    let pausedNotice = GamePausedNotificationNode()
+    var pausedNotice: GamePausedNotificationNode?
     
     //Game State
     var score = 0
-    var gameState: GameState = .start
+    var gameState: GameState = .initial
+    
+    override func encode(with aCoder: NSCoder) {
+        super.encode(with: aCoder)
+        aCoder.encode(level.levelNum, forKey: "Scene.level")
+        aCoder.encode(Float(playableMargin), forKey: "Scene.playableMargin")
+        aCoder.encode(Float(seesawLeftBound), forKey: "Scene.seesawLeftBound")
+        aCoder.encode(Float(seesawRightBound), forKey: "Scene.seesawRightBound")
+        aCoder.encode(elapsedTime, forKey: "Scene.elapsedTime")
+        aCoder.encode(timeLimit, forKey: "Scene.timeLimit")
+        aCoder.encode(score, forKey: "Scene.score")
+        aCoder.encode(gameState.rawValue,
+                      forKey: "Scene.gameState")
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        let savedGameState = aDecoder.decodeInteger(
+            forKey: "Scene.gameState")
+        if let gameState = GameState(rawValue: savedGameState),
+            gameState == .pause {
+            self.gameState = gameState
+            level = Level(num: aDecoder.decodeInteger(forKey: "Scene.level"))
+            _ = level.loadBread()
+            playableMargin = CGFloat(aDecoder.decodeFloat(forKey: "Scene.playableMargin"))
+            seesawLeftBound = CGFloat(aDecoder.decodeFloat(forKey: "Scene.seesawLeftBound"))
+            seesawRightBound = CGFloat(aDecoder.decodeFloat(forKey: "Scene.seesawRightBound"))
+            elapsedTime = aDecoder.decodeInteger(forKey: "Scene.elapsedTime")
+            timeLimit = aDecoder.decodeInteger(forKey: "Scene.timeLimit")
+            score = aDecoder.decodeInteger(forKey: "Scene.score")
+            scoreLabel = MKOutlinedLabelNode(fontNamed: "BradyBunchRemastered", fontSize: 80)
+            timeLabel = MKOutlinedLabelNode(fontNamed: "BradyBunchRemastered", fontSize: 80)
+            seesawNode = childNode(withName: "seesaw") as? SeesawNode
+            leftCatNode = childNode(withName: "leftCat") as! CatSpriteNode
+            rightCatNode = childNode(withName: "rightCat") as! CatSpriteNode
+            leftCatNode.setPhysicsBody()
+            rightCatNode.setPhysicsBody()
+        }
+        
+        addObservers()
+    }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
     
     override func didMove(to view: SKView) {
-        setUpScene(view: view)
+        if gameState == .initial {
+            setUpScene(view: view)
+        }
+        addMKLabels()
+        view.showsPhysics = true
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -270,6 +314,8 @@ extension GameScene {
     
     func setUpScene(view: SKView) {
         
+        gameState = .start
+        
         let maxAspectRatio: CGFloat = 9.0/16.0
         let maxAspectRatioWidth = size.height * maxAspectRatio
         playableMargin = (size.width
@@ -309,26 +355,23 @@ extension GameScene {
         let allBreads = level.loadBread()
         addBread(breads: allBreads)
         
+        timeLimit = level.timeLimit
+    }
+    
+    func addMKLabels() {
         scoreLabel.borderColor = UIColor.red
         scoreLabel.fontColor = UIColor.white
         scoreLabel.outlinedText = "\(score)"
         scoreLabel.zPosition = 15
         scoreLabel.position = CGPoint(x: 1217, y: 25)
         addChild(scoreLabel)
-        
-        timeLimit = level.timeLimit
-        
+    
         timeLabel.borderColor = UIColor.red
         timeLabel.fontColor = UIColor.white
         timeLabel.outlinedText = timeLimit.secondsToFormatedString()
         timeLabel.zPosition = 15
         timeLabel.position = CGPoint(x: 364, y: 25)
         addChild(timeLabel)
-        
-        addObservers()
-        
-        //debugDrawPlayableArea(playableRect: playableRect)
-        view.showsPhysics = true
     }
     
     //MARK: - Touches Helper
@@ -362,7 +405,7 @@ extension GameScene {
                 atPoint(touch.location(in: self)) as? SKSpriteNode {
                 if touchedNode.name == ButtonName.yes {
                     print("Resume game")
-                    pausedNotice.removeFromParent()
+                    pausedNotice?.removeFromParent()
                     isPaused = false
                     startTime = nil
                     gameState = .play
@@ -395,10 +438,10 @@ extension GameScene {
     func applicationDidBecomeActive() {
         if gameState == .pause {
             gameState = .reload
-            pausedNotice.zPosition = 90
-            addChild(pausedNotice)
+            pausedNotice = GamePausedNotificationNode()
+            pausedNotice?.zPosition = 90
+            addChild(pausedNotice!)
         }
-        print("* applicationDidBecomeActive")
     }
     
     func applicationWillResignActive() {
@@ -408,11 +451,52 @@ extension GameScene {
             gameState = .pause
             print("pausing game")
         }
-        
-        print("* applicationWillResignActive")
     }
     
     func applicationDidEnterBackground() {
-        print("* applicationDidEnterBackground")
+        if gameState == .pause {
+            scoreLabel.removeFromParent()
+            timeLabel.removeFromParent()
+            print("Entering background")
+            saveGame()
+        }
     }
+    
+    func saveGame() {
+        let fileManager = FileManager.default
+        guard let directory =
+            fileManager.urls(for: .libraryDirectory, in: .userDomainMask).first else { return }
+        let saveURL = directory.appendingPathComponent("SavedGames")
+        do {
+            try fileManager.createDirectory(atPath: saveURL.path,
+                                            withIntermediateDirectories: true,
+                                            attributes: nil)
+        } catch let error as NSError {
+            fatalError(
+                "Failed to create directory: \(error.debugDescription)")
+        }
+
+        let fileURL = saveURL.appendingPathComponent("level\(level.levelNum)")
+        print("* Saving: \(fileURL.path)")
+        NSKeyedArchiver.archiveRootObject(self, toFile: fileURL.path)
+    }
+    
+    class func loadLevel(num: Int) -> SKScene? {
+        print("* loading game")
+        var scene: SKScene?
+        let fileManager = FileManager.default
+        guard let directory =
+            fileManager.urls(for: .libraryDirectory,
+                             in: .userDomainMask).first
+            else { return nil }
+        let url = directory.appendingPathComponent(
+            "SavedGames/level\(num)")
+        if FileManager.default.fileExists(atPath: url.path) {
+            scene = NSKeyedUnarchiver.unarchiveObject(
+                withFile: url.path) as? GameScene
+            _ = try? fileManager.removeItem(at: url)
+        }
+        return scene
+    }
+    
 }

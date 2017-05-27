@@ -47,8 +47,16 @@ class BreadNode: SKSpriteNode, EventListenerNode {
         didMoveToScene()
     }
     
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        aDecoder.decodeInteger(forKey: "Bread.points")
+        aDecoder.decodeBool(forKey: "Bread.notAte")
+    }
+    
+    override func encode(with aCoder: NSCoder) {
+        super.encode(with: aCoder)
+        aCoder.encode(notAte, forKey: "Bread.notAte")
+        aCoder.encode(points, forKey: "Bread.points")
     }
     
     func didMoveToScene() {

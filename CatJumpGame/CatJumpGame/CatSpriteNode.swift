@@ -94,53 +94,89 @@ class CatSpriteNode: SKSpriteNode, EventListenerNode {
         super.init(texture: nil, color: UIColor.clear, size: size)
         bodyNode = SKSpriteNode(imageNamed: catType.body)
         bodyNode.position = CGPoint(x: 0, y: -80)
+        bodyNode.name = "body"
         self.addChild(bodyNode)
         
         headNode = SKSpriteNode(imageNamed: catType.head)
         headNode.position = CGPoint(x: 10.8, y: 136.5)
         headNode.zPosition = 1
+        headNode.name = "head"
         bodyNode.addChild(headNode)
         
         eyesNode = SKSpriteNode(imageNamed: catType.eyes)
         eyesNode.position = CGPoint(x: -3, y: -17)
         eyesNode.zPosition = 2
+        eyesNode.name = "eyes"
         headNode.addChild(eyesNode)
         
         mouthNode = SKSpriteNode(imageNamed: catType.mouth)
         mouthNode.position = CGPoint(x: -1.9, y: -63.5)
         mouthNode.zPosition = 2
+        mouthNode.name = "mouth"
         headNode.addChild(mouthNode)
         
         feetNode = SKSpriteNode(imageNamed: catType.feet)
         feetNode.position = CGPoint(x: 0, y: -40)
         feetNode.zPosition = 2
+        feetNode.name  = "feet"
         bodyNode.addChild(feetNode)
         
         tailNode = SKSpriteNode(imageNamed: catType.tail)
         tailNode.position = CGPoint(x: -50, y: -45.5)
         tailNode.zPosition = -1
         tailNode.anchorPoint = CGPoint(x: 1, y: 0)
+        tailNode.name = "tail"
         bodyNode.addChild(tailNode)
         
         if isLeftCat {
             seatSide = .left
+            name = "leftCat"
         } else {
             seatSide = .right
+            name = "rightCat"
         }
         
         didMoveToScene()
     }
     
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        isPinned = aDecoder.decodeBool(forKey: "Cat.isPinned")
+        canJump = aDecoder.decodeBool(forKey: "Cat.canJump")
+        catType = CatType.init(raw: aDecoder.decodeInteger(forKey: "Cat.catType"))
+        seatSide = SeatSide.init(raw: aDecoder.decodeInteger(forKey: "Cat.seatSide"))
+        
+        bodyNode = childNode(withName: "body") as! SKSpriteNode
+        headNode = childNode(withName: "//head") as! SKSpriteNode
+        eyesNode = childNode(withName: "//eyes") as! SKSpriteNode
+        mouthNode = childNode(withName: "//mouth") as! SKSpriteNode
+        feetNode = childNode(withName: "//feet") as! SKSpriteNode
+        tailNode = childNode(withName: "//tail") as! SKSpriteNode
+    }
+    
+    override func encode(with aCoder: NSCoder) {
+        aCoder.encode(isPinned, forKey: "Cat.isPinned")
+        aCoder.encode(canJump, forKey: "Cat.canJump")
+        aCoder.encode(catType.rawValue,
+                      forKey: "Cat.catType")
+        aCoder.encode(seatSide.rawValue,
+                      forKey: "Cat.seatSide")
+        super.encode(with: aCoder)
     }
     
     func didMoveToScene() {
         print("new cat added to scene")
         
+        setPhysicsBody()
+        normalStateAnimation()
+    }
+    
+    func setPhysicsBody() {
+        
         let catBodyTexture = seatSide.physicsBody
+        physicsBody = nil
         physicsBody = SKPhysicsBody(texture: catBodyTexture,
-                                            size: catBodyTexture.size())
+                                    size: catBodyTexture.size())
         
         physicsBody?.collisionBitMask = PhysicsCategory.Edge | PhysicsCategory.Obstacle | PhysicsCategory.Floor | PhysicsCategory.RightCat | PhysicsCategory.LeftCat
         
@@ -156,8 +192,6 @@ class CatSpriteNode: SKSpriteNode, EventListenerNode {
         let rotationConstraint = SKConstraint.zRotation(
             SKRange(lowerLimit: -30.toRadians(), upperLimit: 30.toRadians()))
         self.constraints = [rotationConstraint]
-        
-        normalStateAnimation()
     }
     
     //MARK: - Actions

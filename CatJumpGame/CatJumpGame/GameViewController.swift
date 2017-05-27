@@ -17,7 +17,8 @@ class GameViewController: UIViewController {
         
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
+            if let scene = GameScene.loadLevel(num: 3)
+                ?? SKScene(fileNamed: "GameScene") as? GameScene  {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
                 
@@ -44,12 +45,5 @@ class GameViewController: UIViewController {
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
-    }
 
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
 }
