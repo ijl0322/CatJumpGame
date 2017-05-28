@@ -53,20 +53,18 @@ class UserData {
         })
     }
     
-    func updateFromTransfer(code: String) {
-        FirebaseManager.sharedInstance.getUserDataFromTransfer(code: code, completion: { (snapshot) in
-            self.nickName = snapshot["nickName"] as! String
-            self.highScores = snapshot["highScores"] as! [Int]
-            let rawLevelStatus = snapshot["levelStatus"] as! [Int]
-            
-            self.levelStatus = self.rawToLevelStatus(raw: rawLevelStatus)
-            self.coins = snapshot["coins"] as! Int
-            self.defaults.set(self.nickName, forKey: "nickName")
-            self.defaults.set(self.coins, forKey: "coins")
-            self.defaults.set(self.highScores, forKey: "highScores")
-            self.defaults.set(self.levelStatusToRaw(), forKey: "levelStatus")
-            
-        })
+    func updateFromTransfer(snapshot: [String:Any]) {
+
+        self.nickName = snapshot["nickName"] as! String
+        self.highScores = snapshot["highScores"] as! [Int]
+        let rawLevelStatus = snapshot["levelStatus"] as! [Int]
+        
+        self.levelStatus = self.rawToLevelStatus(raw: rawLevelStatus)
+        self.coins = snapshot["coins"] as! Int
+        self.defaults.set(self.nickName, forKey: "nickName")
+        self.defaults.set(self.coins, forKey: "coins")
+        self.defaults.set(self.highScores, forKey: "highScores")
+        self.defaults.set(self.levelStatusToRaw(), forKey: "levelStatus")
     }
     
     func highScoreForLevel(_ num: Int) -> Int? {

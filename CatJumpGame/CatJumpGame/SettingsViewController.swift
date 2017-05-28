@@ -16,7 +16,14 @@ class SettingsViewController: UIViewController {
     
     @IBAction func transferGame(_ sender: UIButton) {
         if let code = transferCodeTextField.text {
-            UserData.shared.updateFromTransfer(code: code)
+            FirebaseManager.sharedInstance.getUserDataFromTransfer(code: code, completion: { (snapshot) in
+                if snapshot == nil {
+                    print("Unsucessful transfer")
+                } else {
+                    UserData.shared.updateFromTransfer(snapshot: snapshot!)
+                    print("Transfer Success")
+                }
+            })
         }
     }
     

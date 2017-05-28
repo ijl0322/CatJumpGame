@@ -51,9 +51,9 @@ class FirebaseManager {
         })
     }
     
-    func getUserDataFromTransfer(code: String, completion: @escaping ([String:Any]) -> Void) {
+    func getUserDataFromTransfer(code: String, completion: @escaping ([String:Any]?) -> Void) {
         userDataRef.child(code).observeSingleEvent(of: .value, with: { snapshot in
-            let userData = snapshot.value as! [String: Any]
+            let userData = snapshot.value as? [String: Any]
             completion(userData)
         })
     }
