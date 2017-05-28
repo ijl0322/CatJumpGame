@@ -6,7 +6,9 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -82,10 +84,9 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rPY-6Q-gmL">
-                                <rect key="frame" x="10" y="10" width="50" height="50"/>
+                                <rect key="frame" x="10" y="10" width="37.5" height="37.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="7W6-lc-hyS"/>
-                                    <constraint firstAttribute="height" constant="50" id="nAS-iv-wWa"/>
+                                    <constraint firstAttribute="width" secondItem="rPY-6Q-gmL" secondAttribute="height" multiplier="1:1" id="yfV-Zb-H5A"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="homeButton"/>
                                 <connections>
@@ -132,6 +133,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="uBn-30-nbw" firstAttribute="top" secondItem="o4u-pM-NPp" secondAttribute="bottom" id="Byb-MA-b77"/>
+                            <constraint firstItem="rPY-6Q-gmL" firstAttribute="width" secondItem="13q-OC-RfX" secondAttribute="width" multiplier="0.1" id="DIW-Hi-GLK"/>
                             <constraint firstItem="rPY-6Q-gmL" firstAttribute="leading" secondItem="13q-OC-RfX" secondAttribute="leading" constant="10" id="RWx-tm-IOI"/>
                             <constraint firstItem="o4u-pM-NPp" firstAttribute="leading" secondItem="13q-OC-RfX" secondAttribute="leading" id="Xx5-f0-sNZ"/>
                             <constraint firstAttribute="trailing" secondItem="o4u-pM-NPp" secondAttribute="trailing" id="YKB-9i-yfE"/>
@@ -256,30 +258,33 @@
                     <view key="view" contentMode="scaleToFill" id="mls-lf-pIR" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tx2-eP-a5S">
+                                <rect key="frame" x="10" y="10" width="37.5" height="37.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="tx2-eP-a5S" secondAttribute="height" multiplier="1:1" id="F4Y-3n-7WX"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="homeButton"/>
+                                <connections>
+                                    <action selector="homeButtonTapped:" destination="INx-Be-wpI" eventType="touchUpInside" id="L7S-C2-bHx"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tx2-eP-a5S" firstAttribute="leading" secondItem="mls-lf-pIR" secondAttribute="leading" constant="10" id="Mvc-GY-5qv"/>
+                            <constraint firstItem="tx2-eP-a5S" firstAttribute="top" secondItem="mls-lf-pIR" secondAttribute="top" constant="10" id="RXp-yk-lhD"/>
+                            <constraint firstItem="tx2-eP-a5S" firstAttribute="width" secondItem="mls-lf-pIR" secondAttribute="width" multiplier="0.1" id="eRf-Gg-lUK"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <segue destination="GPA-j8-Ng7" kind="unwind" identifier="returnHomeSegue" unwindAction="unwindToRoot:" id="xhx-0e-9Uf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N2A-YQ-NE4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="GPA-j8-Ng7" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4" y="-241"/>
-        </scene>
-        <!--Game View Controller-->
-        <scene sceneID="tXr-a1-R10">
-            <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="CatJumpGame" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="8aa-yV-Osq"/>
-                        <viewControllerLayoutGuide type="bottom" id="qHh-Mt-9TT"/>
-                    </layoutGuides>
-                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="922" y="-576"/>
         </scene>
     </scenes>
     <resources>

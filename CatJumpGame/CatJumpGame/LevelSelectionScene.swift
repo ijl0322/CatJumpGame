@@ -42,6 +42,7 @@ class LevelSelectionScene: SKScene, SKPhysicsContactDelegate{
         rightCat.position = CGPoint(x: 333, y: -704)
         rightCat.zPosition = 10
         addChild(rightCat)
+                
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -56,7 +57,7 @@ class LevelSelectionScene: SKScene, SKPhysicsContactDelegate{
                 if levelButton?.levelCompleteType != .locked {
                     transitionToScene(level: (levelButton?.level)!)
                 }
-            }
+            } 
         }
         
     }

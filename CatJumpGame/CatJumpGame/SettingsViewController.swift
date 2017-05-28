@@ -22,16 +22,15 @@ class SettingsViewController: UIViewController {
     
     @IBAction func transferGame(_ sender: UIButton) {
         if let code = transferCodeTextField.text {
-            FirebaseManager.sharedInstance.getUserDataFromTransfer(code: code, completion: { (snapshot) in
-                if snapshot == nil {
-                    print("Unsucessful transfer")
-                    self.showAlert(type: .failed)
-                } else {
-                    UserData.shared.updateFromTransfer(snapshot: snapshot!)
-                    print("Transfer Success")
-                    self.showAlert(type: .success)
-                }
-            })
+            let vc = storyboard?.instantiateViewController(withIdentifier:
+                "alertViewController") as! AlertViewController
+            
+            vc.alertType = .transfer
+            vc.transferCode = code
+            
+            self.present(vc, animated: false) {
+                print("Detached presented")
+            }
         }
     }
     

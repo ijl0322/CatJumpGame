@@ -20,12 +20,30 @@ class AlertViewController: UIViewController {
     }
     
     @IBAction func yesButtonTapped(_ sender: UIButton) {
+        self.alertLabel.text = "Transfering data..."
+        self.alertLabel.font = UIFont(name: "BradyBunchRemastered", size: 20)
+        self.yesButton.isHidden = true
+        self.noButton.isHidden = true
+        self.okButton.isHidden = false
         
+        FirebaseManager.sharedInstance.getUserDataFromTransfer(code: transferCode, completion: { (snapshot) in
+            if snapshot == nil {
+                print("Unsucessful transfer")
+                self.alertLabel.text = "Oops! There seems to be a problem. Make sure your transfer code is correct and you have internet connection"
+                self.alertLabel.font = UIFont(name: "BradyBunchRemastered", size: 20)
+            } else {
+                UserData.shared.updateFromTransfer(snapshot: snapshot!)
+                print("Transfer Success")
+                self.alertLabel.text = "Your game transfer was successful!"
+                self.alertLabel.font = UIFont(name: "BradyBunchRemastered", size: 20)
+            }
+            self.okButton.isHidden = false
+        })
     }
     
     
     @IBAction func noButtonTapped(_ sender: UIButton) {
-        
+        self.dismiss(animated: false, completion: nil)
     }
     
     @IBOutlet weak var noButton: UIButton!
@@ -35,18 +53,10 @@ class AlertViewController: UIViewController {
     override func viewDidLoad() {
     
         super.viewDidLoad()
-        if alertType == .success {
-            alertLabel.text = "Your game transfer was successful!"
-            alertLabel.font = UIFont(name: "BradyBunchRemastered", size: 20)
-            yesButton.isHidden = true
-            noButton.isHidden = true
-        } else if alertType == .failed {
-            alertLabel.text = "Oops! There seems to be a problem. Make sure your transfer code is correct and you have internet connection"
-            alertLabel.font = UIFont(name: "BradyBunchRemastered", size: 20)
-            yesButton.isHidden = true
-            noButton.isHidden = true
-        } else if alertType == .transfer {
+        if alertType == .transfer {
             okButton.isHidden = true
+            alertLabel.text = "You are about to transfer game data to this device. After the transfer, all current data will be replaced. Do you wish to continue?"
+            alertLabel.font = UIFont(name: "BradyBunchRemastered", size: 20)
         }
     }
 

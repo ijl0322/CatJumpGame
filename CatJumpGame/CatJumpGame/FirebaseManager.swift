@@ -30,13 +30,21 @@ class FirebaseManager {
         levelsRef.child("1").setValue(data)
     }
     
-    func loadLevel(num: Int, completion: @escaping (([String:Any]) -> Void)) {
+//    func loadLevel(num: Int, completion: @escaping (([String:Any]) -> Void)) {
+//        levelsRef.child("\(num)").observeSingleEvent(of: .value, with: { snapshot in
+//            print(snapshot)
+//            let level = snapshot.value as! [String: Any]
+//            completion(level)
+//            self.saveToDoc(levelData: level)
+//            
+//        })
+//    }
+    
+    func loadLevel(num: Int) {
         levelsRef.child("\(num)").observeSingleEvent(of: .value, with: { snapshot in
             print(snapshot)
             let level = snapshot.value as! [String: Any]
-            completion(level)
             self.saveToDoc(levelData: level)
-            
         })
     }
     
@@ -79,9 +87,19 @@ class FirebaseManager {
     }
     
     func saveToDoc(levelData: [String: Any]){
-        let docs = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        print("\(docs)")
-        NSKeyedArchiver.archiveRootObject(levelData, toFile: docs.appending("/Level_1.plist"))
+        //let docs = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        //print("\(docs)")
+        //let url = docs.appending("/Level_1.json")
+        
+        guard let docs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        print(docs.absoluteString)
+        let fileUrl = docs.appendingPathComponent("Level1.json")
+        do {
+            let data = try JSONSerialization.data(withJSONObject: levelData, options: [])
+            try data.write(to: fileUrl, options: [])
+        } catch {
+            print(error)
+        }
     }
     
     func download() {
