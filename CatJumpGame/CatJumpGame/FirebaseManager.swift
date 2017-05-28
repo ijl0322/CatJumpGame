@@ -52,21 +52,22 @@ class FirebaseManager {
     }
     
     func updateHighScoreForLevel(_ num: Int, score: Int) {
-        highScoreDataRef.child("Level_\(num)").observeSingleEvent(of: .value, with: { snapshot in
-            if var highScores = snapshot.value as? [Int] {
-                dump(highScores)
-                if highScores.count < 5 {
-                    highScores.append(score)
-                } else {
-                    if score > highScores.min()! {
-                        highScores = highScores.sorted()
-                        highScores[0] = score
-                    }
-                }
-                
-                self.highScoreDataRef.child("Level_\(num)").setValue(highScores)
-            }
-        })
+//        highScoreDataRef.child("Level_\(num)").observeSingleEvent(of: .value, with: { snapshot in
+//            if var highScores = snapshot.value as? [Int:String] {
+//                var minScore = Int.max
+//                for (newScore, user) in highScores {
+//                    print(newScore)
+//                    print(user)
+//                    if newScore < minScore {
+//                        minScore = newScore
+//                    }
+//                }
+//                if score > minScore {
+//                    highScores[score]
+//                }
+//            }
+//            
+//        })
         
     }
     

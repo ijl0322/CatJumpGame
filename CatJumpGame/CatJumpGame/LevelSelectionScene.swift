@@ -18,10 +18,17 @@ class LevelSelectionScene: SKScene, SKPhysicsContactDelegate{
     override func didMove(to view: SKView) {
         
         for i in 0...14 {
-            let levelButton = LevelButtonNode(level: i+1, levelCompleteType: .locked)
+            var levelStatus = LevelCompleteType.locked
+            if i < UserData.shared.unlockedLevels {
+                levelStatus = UserData.shared.levelStatus[i]
+            }
+            let levelButton = LevelButtonNode(level: i+1, levelCompleteType: levelStatus)
             levelButton.position = CGPoint(x: xPosition[(i%5)], y: yPosition[(i/5)])
             levelButton.zPosition = 10
             addChild(levelButton)
+            if i < UserData.shared.unlockedLevels && UserData.shared.highScores[i] == 0 {
+                levelButton.animateButton()
+            }
         }
         
         let leftCat = CatSpriteNode(catType: .cat1, isLeftCat: true)
@@ -46,7 +53,7 @@ class LevelSelectionScene: SKScene, SKPhysicsContactDelegate{
             atPoint(touch.location(in: self)) as? SKSpriteNode {
             if touchedNode.name == "level" {
                 let levelButton = touchedNode as? LevelButtonNode
-                if (levelButton?.level)! < 4 {
+                if levelButton?.levelCompleteType != .locked {
                     transitionToScene(level: (levelButton?.level)!)
                 }
             }

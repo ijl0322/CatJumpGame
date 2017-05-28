@@ -46,6 +46,11 @@ class LevelButtonNode: SKSpriteNode {
         }
     }
     
+    func animateButton() {
+        let scaleAction = SKAction.scale(by: 1.3, duration: 0.3)
+        run(SKAction.sequence([scaleAction, scaleAction.reversed()]))
+    }
+    
     func unlock() {
         if levelCompleteType == .locked {
             levelCompleteType = .lose

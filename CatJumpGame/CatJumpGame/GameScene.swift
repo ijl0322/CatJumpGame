@@ -146,7 +146,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         }
         
         if gameState == .end {
-            UserData.shared.updateHighScoreForLevel(level.levelNum, score: score)
+            
         }
     }
     
@@ -199,12 +199,12 @@ extension GameScene {
     
     //Mark: - Game State Manegement Helper
     func endGame() {
-        gameEndNotificationNode = GameEndNotificationNode(score: score, levelStatus: level.levelCompleteStatus(score: score), time: timeLimit - elapsedTime)
+        gameEndNotificationNode = GameEndNotificationNode(score: score, levelStatus: level.levelCompleteStatus(score: score), time: timeLimit - elapsedTime, level: level.levelNum)
         gameEndNotificationNode?.zPosition = 150
         self.scene?.addChild(gameEndNotificationNode!)
         gameEndNotificationNode?.animateStarsReceived()
         score += (gameEndNotificationNode?.animateBonus(time: timeLimit - elapsedTime))!
-        FirebaseManager.sharedInstance.updateHighScoreForLevel(level.levelNum, score: score)
+        UserData.shared.updateHighScoreForLevel(level.levelNum, score: score, levelCompleteType: level.levelCompleteStatus(score: score))
     }
     
     func updateTime(currentTime: TimeInterval) {

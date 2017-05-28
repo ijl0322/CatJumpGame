@@ -12,8 +12,13 @@ import UIKit
 class UserData {
     static let shared = UserData()
     let defaults = UserDefaults.standard
-    var highScores = [0, 0, 0]
+    var highScores = [0]
+    var levelStatus: [LevelCompleteType] = [.lose]
     var nickName = "Anonymous User"
+    var coins = 0
+    var unlockedLevels: Int {
+        return highScores.count
+    }
     
     init() {
         if let nickName = defaults.object(forKey: "nickName") as? String {
@@ -28,8 +33,14 @@ class UserData {
         } else {
             defaults.set(highScores, forKey: "highScores")
         }
+        
+        if let levelStatusRaw = defaults.array(forKey: "levelStatus") as? [Int] {
+            self.levelStatus = rawToLevelStatus(raw: levelStatusRaw)
+        } else {
+            defaults.set(levelStatusToRaw(), forKey: "levelStatus")
+        }
     }
-    
+        
     func getDataFromFirebase() {
         FirebaseManager.sharedInstance.getUserData(completion: { (snapshot) in
             self.nickName = snapshot["nickName"] as! String
@@ -50,20 +61,44 @@ class UserData {
         defaults.set(nickName, forKey: "nickName")
     }
     
-    func updateHighScoreForLevel(_ num: Int, score: Int) {
+    func levelStatusToRaw() -> [Int]{
+        let newLevelStatusArray = levelStatus.map({ (value: LevelCompleteType) -> Int in
+            return value.rawValue
+        })
+        return newLevelStatusArray
+    }
+    
+    func rawToLevelStatus(raw: [Int]) -> [LevelCompleteType] {
+        let newLevelStatus = raw.map({ (value: Int) -> LevelCompleteType in
+            return LevelCompleteType.init(raw: value)!
+        })
+        return newLevelStatus
+    }
+    
+    func updateHighScoreForLevel(_ num: Int, score: Int, levelCompleteType: LevelCompleteType) {
+        print("Updating user high score")
+
         if num <= highScores.count {
             if highScores[num - 1] < score {
                 highScores[num - 1] = score
+                levelStatus[num - 1] = levelCompleteType
                 print("High Score for level \(num) is: \(highScores[num - 1])")
                 saveToFirebase()
-                defaults.set(highScores, forKey: "highScores")
             }
         } else {
             highScores.append(score)
             print("High Score for level \(num) is: \(highScores[num - 1])")
+            levelStatus[num - 1] = levelCompleteType
             saveToFirebase()
-            defaults.set(highScores, forKey: "highScores")
         }
+        
+        if levelCompleteType != .lose && num == highScores.count{
+            print("unlocking a new level")
+            highScores.append(0)
+            levelStatus.append(.lose)
+        }
+        defaults.set(highScores, forKey: "highScores")
+        defaults.set(levelStatusToRaw(), forKey: "levelStatus")
     }
     
     func toAnyObject() -> [String: Any]{
@@ -71,7 +106,8 @@ class UserData {
     }
     
     func saveToFirebase() {
-        FirebaseManager.sharedInstance.updateUserData(data: ["nickName": nickName, "highScores": highScores])
+        let newLevelStatus = levelStatusToRaw()
+        FirebaseManager.sharedInstance.updateUserData(data: ["nickName": nickName, "highScores": highScores, "levelStatus" : newLevelStatus])
     }
     
 }

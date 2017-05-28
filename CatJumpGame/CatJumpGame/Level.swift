@@ -101,7 +101,7 @@ class Level {
             return .threeStar
         } else if Double(score) >= Double(highestScore) * 0.9 {
             return .twoStar
-        } else if Double(score) >= Double(highestScore) * 0.75 {
+        } else if Double(score) >= Double(highestScore) * 0.3 {
             return .oneStar
         } else {
             return .lose

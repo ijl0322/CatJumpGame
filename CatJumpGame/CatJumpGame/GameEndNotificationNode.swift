@@ -14,6 +14,7 @@ enum ButtonName {
     static let replay = "replayButton"
     static let no = "noButton"
     static let yes = "yesButton"
+    static let noNext = "noNextButton"
 }
 
 import SpriteKit
@@ -30,10 +31,11 @@ class GameEndNotificationNode: SKSpriteNode {
     var nextButton: SKSpriteNode!
     var leaderBoardButton: SKSpriteNode!
     var score = 0
+    var level = 0
     var levelStatus: LevelCompleteType = .lose
     
     
-    init(score: Int, levelStatus: LevelCompleteType, time: Int) {
+    init(score: Int, levelStatus: LevelCompleteType, time: Int, level: Int) {
         var texture = SKTexture(imageNamed: "levelComplete")
         if levelStatus == .lose {
             texture = SKTexture(imageNamed: "levelFailed")
@@ -41,6 +43,7 @@ class GameEndNotificationNode: SKSpriteNode {
         
         self.levelStatus = levelStatus
         self.score = score
+        self.level = level
         super.init(texture: texture, color: UIColor.clear, size: CGSize(width: 910, height: 1270))
         self.position = CGPoint(x: 768, y: 1200)
         addCoinsLabel(coins: levelStatus.coins)
@@ -129,12 +132,20 @@ class GameEndNotificationNode: SKSpriteNode {
         replayButton.name = ButtonName.replay
         addChild(replayButton)
         
-        nextButton = SKSpriteNode(imageNamed: ButtonName.next)
-        nextButton.position = CGPoint(x: 105, y: -534)
-        nextButton.zPosition = 30
-        nextButton.name = ButtonName.next
-        addChild(nextButton)
-        
+        if levelStatus == .lose && level >= UserData.shared.unlockedLevels {
+            nextButton = SKSpriteNode(imageNamed: ButtonName.noNext)
+            nextButton.position = CGPoint(x: 105, y: -534)
+            nextButton.zPosition = 30
+            nextButton.name = ButtonName.noNext
+            addChild(nextButton)
+        } else {
+            nextButton = SKSpriteNode(imageNamed: ButtonName.next)
+            nextButton.position = CGPoint(x: 105, y: -534)
+            nextButton.zPosition = 30
+            nextButton.name = ButtonName.next
+            addChild(nextButton)
+        }
+
         leaderBoardButton = SKSpriteNode(imageNamed: ButtonName.leaderBoard)
         leaderBoardButton.position = CGPoint(x: 310, y: -534)
         leaderBoardButton.zPosition = 30
