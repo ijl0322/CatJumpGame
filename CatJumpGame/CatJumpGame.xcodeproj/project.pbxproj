@@ -10,7 +10,6 @@
 		0E0A72E81ECCEF8300022BCE /* Seesaw.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0E0A72E71ECCEF8300022BCE /* Seesaw.sks */; };
 		0E0A72EA1ECCF03700022BCE /* SeesawNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0A72E91ECCF03700022BCE /* SeesawNode.swift */; };
 		0E0B41611EDA864C005A9E57 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0B41601EDA864C005A9E57 /* SettingsViewController.swift */; };
-		0E11B1BF1ECE2573002A644B /* pop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0E11B1BE1ECE2573002A644B /* pop.mp3 */; };
 		0E12EEA51ED13EB600B1BB40 /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E12EEA41ED13EB600B1BB40 /* Array2D.swift */; };
 		0E12EEA81ED13EDA00B1BB40 /* Level_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E12EEA71ED13EDA00B1BB40 /* Level_1.json */; };
 		0E12EEAA1ED13F0C00B1BB40 /* Dictionary+JsonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E12EEA91ED13F0C00B1BB40 /* Dictionary+JsonExtension.swift */; };
@@ -64,7 +63,6 @@
 		0E0A72E71ECCEF8300022BCE /* Seesaw.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Seesaw.sks; sourceTree = "<group>"; };
 		0E0A72E91ECCF03700022BCE /* SeesawNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeesawNode.swift; sourceTree = "<group>"; };
 		0E0B41601EDA864C005A9E57 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		0E11B1BE1ECE2573002A644B /* pop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pop.mp3; sourceTree = "<group>"; };
 		0E12EEA41ED13EB600B1BB40 /* Array2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array2D.swift; sourceTree = "<group>"; };
 		0E12EEA71ED13EDA00B1BB40 /* Level_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_1.json; sourceTree = "<group>"; };
 		0E12EEA91ED13F0C00B1BB40 /* Dictionary+JsonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+JsonExtension.swift"; sourceTree = "<group>"; };
@@ -176,7 +174,6 @@
 		0E511C4C1ECE008A00F3E7A9 /* SKTUtils */ = {
 			isa = PBXGroup;
 			children = (
-				0E11B1BE1ECE2573002A644B /* pop.mp3 */,
 				0E511C4D1ECE008A00F3E7A9 /* CGFloat+Extensions.swift */,
 				0E511C4E1ECE008A00F3E7A9 /* CGPoint+Extensions.swift */,
 				0E511C4F1ECE008A00F3E7A9 /* CGVector+Extensions.swift */,
@@ -332,7 +329,6 @@
 				0E1DD8321ED77279003AE270 /* gameEndNotification.sks in Resources */,
 				0ED507DB1ECBDDA600E141C3 /* Assets.xcassets in Resources */,
 				0E68670C1ED518C5002E7886 /* BradBunR.ttf in Resources */,
-				0E11B1BF1ECE2573002A644B /* pop.mp3 in Resources */,
 				0E14EA611ED92A8E00716762 /* LevelSelectionScene.sks in Resources */,
 				0E51127A1EDA2D7D00CA19C6 /* GoogleService-Info.plist in Resources */,
 				0E5705C51ED7B6140027DDF5 /* Level_3.json in Resources */,
