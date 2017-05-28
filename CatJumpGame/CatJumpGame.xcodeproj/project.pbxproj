@@ -21,6 +21,7 @@
 		0E1DD8301ED76BDA003AE270 /* GameEndNotificationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1DD82F1ED76BDA003AE270 /* GameEndNotificationNode.swift */; };
 		0E1DD8321ED77279003AE270 /* gameEndNotification.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0E1DD8311ED77279003AE270 /* gameEndNotification.sks */; };
 		0E3143F01ED3D8AC004E584C /* CatSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3143EF1ED3D8AC004E584C /* CatSpriteNode.swift */; };
+		0E47E4471EDB70CE0026CC7F /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E47E4461EDB70CE0026CC7F /* AlertViewController.swift */; };
 		0E51127A1EDA2D7D00CA19C6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E5112791EDA2D7D00CA19C6 /* GoogleService-Info.plist */; };
 		0E51127E1EDA301900CA19C6 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E51127D1EDA301900CA19C6 /* FirebaseManager.swift */; };
 		0E5112801EDA3C3F00CA19C6 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E51127F1EDA3C3F00CA19C6 /* UserData.swift */; };
@@ -75,6 +76,7 @@
 		0E1DD82F1ED76BDA003AE270 /* GameEndNotificationNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEndNotificationNode.swift; sourceTree = "<group>"; };
 		0E1DD8311ED77279003AE270 /* gameEndNotification.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = gameEndNotification.sks; sourceTree = "<group>"; };
 		0E3143EF1ED3D8AC004E584C /* CatSpriteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatSpriteNode.swift; sourceTree = "<group>"; };
+		0E47E4461EDB70CE0026CC7F /* AlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		0E5112791EDA2D7D00CA19C6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0E51127D1EDA301900CA19C6 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		0E51127F1EDA3C3F00CA19C6 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				0E51127D1EDA301900CA19C6 /* FirebaseManager.swift */,
 				0E51127F1EDA3C3F00CA19C6 /* UserData.swift */,
 				0E0B41601EDA864C005A9E57 /* SettingsViewController.swift */,
+				0E47E4461EDB70CE0026CC7F /* AlertViewController.swift */,
 			);
 			path = CatJumpGame;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 				0ED507D61ECBDDA600E141C3 /* GameViewController.swift in Sources */,
 				0E1DD8301ED76BDA003AE270 /* GameEndNotificationNode.swift in Sources */,
 				0E12EEAA1ED13F0C00B1BB40 /* Dictionary+JsonExtension.swift in Sources */,
+				0E47E4471EDB70CE0026CC7F /* AlertViewController.swift in Sources */,
 				0E511C5F1ECE008A00F3E7A9 /* SKColor+Extensions.swift in Sources */,
 				0E8441B61ED9147C00F58E42 /* RootViewController.swift in Sources */,
 				0E511C5B1ECE008A00F3E7A9 /* CGVector+Extensions.swift in Sources */,

@@ -8,6 +8,12 @@
 
 import UIKit
 
+enum AlertType {
+    case success
+    case failed
+    case transfer
+}
+
 class SettingsViewController: UIViewController {
 
     @IBOutlet weak var nickNameTextField: UITextField!
@@ -19,13 +25,17 @@ class SettingsViewController: UIViewController {
             FirebaseManager.sharedInstance.getUserDataFromTransfer(code: code, completion: { (snapshot) in
                 if snapshot == nil {
                     print("Unsucessful transfer")
+                    self.showAlert(type: .failed)
                 } else {
                     UserData.shared.updateFromTransfer(snapshot: snapshot!)
                     print("Transfer Success")
+                    self.showAlert(type: .success)
                 }
             })
         }
     }
+    
+    
     
     @IBAction func showGameTransferCode(_ sender: UIButton) {
         gameTransferCodeLabel.text = UIDevice().identifierForVendor?.uuidString
@@ -38,6 +48,17 @@ class SettingsViewController: UIViewController {
         nickNameTextField.delegate = self
         nickNameTextField.text = UserData.shared.nickName
         nickNameTextField.font = UIFont(name: "BradyBunchRemastered", size: 30)
+    }
+    
+    func showAlert(type: AlertType) {
+        let vc = storyboard?.instantiateViewController(withIdentifier:
+            "alertViewController") as! AlertViewController
+        
+        vc.alertType = type
+        
+        self.present(vc, animated: false) {
+            print("Detached presented")
+        }
     }
 }
 

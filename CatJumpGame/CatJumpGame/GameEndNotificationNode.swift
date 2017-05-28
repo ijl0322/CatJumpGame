@@ -15,6 +15,7 @@ enum ButtonName {
     static let no = "noButton"
     static let yes = "yesButton"
     static let noNext = "noNextButton"
+    static let ok = "okButton"
 }
 
 import SpriteKit

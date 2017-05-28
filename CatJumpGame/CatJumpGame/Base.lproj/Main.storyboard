@@ -150,6 +150,101 @@
             </objects>
             <point key="canvasLocation" x="-975.20000000000005" y="554.57271364317842"/>
         </scene>
+        <!--Alert View Controller-->
+        <scene sceneID="v5X-pm-iSs">
+            <objects>
+                <viewController storyboardIdentifier="alertViewController" id="70U-k2-bZM" customClass="AlertViewController" customModule="CatJumpGame" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lgl-iQ-IN2"/>
+                        <viewControllerLayoutGuide type="bottom" id="KEU-SO-whJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OF3-Zk-Qd6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="landscapeBackground" translatesAutoresizingMaskIntoConstraints="NO" id="v69-WD-HAl">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alert" translatesAutoresizingMaskIntoConstraints="NO" id="XaB-uk-ctN">
+                                <rect key="frame" x="27" y="149.5" width="320" height="268"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="268" id="0dY-3Y-Pwy"/>
+                                    <constraint firstAttribute="width" constant="320" id="RT5-aQ-GKZ"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PqI-ek-Ib9" userLabel="okay">
+                                <rect key="frame" x="137" y="381" width="100" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="eM9-OY-eyb"/>
+                                    <constraint firstAttribute="height" constant="45" id="q9a-ER-vs4"/>
+                                </constraints>
+                                <state key="normal" image="okButton"/>
+                                <connections>
+                                    <action selector="okayButtonTapped:" destination="70U-k2-bZM" eventType="touchUpInside" id="WSk-f0-zih"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8vd-Ll-sHR">
+                                <rect key="frame" x="70" y="219.5" width="234" height="148"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="234" id="U16-AL-376"/>
+                                    <constraint firstAttribute="height" constant="148" id="wPL-UB-HBb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4B1-hT-RhB" userLabel="yes">
+                                <rect key="frame" x="65" y="381" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="TUi-Pl-odO"/>
+                                    <constraint firstAttribute="height" constant="45" id="qqm-27-pWl"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="yesButton"/>
+                                <connections>
+                                    <action selector="yesButtonTapped:" destination="70U-k2-bZM" eventType="touchUpInside" id="Lxn-sp-Ldj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zjk-lc-o5M" userLabel="no">
+                                <rect key="frame" x="265" y="381" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="LUx-0i-25L"/>
+                                    <constraint firstAttribute="height" constant="45" id="fI3-uq-KKv"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="noButton"/>
+                                <connections>
+                                    <action selector="noButtonTapped:" destination="70U-k2-bZM" eventType="touchUpInside" id="g5K-YT-jnG"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="PqI-ek-Ib9" firstAttribute="centerX" secondItem="OF3-Zk-Qd6" secondAttribute="centerX" id="22y-iv-v4P"/>
+                            <constraint firstItem="XaB-uk-ctN" firstAttribute="centerY" secondItem="OF3-Zk-Qd6" secondAttribute="centerY" constant="-50" id="5Rl-cj-qFa"/>
+                            <constraint firstItem="zjk-lc-o5M" firstAttribute="centerX" secondItem="OF3-Zk-Qd6" secondAttribute="centerX" constant="100" id="7mT-O9-YVn"/>
+                            <constraint firstItem="zjk-lc-o5M" firstAttribute="centerY" secondItem="OF3-Zk-Qd6" secondAttribute="centerY" constant="70" id="FhG-9U-tjb"/>
+                            <constraint firstItem="8vd-Ll-sHR" firstAttribute="centerY" secondItem="OF3-Zk-Qd6" secondAttribute="centerY" constant="-40" id="GNb-uj-IFy"/>
+                            <constraint firstAttribute="trailing" secondItem="v69-WD-HAl" secondAttribute="trailing" id="GaI-Pm-IuQ"/>
+                            <constraint firstItem="v69-WD-HAl" firstAttribute="top" secondItem="OF3-Zk-Qd6" secondAttribute="top" id="XfZ-pv-SYz"/>
+                            <constraint firstItem="8vd-Ll-sHR" firstAttribute="centerX" secondItem="OF3-Zk-Qd6" secondAttribute="centerX" id="YRD-Jr-mU1"/>
+                            <constraint firstItem="PqI-ek-Ib9" firstAttribute="centerY" secondItem="OF3-Zk-Qd6" secondAttribute="centerY" constant="70" id="eVj-Rs-d6V"/>
+                            <constraint firstItem="4B1-hT-RhB" firstAttribute="centerY" secondItem="OF3-Zk-Qd6" secondAttribute="centerY" constant="70" id="hs7-ab-dAe"/>
+                            <constraint firstItem="4B1-hT-RhB" firstAttribute="centerX" secondItem="OF3-Zk-Qd6" secondAttribute="centerX" constant="-100" id="mhk-lC-AHK"/>
+                            <constraint firstItem="XaB-uk-ctN" firstAttribute="centerX" secondItem="OF3-Zk-Qd6" secondAttribute="centerX" id="mjB-8Q-5q7"/>
+                            <constraint firstItem="KEU-SO-whJ" firstAttribute="top" secondItem="v69-WD-HAl" secondAttribute="bottom" id="pbY-Qs-6I0"/>
+                            <constraint firstItem="v69-WD-HAl" firstAttribute="leading" secondItem="OF3-Zk-Qd6" secondAttribute="leading" id="zZB-3u-5FM"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="alertLabel" destination="8vd-Ll-sHR" id="l1M-ls-vSw"/>
+                        <outlet property="noButton" destination="zjk-lc-o5M" id="cm5-5u-o3C"/>
+                        <outlet property="okButton" destination="PqI-ek-Ib9" id="x0s-i1-pXz"/>
+                        <outlet property="yesButton" destination="4B1-hT-RhB" id="XXL-eq-Zqx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f8h-7X-rdl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-50.399999999999999" y="554.57271364317842"/>
+        </scene>
         <!--Menu View Controller-->
         <scene sceneID="rUH-Jb-9sE">
             <objects>
@@ -188,7 +283,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="alert" width="900" height="800"/>
         <image name="homeButton" width="160" height="160"/>
         <image name="landscapeBackground" width="1532" height="2048"/>
+        <image name="noButton" width="160" height="160"/>
+        <image name="okButton" width="274" height="122"/>
+        <image name="yesButton" width="160" height="160"/>
     </resources>
 </document>
