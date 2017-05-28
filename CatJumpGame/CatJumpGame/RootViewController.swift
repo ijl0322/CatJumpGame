@@ -12,9 +12,6 @@ class RootViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        FirebaseManager.sharedInstance.loadLevel(num: 1, completion: { (data) in
-            dump(data)
-        })
         // Do any additional setup after loading the view.
     }
 

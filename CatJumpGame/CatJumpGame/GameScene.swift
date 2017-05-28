@@ -204,6 +204,7 @@ extension GameScene {
         self.scene?.addChild(gameEndNotificationNode!)
         gameEndNotificationNode?.animateStarsReceived()
         score += (gameEndNotificationNode?.animateBonus(time: timeLimit - elapsedTime))!
+        FirebaseManager.sharedInstance.updateHighScoreForLevel(level.levelNum, score: score)
     }
     
     func updateTime(currentTime: TimeInterval) {
