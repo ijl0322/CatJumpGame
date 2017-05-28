@@ -14,7 +14,7 @@ class UserData {
     let defaults = UserDefaults.standard
     var highScores = [0]
     var levelStatus: [LevelCompleteType] = [.lose]
-    var nickName = "Anonymous User"
+    var nickName = "Anonymous"
     var coins = 0
     var unlockedLevels: Int {
         return highScores.count
@@ -39,6 +39,10 @@ class UserData {
         } else {
             defaults.set(levelStatusToRaw(), forKey: "levelStatus")
         }
+        
+        if let coins = defaults.integer(forKey: "coins") as Int?{
+            self.coins = coins
+        }
     }
         
     func getDataFromFirebase() {
@@ -46,6 +50,22 @@ class UserData {
             self.nickName = snapshot["nickName"] as! String
             self.highScores = snapshot["highScores"] as! [Int]
             print("User init from firebase")
+        })
+    }
+    
+    func updateFromTransfer(code: String) {
+        FirebaseManager.sharedInstance.getUserDataFromTransfer(code: code, completion: { (snapshot) in
+            self.nickName = snapshot["nickName"] as! String
+            self.highScores = snapshot["highScores"] as! [Int]
+            let rawLevelStatus = snapshot["levelStatus"] as! [Int]
+            
+            self.levelStatus = self.rawToLevelStatus(raw: rawLevelStatus)
+            self.coins = snapshot["coins"] as! Int
+            self.defaults.set(self.nickName, forKey: "nickName")
+            self.defaults.set(self.coins, forKey: "coins")
+            self.defaults.set(self.highScores, forKey: "highScores")
+            self.defaults.set(self.levelStatusToRaw(), forKey: "levelStatus")
+            
         })
     }
     
@@ -58,7 +78,9 @@ class UserData {
     
     func changeNickname(name: String) {
         nickName = name
+        print("Changing nickname to \(nickName)")
         defaults.set(nickName, forKey: "nickName")
+        saveToFirebase()
     }
     
     func levelStatusToRaw() -> [Int]{
@@ -97,17 +119,20 @@ class UserData {
             highScores.append(0)
             levelStatus.append(.lose)
         }
+        
+        coins += levelCompleteType.coins
+        print("The user now has \(coins) coins")
+        
+        defaults.set(coins, forKey: "coins")
         defaults.set(highScores, forKey: "highScores")
         defaults.set(levelStatusToRaw(), forKey: "levelStatus")
+        
+        saveToFirebase()
     }
-    
-    func toAnyObject() -> [String: Any]{
-        return ["nickName": nickName, "highScores": highScores]
-    }
-    
+        
     func saveToFirebase() {
         let newLevelStatus = levelStatusToRaw()
-        FirebaseManager.sharedInstance.updateUserData(data: ["nickName": nickName, "highScores": highScores, "levelStatus" : newLevelStatus])
+        FirebaseManager.sharedInstance.updateUserData(data: ["nickName": nickName, "highScores": highScores, "levelStatus" : newLevelStatus, "coins": coins])
     }
     
 }

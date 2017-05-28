@@ -6,8 +6,14 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="BradBunR.ttf">
+            <string>BradyBunchRemastered</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Root View Controller-->
         <scene sceneID="j1I-EN-wif">
@@ -30,13 +36,119 @@
                                     <segue destination="INx-Be-wpI" kind="show" id="mW2-eT-a72"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRt-jK-xs5">
+                                <rect key="frame" x="123" y="422" width="119" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Settings"/>
+                                <connections>
+                                    <segue destination="vZA-n9-Iyb" kind="show" id="jgd-Fr-gP5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HIT-bG-2O5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-975" y="-240"/>
+            <point key="canvasLocation" x="-975.20000000000005" y="-240.62968515742131"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="Ixz-aO-DqA">
+            <objects>
+                <viewController id="vZA-n9-Iyb" customClass="SettingsViewController" customModule="CatJumpGame" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IVL-EU-fKy"/>
+                        <viewControllerLayoutGuide type="bottom" id="uBn-30-nbw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="13q-OC-RfX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="landscapeBackground" translatesAutoresizingMaskIntoConstraints="NO" id="o4u-pM-NPp">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nickname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="neW-lw-GIQ">
+                                <rect key="frame" x="31" y="126" width="151" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="BradyBunchRemastered" family="Brady Bunch Remastered" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Anonymous" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b8J-0S-GYC">
+                                <rect key="frame" x="176" y="138" width="181" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="BradyBunchRemastered" family="Brady Bunch Remastered" pointSize="40"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rPY-6Q-gmL">
+                                <rect key="frame" x="10" y="10" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="7W6-lc-hyS"/>
+                                    <constraint firstAttribute="height" constant="50" id="nAS-iv-wWa"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="homeButton"/>
+                                <connections>
+                                    <segue destination="Hvq-F8-NQd" kind="unwind" unwindAction="unwindToRoot:" id="HXW-hR-5sT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JLZ-aM-7gg">
+                                <rect key="frame" x="31" y="261" width="326" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="BradyBunchRemastered" family="Brady Bunch Remastered" pointSize="32"/>
+                                <state key="normal" title="Show Game Transfer Code">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="showGameTransferCode:" destination="vZA-n9-Iyb" eventType="touchUpInside" id="Oo5-89-U2J"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOc-gJ-f5C">
+                                <rect key="frame" x="31" y="309" width="326" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Code Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="31b-3x-DI3">
+                                <rect key="frame" x="31" y="401" width="326" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="BradyBunchRemastered" family="Brady Bunch Remastered" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FKI-qn-kGh">
+                                <rect key="frame" x="31" y="452" width="326" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="BradyBunchRemastered" family="Brady Bunch Remastered" pointSize="32"/>
+                                <state key="normal" title="Transfer Game">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="transferGame:" destination="vZA-n9-Iyb" eventType="touchUpInside" id="YpU-cT-MXQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uBn-30-nbw" firstAttribute="top" secondItem="o4u-pM-NPp" secondAttribute="bottom" id="Byb-MA-b77"/>
+                            <constraint firstItem="rPY-6Q-gmL" firstAttribute="leading" secondItem="13q-OC-RfX" secondAttribute="leading" constant="10" id="RWx-tm-IOI"/>
+                            <constraint firstItem="o4u-pM-NPp" firstAttribute="leading" secondItem="13q-OC-RfX" secondAttribute="leading" id="Xx5-f0-sNZ"/>
+                            <constraint firstAttribute="trailing" secondItem="o4u-pM-NPp" secondAttribute="trailing" id="YKB-9i-yfE"/>
+                            <constraint firstItem="o4u-pM-NPp" firstAttribute="top" secondItem="13q-OC-RfX" secondAttribute="top" id="ocJ-VK-adt"/>
+                            <constraint firstItem="rPY-6Q-gmL" firstAttribute="top" secondItem="13q-OC-RfX" secondAttribute="topMargin" constant="10" id="ow6-Hz-ihl"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="gameTransferCodeLabel" destination="KOc-gJ-f5C" id="4kZ-m7-ASN"/>
+                        <outlet property="nickNameTextField" destination="b8J-0S-GYC" id="eAW-5B-uZz"/>
+                        <outlet property="transferCodeTextField" destination="31b-3x-DI3" id="yen-er-5h4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aXx-nj-YVa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Hvq-F8-NQd" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-975.20000000000005" y="554.57271364317842"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="rUH-Jb-9sE">
@@ -75,4 +187,8 @@
             <point key="canvasLocation" x="922" y="-576"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="homeButton" width="160" height="160"/>
+        <image name="landscapeBackground" width="1532" height="2048"/>
+    </resources>
 </document>

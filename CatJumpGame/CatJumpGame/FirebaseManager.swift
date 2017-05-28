@@ -51,6 +51,13 @@ class FirebaseManager {
         })
     }
     
+    func getUserDataFromTransfer(code: String, completion: @escaping ([String:Any]) -> Void) {
+        userDataRef.child(code).observeSingleEvent(of: .value, with: { snapshot in
+            let userData = snapshot.value as! [String: Any]
+            completion(userData)
+        })
+    }
+    
     func updateHighScoreForLevel(_ num: Int, score: Int) {
 //        highScoreDataRef.child("Level_\(num)").observeSingleEvent(of: .value, with: { snapshot in
 //            if var highScores = snapshot.value as? [Int:String] {

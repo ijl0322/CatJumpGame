@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0E0A72E81ECCEF8300022BCE /* Seesaw.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0E0A72E71ECCEF8300022BCE /* Seesaw.sks */; };
 		0E0A72EA1ECCF03700022BCE /* SeesawNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0A72E91ECCF03700022BCE /* SeesawNode.swift */; };
+		0E0B41611EDA864C005A9E57 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0B41601EDA864C005A9E57 /* SettingsViewController.swift */; };
 		0E11B1BF1ECE2573002A644B /* pop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0E11B1BE1ECE2573002A644B /* pop.mp3 */; };
 		0E12EEA51ED13EB600B1BB40 /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E12EEA41ED13EB600B1BB40 /* Array2D.swift */; };
 		0E12EEA81ED13EDA00B1BB40 /* Level_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E12EEA71ED13EDA00B1BB40 /* Level_1.json */; };
@@ -62,6 +63,7 @@
 		094B41AF39657125CECC1517 /* Pods-CatJumpGame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CatJumpGame.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CatJumpGame/Pods-CatJumpGame.debug.xcconfig"; sourceTree = "<group>"; };
 		0E0A72E71ECCEF8300022BCE /* Seesaw.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Seesaw.sks; sourceTree = "<group>"; };
 		0E0A72E91ECCF03700022BCE /* SeesawNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeesawNode.swift; sourceTree = "<group>"; };
+		0E0B41601EDA864C005A9E57 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0E11B1BE1ECE2573002A644B /* pop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pop.mp3; sourceTree = "<group>"; };
 		0E12EEA41ED13EB600B1BB40 /* Array2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array2D.swift; sourceTree = "<group>"; };
 		0E12EEA71ED13EDA00B1BB40 /* Level_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_1.json; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				0E14EA621ED92AF500716762 /* LevelSelectionScene.swift */,
 				0E51127D1EDA301900CA19C6 /* FirebaseManager.swift */,
 				0E51127F1EDA3C3F00CA19C6 /* UserData.swift */,
+				0E0B41601EDA864C005A9E57 /* SettingsViewController.swift */,
 			);
 			path = CatJumpGame;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 			files = (
 				0E511C681ECE0FBF00F3E7A9 /* Int+Extension.swift in Sources */,
 				0E511C5A1ECE008A00F3E7A9 /* CGPoint+Extensions.swift in Sources */,
+				0E0B41611EDA864C005A9E57 /* SettingsViewController.swift in Sources */,
 				0E5112801EDA3C3F00CA19C6 /* UserData.swift in Sources */,
 				0EE2BD3E1ED9CB34007AF6A7 /* LevelButtonNode.swift in Sources */,
 				0E511C621ECE008A00F3E7A9 /* SKTEffects.swift in Sources */,
