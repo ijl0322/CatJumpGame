@@ -16,12 +16,14 @@ class GamePausedNotificationNode: SKSpriteNode {
         let texture = SKTexture(imageNamed: "pausedNotice")
         super.init(texture: texture, color: UIColor.clear, size: CGSize(width: 910, height: 800))
         self.position = CGPoint(x: 768, y: 1200)
+        self.name = "pauseNotice"
         addButtons()
         didMoveToScene()
     }
     
     required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)!
+        
     }
     
     func addButtons() {

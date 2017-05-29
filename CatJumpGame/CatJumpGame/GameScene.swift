@@ -30,7 +30,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     let TileWidth: CGFloat = 100.0
     let TileHeight: CGFloat = 100.0
     let space: CGFloat = 50.0
-    var level = Level(num: 3)
+    var level = Level(num: 1)
     var scoreLabel = MKOutlinedLabelNode(fontNamed: "BradyBunchRemastered", fontSize: 80)
     var timeLabel = MKOutlinedLabelNode(fontNamed: "BradyBunchRemastered", fontSize: 80)
     var playableMargin: CGFloat = 0.0
@@ -205,6 +205,7 @@ extension GameScene {
         gameEndNotificationNode?.animateStarsReceived()
         score += (gameEndNotificationNode?.animateBonus(time: timeLimit - elapsedTime))!
         UserData.shared.updateHighScoreForLevel(level.levelNum, score: score, levelCompleteType: level.levelCompleteStatus(score: score))
+        LeaderBoardManager.sharedInstance.postScore(score, level: level.levelNum)
     }
     
     func updateTime(currentTime: TimeInterval) {
@@ -419,6 +420,14 @@ extension GameScene {
                     transitionToScene(level: level.levelNum + 1)
                 } else if touchedNode.name == ButtonName.levels {
                     transitionToLevelSelect()
+                } else if touchedNode.name == ButtonName.leaderBoard {
+                    let gameEndNotice = childNode(withName: "gameEndNotification")
+                    gameEndNotice?.removeFromParent()
+                    var leaderBoard = childNode(withName: "leaderBoard")
+                    if leaderBoard == nil {
+                        leaderBoard = LeaderBoardNode(level: level.levelNum, levelStatus: level.levelCompleteStatus(score: score))
+                        self.addChild(leaderBoard!)
+                    }
                 }
             }
         case .reload:
@@ -478,6 +487,10 @@ extension GameScene {
     
     func applicationDidEnterBackground() {
         if gameState == .pause {
+            let pauseNotice = childNode(withName: "pauseNotice")
+            if let pauseNotice = pauseNotice {
+                pauseNotice.removeFromParent()
+            }
             scoreLabel.removeFromParent()
             timeLabel.removeFromParent()
             leftCatNode.removeFromParent()

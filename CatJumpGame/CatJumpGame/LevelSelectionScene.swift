@@ -65,9 +65,13 @@ class LevelSelectionScene: SKScene, SKPhysicsContactDelegate{
                 if levelButton?.levelCompleteType != .locked {
                     transitionToScene(level: (levelButton?.level)!)
                 }
-            } 
+            } else if touchedNode.name == "levelButton" {
+                let levelButton = touchedNode.parent as? LevelButtonNode
+                if levelButton?.levelCompleteType != .locked {
+                    transitionToScene(level: (levelButton?.level)!)
+                }
+            }
         }
-        
     }
     
     func transitionToScene(level: Int) {

@@ -11,7 +11,7 @@ import UIKit
 class LeaderBoardManager {
     static let sharedInstance = LeaderBoardManager()
     private init() {}
-    let domainName = "http://localhost:8080/"
+    let domainName = "https://catgamebackend.appspot.com/"
     
     func postScore(_ score: Int, level: Int) {
         print("Attempting to post score")
@@ -41,7 +41,7 @@ class LeaderBoardManager {
         let urlString = domainName + "score/level/\(level)"
         
         guard let url = NSURL(string: urlString) else {
-            fatalError("Unable to create NSURL from string")
+            return
         }
         
         let session = URLSession.shared
@@ -50,11 +50,11 @@ class LeaderBoardManager {
             
             guard error == nil else {
                 print("error: \(error!.localizedDescription)")
-                fatalError("Error: \(error!.localizedDescription)")
+                return
             }
             
             guard let data = data else {
-                fatalError("Data is nil")
+                return
             }
             
             

@@ -39,7 +39,7 @@ enum CatType: Int, CustomStringConvertible {
     }
     
     var eyes: String {
-        return "\(spriteName)_blinking1"
+        return "\(spriteName)_blink1"
     }
     
     var mouth: String {
@@ -57,9 +57,9 @@ enum CatType: Int, CustomStringConvertible {
     var blink: [SKTexture] {
         var textures:[SKTexture] = []
         for i in 1...3 {
-            textures.append(SKTexture(imageNamed: "\(spriteName)_blinking\(i)"))
+            textures.append(SKTexture(imageNamed: "\(spriteName)_blink\(i)"))
         }
-        textures.append(SKTexture(imageNamed: "\(spriteName)_blinking\(1)"))
+        textures.append(SKTexture(imageNamed: "\(spriteName)_blink\(1)"))
         return textures
     }
     

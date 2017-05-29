@@ -19,6 +19,7 @@
 		0E1DD8301ED76BDA003AE270 /* GameEndNotificationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1DD82F1ED76BDA003AE270 /* GameEndNotificationNode.swift */; };
 		0E1DD8321ED77279003AE270 /* gameEndNotification.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0E1DD8311ED77279003AE270 /* gameEndNotification.sks */; };
 		0E214FB91EDCBA060081D6F0 /* LeaderBoardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E214FB81EDCBA060081D6F0 /* LeaderBoardManager.swift */; };
+		0E214FBB1EDCC8750081D6F0 /* LeaderBoardNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E214FBA1EDCC8750081D6F0 /* LeaderBoardNode.swift */; };
 		0E3143F01ED3D8AC004E584C /* CatSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3143EF1ED3D8AC004E584C /* CatSpriteNode.swift */; };
 		0E47E4471EDB70CE0026CC7F /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E47E4461EDB70CE0026CC7F /* AlertViewController.swift */; };
 		0E47E4761EDBA82B0026CC7F /* AllLevels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E47E4751EDBA82B0026CC7F /* AllLevels.swift */; };
@@ -76,6 +77,7 @@
 		0E1DD82F1ED76BDA003AE270 /* GameEndNotificationNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEndNotificationNode.swift; sourceTree = "<group>"; };
 		0E1DD8311ED77279003AE270 /* gameEndNotification.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = gameEndNotification.sks; sourceTree = "<group>"; };
 		0E214FB81EDCBA060081D6F0 /* LeaderBoardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderBoardManager.swift; sourceTree = "<group>"; };
+		0E214FBA1EDCC8750081D6F0 /* LeaderBoardNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderBoardNode.swift; sourceTree = "<group>"; };
 		0E3143EF1ED3D8AC004E584C /* CatSpriteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatSpriteNode.swift; sourceTree = "<group>"; };
 		0E47E4461EDB70CE0026CC7F /* AlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		0E47E4751EDBA82B0026CC7F /* AllLevels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllLevels.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				0E1DD82F1ED76BDA003AE270 /* GameEndNotificationNode.swift */,
 				0EB857B51ED87F9E0003B4BD /* GamePausedNotificationNode.swift */,
 				0EE2BD3D1ED9CB34007AF6A7 /* LevelButtonNode.swift */,
+				0E214FBA1EDCC8750081D6F0 /* LeaderBoardNode.swift */,
 			);
 			name = SKNodes;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				0EE2BD3E1ED9CB34007AF6A7 /* LevelButtonNode.swift in Sources */,
 				0E511C621ECE008A00F3E7A9 /* SKTEffects.swift in Sources */,
 				0E47E4761EDBA82B0026CC7F /* AllLevels.swift in Sources */,
+				0E214FBB1EDCC8750081D6F0 /* LeaderBoardNode.swift in Sources */,
 				0E8441B81ED914A700F58E42 /* MenuViewController.swift in Sources */,
 				0E511C5D1ECE008A00F3E7A9 /* SKAction+Extensions.swift in Sources */,
 				0E214FB91EDCBA060081D6F0 /* LeaderBoardManager.swift in Sources */,

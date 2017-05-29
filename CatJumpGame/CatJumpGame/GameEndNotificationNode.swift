@@ -45,7 +45,9 @@ class GameEndNotificationNode: SKSpriteNode {
         self.levelStatus = levelStatus
         self.score = score
         self.level = level
+        
         super.init(texture: texture, color: UIColor.clear, size: CGSize(width: 910, height: 1270))
+        self.name = "gameEndNotification"
         self.position = CGPoint(x: 768, y: 1200)
         addCoinsLabel(coins: levelStatus.coins)
         addScoreLabel(score: score)
