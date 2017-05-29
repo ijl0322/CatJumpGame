@@ -11,7 +11,6 @@
 		0E0A72EA1ECCF03700022BCE /* SeesawNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0A72E91ECCF03700022BCE /* SeesawNode.swift */; };
 		0E0B41611EDA864C005A9E57 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0B41601EDA864C005A9E57 /* SettingsViewController.swift */; };
 		0E12EEA51ED13EB600B1BB40 /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E12EEA41ED13EB600B1BB40 /* Array2D.swift */; };
-		0E12EEA81ED13EDA00B1BB40 /* Level_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E12EEA71ED13EDA00B1BB40 /* Level_1.json */; };
 		0E12EEAA1ED13F0C00B1BB40 /* Dictionary+JsonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E12EEA91ED13F0C00B1BB40 /* Dictionary+JsonExtension.swift */; };
 		0E12EEAC1ED140F600B1BB40 /* Bread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E12EEAB1ED140F600B1BB40 /* Bread.swift */; };
 		0E12EEAE1ED143D600B1BB40 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E12EEAD1ED143D600B1BB40 /* Level.swift */; };
@@ -22,6 +21,11 @@
 		0E3143F01ED3D8AC004E584C /* CatSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3143EF1ED3D8AC004E584C /* CatSpriteNode.swift */; };
 		0E47E4471EDB70CE0026CC7F /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E47E4461EDB70CE0026CC7F /* AlertViewController.swift */; };
 		0E47E4761EDBA82B0026CC7F /* AllLevels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E47E4751EDBA82B0026CC7F /* AllLevels.swift */; };
+		0E47E4841EDBDCBD0026CC7F /* Level_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E47E47F1EDBDCBD0026CC7F /* Level_1.json */; };
+		0E47E4851EDBDCBD0026CC7F /* Level_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E47E4801EDBDCBD0026CC7F /* Level_2.json */; };
+		0E47E4861EDBDCBD0026CC7F /* Level_3.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E47E4811EDBDCBD0026CC7F /* Level_3.json */; };
+		0E47E4871EDBDCBD0026CC7F /* Level_4.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E47E4821EDBDCBD0026CC7F /* Level_4.json */; };
+		0E47E4881EDBDCBD0026CC7F /* Level_5.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E47E4831EDBDCBD0026CC7F /* Level_5.json */; };
 		0E51127A1EDA2D7D00CA19C6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E5112791EDA2D7D00CA19C6 /* GoogleService-Info.plist */; };
 		0E51127E1EDA301900CA19C6 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E51127D1EDA301900CA19C6 /* FirebaseManager.swift */; };
 		0E5112801EDA3C3F00CA19C6 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E51127F1EDA3C3F00CA19C6 /* UserData.swift */; };
@@ -38,7 +42,6 @@
 		0E511C631ECE008A00F3E7A9 /* SKTTimingFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E511C571ECE008A00F3E7A9 /* SKTTimingFunctions.swift */; };
 		0E511C641ECE008A00F3E7A9 /* Vector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E511C581ECE008A00F3E7A9 /* Vector3.swift */; };
 		0E511C681ECE0FBF00F3E7A9 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E511C671ECE0FBF00F3E7A9 /* Int+Extension.swift */; };
-		0E5705C51ED7B6140027DDF5 /* Level_3.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E5705C41ED7B6140027DDF5 /* Level_3.json */; };
 		0E68670C1ED518C5002E7886 /* BradBunR.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E68670B1ED51850002E7886 /* BradBunR.ttf */; };
 		0E68670E1ED51B9E002E7886 /* MKOutlinedLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E68670D1ED51B9E002E7886 /* MKOutlinedLabelNode.swift */; };
 		0E6F45911ECE18A80071F818 /* BreadNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6F45901ECE18A80071F818 /* BreadNode.swift */; };
@@ -53,7 +56,6 @@
 		0ED507D91ECBDDA600E141C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ED507D71ECBDDA600E141C3 /* Main.storyboard */; };
 		0ED507DB1ECBDDA600E141C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ED507DA1ECBDDA600E141C3 /* Assets.xcassets */; };
 		0ED507DE1ECBDDA600E141C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ED507DC1ECBDDA600E141C3 /* LaunchScreen.storyboard */; };
-		0EE1B8E11ED4FCEA0047DE32 /* Level_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 0EE1B8E01ED4FCEA0047DE32 /* Level_2.json */; };
 		0EE2BD3E1ED9CB34007AF6A7 /* LevelButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE2BD3D1ED9CB34007AF6A7 /* LevelButtonNode.swift */; };
 		0EEC293D1ECBED900003623D /* Cat1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0EEC293C1ECBED900003623D /* Cat1.sks */; };
 		C12C7C68C161058C55D64D85 /* Pods_CatJumpGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6196CAA3420BBD19F27673 /* Pods_CatJumpGame.framework */; };
@@ -65,7 +67,6 @@
 		0E0A72E91ECCF03700022BCE /* SeesawNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeesawNode.swift; sourceTree = "<group>"; };
 		0E0B41601EDA864C005A9E57 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0E12EEA41ED13EB600B1BB40 /* Array2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array2D.swift; sourceTree = "<group>"; };
-		0E12EEA71ED13EDA00B1BB40 /* Level_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_1.json; sourceTree = "<group>"; };
 		0E12EEA91ED13F0C00B1BB40 /* Dictionary+JsonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+JsonExtension.swift"; sourceTree = "<group>"; };
 		0E12EEAB1ED140F600B1BB40 /* Bread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bread.swift; sourceTree = "<group>"; };
 		0E12EEAD1ED143D600B1BB40 /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
@@ -76,6 +77,11 @@
 		0E3143EF1ED3D8AC004E584C /* CatSpriteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatSpriteNode.swift; sourceTree = "<group>"; };
 		0E47E4461EDB70CE0026CC7F /* AlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		0E47E4751EDBA82B0026CC7F /* AllLevels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllLevels.swift; sourceTree = "<group>"; };
+		0E47E47F1EDBDCBD0026CC7F /* Level_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_1.json; sourceTree = "<group>"; };
+		0E47E4801EDBDCBD0026CC7F /* Level_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_2.json; sourceTree = "<group>"; };
+		0E47E4811EDBDCBD0026CC7F /* Level_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_3.json; sourceTree = "<group>"; };
+		0E47E4821EDBDCBD0026CC7F /* Level_4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_4.json; sourceTree = "<group>"; };
+		0E47E4831EDBDCBD0026CC7F /* Level_5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_5.json; sourceTree = "<group>"; };
 		0E5112791EDA2D7D00CA19C6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0E51127D1EDA301900CA19C6 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		0E51127F1EDA3C3F00CA19C6 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
@@ -92,7 +98,6 @@
 		0E511C571ECE008A00F3E7A9 /* SKTTimingFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTTimingFunctions.swift; sourceTree = "<group>"; };
 		0E511C581ECE008A00F3E7A9 /* Vector3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector3.swift; sourceTree = "<group>"; };
 		0E511C671ECE0FBF00F3E7A9 /* Int+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
-		0E5705C41ED7B6140027DDF5 /* Level_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_3.json; sourceTree = "<group>"; };
 		0E68670B1ED51850002E7886 /* BradBunR.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BradBunR.ttf; sourceTree = "<group>"; };
 		0E68670D1ED51B9E002E7886 /* MKOutlinedLabelNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKOutlinedLabelNode.swift; sourceTree = "<group>"; };
 		0E6F45901ECE18A80071F818 /* BreadNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreadNode.swift; sourceTree = "<group>"; };
@@ -109,7 +114,6 @@
 		0ED507DA1ECBDDA600E141C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0ED507DD1ECBDDA600E141C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0ED507DF1ECBDDA600E141C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0EE1B8E01ED4FCEA0047DE32 /* Level_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_2.json; sourceTree = "<group>"; };
 		0EE2BD3D1ED9CB34007AF6A7 /* LevelButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelButtonNode.swift; sourceTree = "<group>"; };
 		0EEC293C1ECBED900003623D /* Cat1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Cat1.sks; sourceTree = "<group>"; };
 		9D420646326DF16C9275D278 /* Pods-CatJumpGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CatJumpGame.release.xcconfig"; path = "Pods/Target Support Files/Pods-CatJumpGame/Pods-CatJumpGame.release.xcconfig"; sourceTree = "<group>"; };
@@ -131,9 +135,11 @@
 		0E12EEA61ED13EBD00B1BB40 /* Levels */ = {
 			isa = PBXGroup;
 			children = (
-				0E12EEA71ED13EDA00B1BB40 /* Level_1.json */,
-				0EE1B8E01ED4FCEA0047DE32 /* Level_2.json */,
-				0E5705C41ED7B6140027DDF5 /* Level_3.json */,
+				0E47E47F1EDBDCBD0026CC7F /* Level_1.json */,
+				0E47E4801EDBDCBD0026CC7F /* Level_2.json */,
+				0E47E4811EDBDCBD0026CC7F /* Level_3.json */,
+				0E47E4821EDBDCBD0026CC7F /* Level_4.json */,
+				0E47E4831EDBDCBD0026CC7F /* Level_5.json */,
 			);
 			name = Levels;
 			sourceTree = "<group>";
@@ -324,20 +330,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				0ED507D91ECBDDA600E141C3 /* Main.storyboard in Resources */,
-				0EE1B8E11ED4FCEA0047DE32 /* Level_2.json in Resources */,
-				0E12EEA81ED13EDA00B1BB40 /* Level_1.json in Resources */,
+				0E47E4861EDBDCBD0026CC7F /* Level_3.json in Resources */,
+				0E47E4851EDBDCBD0026CC7F /* Level_2.json in Resources */,
 				0ED507D01ECBDDA600E141C3 /* GameScene.sks in Resources */,
 				0ECBA3D11ED38EDE0067C983 /* Cat.sks in Resources */,
+				0E47E4841EDBDCBD0026CC7F /* Level_1.json in Resources */,
 				0EEC293D1ECBED900003623D /* Cat1.sks in Resources */,
 				0E1DD8321ED77279003AE270 /* gameEndNotification.sks in Resources */,
 				0ED507DB1ECBDDA600E141C3 /* Assets.xcassets in Resources */,
 				0E68670C1ED518C5002E7886 /* BradBunR.ttf in Resources */,
 				0E14EA611ED92A8E00716762 /* LevelSelectionScene.sks in Resources */,
 				0E51127A1EDA2D7D00CA19C6 /* GoogleService-Info.plist in Resources */,
-				0E5705C51ED7B6140027DDF5 /* Level_3.json in Resources */,
 				0ED507DE1ECBDDA600E141C3 /* LaunchScreen.storyboard in Resources */,
+				0E47E4881EDBDCBD0026CC7F /* Level_5.json in Resources */,
 				0EB857B41ED87E530003B4BD /* Resume.sks in Resources */,
 				0E0A72E81ECCEF8300022BCE /* Seesaw.sks in Resources */,
+				0E47E4871EDBDCBD0026CC7F /* Level_4.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
