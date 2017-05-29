@@ -17,7 +17,7 @@ class LevelSelectionScene: SKScene, SKPhysicsContactDelegate{
     
     override func didMove(to view: SKView) {
         
-        for i in 0...14 {
+        for i in 0..<AllLevels.shared.numberOfLevels {
             var levelStatus = LevelCompleteType.locked
             if i < UserData.shared.unlockedLevels {
                 levelStatus = UserData.shared.levelStatus[i]

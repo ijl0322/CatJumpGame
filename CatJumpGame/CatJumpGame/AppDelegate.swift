@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FIRApp.configure()
         FirebaseManager.sharedInstance.loadAllLevels()
+        AllLevels.shared.countAvailableLevels()
         return true
     }
 

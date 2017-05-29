@@ -73,9 +73,9 @@ class FirebaseManager {
         
     }
     
-    func saveToDoc(levelData: [String: Any], level: Int){        
+    func saveToDoc(levelData: [String: Any], level: Int){
         guard let docs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-        print(docs.absoluteString)
+        //print(docs.absoluteString)
         let fileUrl = docs.appendingPathComponent("Level_\(level).json")
         do {
             let data = try JSONSerialization.data(withJSONObject: levelData, options: [])
@@ -83,14 +83,5 @@ class FirebaseManager {
         } catch {
             print(error)
         }
-    }
-    
-    func download() {
-        levelsRef.observeSingleEvent(of: .value, with: { snapshot in
-            print(snapshot)
-            let levels = snapshot.value as! [Any]
-            let dictionary = levels[1] as! [String: Any]
-            
-        })
     }
 }

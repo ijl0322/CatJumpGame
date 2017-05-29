@@ -55,7 +55,7 @@ class Level {
         let filename = "Level_\(num)"
         levelNum = num
         
-        guard let dictionary = Dictionary<String, AnyObject>.loadJSONFromBundle(filename: filename) else { return }
+        guard let dictionary = Dictionary<String, AnyObject>.loadJSONFromDocument(filename: filename) else { return }
  
         guard let tilesArray = dictionary["tiles"] as? [[Int]] else { return }
         guard let time = dictionary["timeLimit"] as? Int else {return}

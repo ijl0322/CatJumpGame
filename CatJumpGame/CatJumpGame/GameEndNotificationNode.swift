@@ -133,7 +133,7 @@ class GameEndNotificationNode: SKSpriteNode {
         replayButton.name = ButtonName.replay
         addChild(replayButton)
         
-        if levelStatus == .lose && level >= UserData.shared.unlockedLevels {
+        if (levelStatus == .lose && level >= UserData.shared.unlockedLevels) || level >= AllLevels.shared.numberOfLevels {
             nextButton = SKSpriteNode(imageNamed: ButtonName.noNext)
             nextButton.position = CGPoint(x: 105, y: -534)
             nextButton.zPosition = 30
