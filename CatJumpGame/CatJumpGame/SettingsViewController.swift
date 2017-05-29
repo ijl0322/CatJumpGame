@@ -34,8 +34,6 @@ class SettingsViewController: UIViewController {
         }
     }
     
-    
-    
     @IBAction func showGameTransferCode(_ sender: UIButton) {
         gameTransferCodeLabel.text = UIDevice().identifierForVendor?.uuidString
         gameTransferCodeLabel.font = UIFont(name: "BradyBunchRemastered", size: 20)

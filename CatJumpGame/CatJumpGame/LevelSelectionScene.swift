@@ -31,6 +31,14 @@ class LevelSelectionScene: SKScene, SKPhysicsContactDelegate{
             }
         }
         
+        let coinsLabel = MKOutlinedLabelNode(fontNamed: "BradyBunchRemastered", fontSize: 50)
+        coinsLabel.borderColor = UIColor.red
+        coinsLabel.fontColor = UIColor.white
+        coinsLabel.outlinedText = "\(UserData.shared.coins)"
+        coinsLabel.zPosition = 15
+        coinsLabel.position = CGPoint(x: 380, y: -990)
+        addChild(coinsLabel)
+        
         let leftCat = CatSpriteNode(catType: .cat1, isLeftCat: true)
         leftCat.physicsBody?.isDynamic = false
         leftCat.position = CGPoint(x: -320, y: 630)
