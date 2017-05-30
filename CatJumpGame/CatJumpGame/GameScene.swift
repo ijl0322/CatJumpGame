@@ -104,6 +104,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             if gameState == .play {
                 gameState = .lose
                 print(level.levelCompleteStatus(score: score))
+                leftCatNode.angryAnimation()
             }
         }
         
@@ -113,6 +114,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             if gameState == .play {
                 gameState = .lose
                 print(level.levelCompleteStatus(score: score))
+                rightCatNode.angryAnimation()
             }
         }
         

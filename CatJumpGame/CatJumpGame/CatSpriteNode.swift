@@ -54,12 +54,38 @@ enum CatType: Int, CustomStringConvertible {
         return "\(spriteName)_tail"
     }
     
+    var sadMouth: String {
+        return "\(spriteName)_sadMouth"
+    }
+    
     var blink: [SKTexture] {
         var textures:[SKTexture] = []
         for i in 1...3 {
             textures.append(SKTexture(imageNamed: "\(spriteName)_blink\(i)"))
         }
         textures.append(SKTexture(imageNamed: "\(spriteName)_blink\(1)"))
+        return textures
+    }
+    
+    var angryMark: [SKTexture] {
+        var texture: [SKTexture] = []
+        for i in 1...2 {
+            texture.append(SKTexture(imageNamed: "\(spriteName)_angryMark\(i)"))
+        }
+        texture.append(SKTexture(imageNamed: "\(spriteName)_angryMark\(1)"))
+        
+        if rawValue == 2 {
+            texture = [SKTexture(imageNamed: "\(spriteName)_angryMark1"), SKTexture(imageNamed: "\(spriteName)_angryMark2"), SKTexture(imageNamed: "\(spriteName)_angryMark2")]
+        }
+        
+        return texture
+    }
+    
+    var angryEyes: [SKTexture] {
+        var textures:[SKTexture] = []
+        for i in 1...2 {
+            textures.append(SKTexture(imageNamed: "\(spriteName)_sadEyes\(i)"))
+        }
         return textures
     }
     
@@ -137,6 +163,7 @@ class CatSpriteNode: SKSpriteNode {
         }
         
         didMoveToScene()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -231,6 +258,29 @@ class CatSpriteNode: SKSpriteNode {
     
     //MARK: - Animations
     
+    func angryAnimation() {
+        let angryMark = SKSpriteNode(texture: self.catType.angryMark[0])
+        angryMark.position = CGPoint(x: -58, y: 34)
+        angryMark.zPosition = 3
+        headNode.addChild(angryMark)
+        
+        let angryTextures = self.catType.angryMark
+        let angryAnimation = SKAction.animate(with: angryTextures, timePerFrame: 0.2)
+        let waitAnimation = SKAction.wait(forDuration: 0.3)
+        let fullAnimation = SKAction.sequence([angryAnimation, angryAnimation, waitAnimation])
+        angryMark.run(SKAction.repeatForever(fullAnimation), withKey: "angry-mark")
+        
+        let textures = self.catType.angryEyes
+        let eyesAnimation = SKAction.animate(with: textures,
+                                              timePerFrame: 0.7)
+        let eyesWaitAnimation = SKAction.wait(forDuration: 1)
+        let sequence = SKAction.sequence([eyesAnimation, eyesAnimation, eyesWaitAnimation])
+        eyesNode.run(SKAction.repeatForever(sequence), withKey: "eyes")
+        
+        let sadMouthTexture = SKTexture(imageNamed: self.catType.sadMouth)
+        mouthNode.texture = sadMouthTexture
+    }
+    
     func normalStateAnimation() {
         
         // Eyes
@@ -240,7 +290,7 @@ class CatSpriteNode: SKSpriteNode {
                                            timePerFrame: 0.1)
         let waitAnimation = SKAction.wait(forDuration: 3)
         let sequence = SKAction.sequence([blinkAnimation, blinkAnimation, waitAnimation])
-        eyesNode.run(SKAction.repeatForever(sequence), withKey: "normal-eyes")
+        eyesNode.run(SKAction.repeatForever(sequence), withKey: "eyes")
         
         
         // Tail

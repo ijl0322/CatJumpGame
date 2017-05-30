@@ -62,26 +62,7 @@ class FirebaseManager {
             completion(userData)
         })
     }
-    
-    func updateHighScoreForLevel(_ num: Int, score: Int) {
-//        highScoreDataRef.child("Level_\(num)").observeSingleEvent(of: .value, with: { snapshot in
-//            if var highScores = snapshot.value as? [Int:String] {
-//                var minScore = Int.max
-//                for (newScore, user) in highScores {
-//                    print(newScore)
-//                    print(user)
-//                    if newScore < minScore {
-//                        minScore = newScore
-//                    }
-//                }
-//                if score > minScore {
-//                    highScores[score]
-//                }
-//            }
-//            
-//        })
-    }
-    
+        
     //Takes levelData, which is a dictionary download from firebase, and save it locally in the user's 
     //Document directory
     func saveToDoc(levelData: [String: Any], level: Int){
