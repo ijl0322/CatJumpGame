@@ -22,6 +22,9 @@ class LevelSelectionScene: SKScene, SKPhysicsContactDelegate{
         // Set button images according to the user's game status (one star, two star, three star, locked...)
         
         for i in 0..<AllLevels.shared.numberOfLevels {
+            if i >= 15 {
+                break
+            }            
             var levelStatus = LevelCompleteType.locked
             if i < UserData.shared.unlockedLevels {
                 levelStatus = UserData.shared.levelStatus[i]

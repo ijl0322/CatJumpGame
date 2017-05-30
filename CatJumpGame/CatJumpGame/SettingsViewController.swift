@@ -59,6 +59,10 @@ class SettingsViewController: UIViewController {
             print("Detached presented")
         }
     }
+    
+    @IBAction func unwindToSettingsVC(_ sender: UIStoryboardSegue) {
+        
+    }
 
 }
 
