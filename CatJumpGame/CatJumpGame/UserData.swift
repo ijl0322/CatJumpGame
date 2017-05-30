@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+// A singleton that keeps track of the user's current game status
+// Including the high scores/ levels status/ levels unlocked, 
+// Save/Get data from user defaults, and also sends the status to firebase
+
 class UserData {
     static let shared = UserData()
     let defaults = UserDefaults.standard
@@ -21,6 +25,8 @@ class UserData {
     }
     
     init() {
+        
+        //If there are data saved in user defaults, initialize the singleton using values from user defaults
         if let nickName = defaults.object(forKey: "nickName") as? String {
             self.nickName = nickName
             print("Getting from user defaults")
@@ -42,17 +48,21 @@ class UserData {
         
         if let coins = defaults.integer(forKey: "coins") as Int?{
             self.coins = coins
+        } else {
+            defaults.set(coins, forKey: "coins")
         }
     }
         
-    func getDataFromFirebase() {
-        FirebaseManager.sharedInstance.getUserData(completion: { (snapshot) in
-            self.nickName = snapshot["nickName"] as! String
-            self.highScores = snapshot["highScores"] as! [Int]
-            print("User init from firebase")
-        })
-    }
+//    func getDataFromFirebase() {
+//        FirebaseManager.sharedInstance.getUserData(completion: { (snapshot) in
+//            self.nickName = snapshot["nickName"] as! String
+//            self.highScores = snapshot["highScores"] as! [Int]
+//            print("User init from firebase")
+//        })
+//    }
     
+    // The user can transfer their game data from different devices
+    // This function transfers data from firebase to user's device
     func updateFromTransfer(snapshot: [String:Any]) {
 
         self.nickName = snapshot["nickName"] as! String
@@ -67,13 +77,16 @@ class UserData {
         self.defaults.set(self.levelStatusToRaw(), forKey: "levelStatus")
     }
     
-    func highScoreForLevel(_ num: Int) -> Int? {
-        if num <= highScores.count {
-            return highScores[num - 1]
-        }
-        return nil
-    }
+
+//    func highScoreForLevel(_ num: Int) -> Int? {
+//        if num <= highScores.count {
+//            return highScores[num - 1]
+//        }
+//        return nil
+//    }
     
+    
+    // Changes the user's nickname and update to firebase
     func changeNickname(name: String) {
         nickName = name
         print("Changing nickname to \(nickName)")
@@ -81,6 +94,8 @@ class UserData {
         saveToFirebase()
     }
     
+    // LevelCompleteType is a enumeration that can be initialized from Int value
+    // This converts the levelStatus array to and Int array
     func levelStatusToRaw() -> [Int]{
         let newLevelStatusArray = levelStatus.map({ (value: LevelCompleteType) -> Int in
             return value.rawValue
@@ -88,6 +103,7 @@ class UserData {
         return newLevelStatusArray
     }
     
+    // Converts an Int array to a LevelCompleteType array
     func rawToLevelStatus(raw: [Int]) -> [LevelCompleteType] {
         let newLevelStatus = raw.map({ (value: Int) -> LevelCompleteType in
             return LevelCompleteType.init(raw: value)!
@@ -95,6 +111,7 @@ class UserData {
         return newLevelStatus
     }
     
+    // Update the High Score for a certain level and updates user defaults and firebase's data
     func updateHighScoreForLevel(_ num: Int, score: Int, levelCompleteType: LevelCompleteType) {
         print("Updating user high score")
 
@@ -127,7 +144,8 @@ class UserData {
         
         saveToFirebase()
     }
-        
+    
+    // Save the current user data to firebase
     func saveToFirebase() {
         let newLevelStatus = levelStatusToRaw()
         FirebaseManager.sharedInstance.updateUserData(data: ["nickName": nickName, "highScores": highScores, "levelStatus" : newLevelStatus, "coins": coins])

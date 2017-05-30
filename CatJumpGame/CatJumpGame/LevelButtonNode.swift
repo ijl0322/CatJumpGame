@@ -12,7 +12,11 @@ class LevelButtonNode: SKSpriteNode {
     
     let darkRed = UIColor(red: 188/255, green: 7/255, blue: 1/255, alpha: 1)
     
-    var level = 0
+    var level = 0 {
+        didSet {
+            print("Changing level number for level button \(level)")
+        }
+    }
     var starsNode: SKSpriteNode?
     var levelNumNode: MKOutlinedLabelNode?
     var levelCompleteType = LevelCompleteType.locked
@@ -45,11 +49,11 @@ class LevelButtonNode: SKSpriteNode {
             starsNode?.zPosition = 1
             addChild(starsNode!)
             
-            let levelTouchSensorNode = SKSpriteNode(texture: nil, color: UIColor.clear, size: CGSize(width: 910, height: 1270))
-            levelTouchSensorNode.position = CGPoint(x: 0, y: 0)
-            levelTouchSensorNode.zPosition = 100
-            levelTouchSensorNode.name = "levelButton"
-            addChild(levelTouchSensorNode)
+//            let levelTouchSensorNode = SKSpriteNode(texture: nil, color: UIColor.clear, size: CGSize(width: 910, height: 1270))
+//            levelTouchSensorNode.position = CGPoint(x: 0, y: 0)
+//            levelTouchSensorNode.zPosition = 100
+//            levelTouchSensorNode.name = "levelButton"
+//            addChild(levelTouchSensorNode)
         }
     }
     

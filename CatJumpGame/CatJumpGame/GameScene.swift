@@ -61,7 +61,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             addCatAndSeesaw()
         }
     
-        view.showsPhysics = true
+        //view.showsPhysics = true
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -210,6 +210,7 @@ extension GameScene {
         LeaderBoardManager.sharedInstance.postScore(score, level: level.levelNum)
     }
     
+    // Update the timer's time according to the start/elapsed time
     func updateTime(currentTime: TimeInterval) {
         if let startTime = startTime {
             elapsedTime = Int(currentTime) - startTime
@@ -219,6 +220,7 @@ extension GameScene {
         timeLabel.outlinedText = (timeLimit - elapsedTime).secondsToFormatedString()
     }
     
+    // Handles transitioning to a new game scene
     func transitionToScene(level: Int) {
         print("Transitionaing to new scene")
         guard let newScene = SKScene(fileNamed: "GameScene")
@@ -231,6 +233,7 @@ extension GameScene {
                            transition: SKTransition.flipVertical(withDuration: 0.5))
     }
     
+    // Hangles transitioning to the level select scene
     func transitionToLevelSelect() {
         print("Transitionaing to level select")
         guard let newScene = SKScene(fileNamed: "LevelSelectionScene")
@@ -242,6 +245,7 @@ extension GameScene {
                            transition: SKTransition.flipVertical(withDuration: 0.5))
     }
     
+    // Draw a red rectangle around the playable area (an area that can show properly on all devices)
     func debugDrawPlayableArea(playableRect: CGRect) {
         let shape = SKShapeNode()
         let path = CGMutablePath()
@@ -252,6 +256,10 @@ extension GameScene {
         addChild(shape)
     }
     
+    // Check current game state
+    // This only checks for win => which is when all bread are eaten
+    // And lose => when time is up
+    // Other situations like the cat falling to the ground is handled by collision detection
     func checkGameState() {
         
         if score >= level.highestScore {
@@ -265,18 +273,21 @@ extension GameScene {
     
     //MARK: - Cat Animation Helper
     
+    // Animate the cat eating a bread, add score, remove bread, and drop the cat slightly
     func eatBread(contact: SKPhysicsContact, catNode: CatSpriteNode?) {
         let breadNode = contact.bodyA.categoryBitMask ==
             PhysicsCategory.Bread ? contact.bodyA.node :
             contact.bodyB.node
         let breadAte = breadNode as? BreadNode
         catNode?.dropSlightly()
+        catNode?.eatBreadAnimation()
         score += (breadAte?.remove())!
         scoreLabel.borderOffset = CGPoint(x: 1, y: 1)
         scoreLabel.outlinedText = "\(score)"
         //print("My Score: \(score)")
     }
     
+    // Remove the cat's join from the seesaw, enabling the cat to jump
     func releaseCat(catNode: CatSpriteNode) {
         
         catNode.disableSeesawContact()
@@ -292,6 +303,8 @@ extension GameScene {
         })
     }
     
+    // Add a join between the cat and the seesaw, 
+    // Fixing it appropriately to it's side of the seesaw
     func fixCat(catSeatSide: SeatSide) {
         switch catSeatSide {
         case .left:
@@ -313,6 +326,7 @@ extension GameScene {
     
     // MARK: - Bread Helper
     
+    // Add bread nodes to the scene
     func addBread(breads: Set<Bread>) {
         for bread in breads {
             let size = CGSize(width: TileWidth, height: TileHeight)
@@ -323,6 +337,7 @@ extension GameScene {
         }
     }
     
+    // Returns a CGPoint to position the bread, according to the row and column
     func pointFor(column: Int, row: Int) -> CGPoint {
         return CGPoint(
             x: CGFloat(column)*(TileWidth + space) + TileWidth/2 + playableMargin,
@@ -330,6 +345,9 @@ extension GameScene {
     }
     
     //MARK: - Game Scene Setup
+    
+    // Set up the game scene
+    // Add a bounding rectangle to constraint the cat's position
     
     func setUpScene(view: SKView) {
         
@@ -355,6 +373,7 @@ extension GameScene {
         addBread(breads: allBreads)
     }
     
+    // Add cat and seesaw to the scene
     func addCatAndSeesaw() {
         seesawNode = SeesawNode()
         seesawLeftBound = playableMargin + (seesawNode?.frame.width)!/2
@@ -378,6 +397,7 @@ extension GameScene {
         self.scene?.addChild(leftCatNode)
     }
     
+    // Add score/time label to the scene
     func addMKLabels() {
         scoreLabel.borderColor = UIColor.red
         scoreLabel.fontColor = UIColor.white
@@ -404,12 +424,14 @@ extension GameScene {
         let touchLocation = touch.location(in: self)
         
         switch gameState {
+            
         case .start:
             seesawNode?.physicsBody?.isDynamic = true
             gameState = .play
             isPaused = false
             seesawNode?.fixCat(catNode: rightCatNode)
             releaseCat(catNode: leftCatNode)
+            
         case .play:
             seesawNode?.moveWithinBounds(targetLocation: touchLocation.x, leftBound: seesawLeftBound,
                                          rightBound: seesawRightBound)
@@ -440,9 +462,9 @@ extension GameScene {
                     pausedNotice?.removeFromParent()
                     isPaused = false
                     startTime = nil
-                    gameState = .play
+                    gameState = .start
                 } else if touchedNode.name == ButtonName.no {
-                    transitionToScene(level: 2)
+                    transitionToScene(level: level.levelNum)
                 }
             }
         default:
@@ -504,6 +526,7 @@ extension GameScene {
         }
     }
     
+    // Archive current game to user's device
     func saveGame() {
         let fileManager = FileManager.default
         guard let directory =
@@ -523,6 +546,7 @@ extension GameScene {
         NSKeyedArchiver.archiveRootObject(self, toFile: fileURL.path)
     }
     
+    // Load a saved level from the user's device
     class func loadLevel(num: Int) -> SKScene? {
         print("* loading game")
         var scene: SKScene?

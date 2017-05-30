@@ -14,6 +14,8 @@ enum AlertType {
     case transfer
 }
 
+// A View Controller that manages the settings of the app
+
 class SettingsViewController: UIViewController {
 
     @IBOutlet weak var nickNameTextField: UITextField!

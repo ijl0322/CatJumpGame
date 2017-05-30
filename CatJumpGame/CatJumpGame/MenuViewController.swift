@@ -12,13 +12,17 @@ import SpriteKit
 
 class MenuViewController: UIViewController {
     
+    // Pause game accordingly when the user taps home
+    // Then perform segue
     @IBAction func homeButtonTapped(_ sender: UIButton) {
         
         if let view = self.view as! SKView? {
             if let gameScene = view.scene as? GameScene {
                 print("from a game")
-                gameScene.gameState = .pause
-                gameScene.applicationDidEnterBackground()
+                if gameScene.gameState == .play {
+                    gameScene.gameState = .pause
+                    gameScene.applicationDidEnterBackground()
+                }
             }
         }
         performSegue(withIdentifier: "returnHomeSegue", sender: self)
@@ -29,10 +33,7 @@ class MenuViewController: UIViewController {
         
         if let view = self.view as! SKView? {
             if let scene = SKScene(fileNamed: "LevelSelectionScene") as? LevelSelectionScene  {
-                // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
-                
-                // Present the scene
                 view.presentScene(scene)
             }
             

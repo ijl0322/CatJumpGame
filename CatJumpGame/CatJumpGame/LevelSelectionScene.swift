@@ -9,6 +9,7 @@
 import SpriteKit
 import GameplayKit
 
+// An SKScene for level selection
 
 class LevelSelectionScene: SKScene, SKPhysicsContactDelegate{
     
@@ -17,12 +18,16 @@ class LevelSelectionScene: SKScene, SKPhysicsContactDelegate{
     
     override func didMove(to view: SKView) {
         
+        // Add level buttons according to how many levels the game can currently offer
+        // Set button images according to the user's game status (one star, two star, three star, locked...)
+        
         for i in 0..<AllLevels.shared.numberOfLevels {
             var levelStatus = LevelCompleteType.locked
             if i < UserData.shared.unlockedLevels {
                 levelStatus = UserData.shared.levelStatus[i]
             }
             let levelButton = LevelButtonNode(level: i+1, levelCompleteType: levelStatus)
+            print("Adding level \(levelButton.level) button")
             levelButton.position = CGPoint(x: xPosition[(i%5)], y: yPosition[(i/5)])
             levelButton.zPosition = 10
             addChild(levelButton)
@@ -60,13 +65,15 @@ class LevelSelectionScene: SKScene, SKPhysicsContactDelegate{
         
         if let touchedNode =
             atPoint(touch.location(in: self)) as? SKSpriteNode {
+//            if touchedNode.name == "levelButton" {
+//                let levelButton = touchedNode.parent as? LevelButtonNode
+//                if levelButton?.levelCompleteType != .locked {
+//                    print("Level button is \((levelButton?.level)!)")
+//                    transitionToScene(level: (levelButton?.level)!)
+//                }
+//            }
             if touchedNode.name == "level" {
                 let levelButton = touchedNode as? LevelButtonNode
-                if levelButton?.levelCompleteType != .locked {
-                    transitionToScene(level: (levelButton?.level)!)
-                }
-            } else if touchedNode.name == "levelButton" {
-                let levelButton = touchedNode.parent as? LevelButtonNode
                 if levelButton?.levelCompleteType != .locked {
                     transitionToScene(level: (levelButton?.level)!)
                 }
@@ -74,8 +81,14 @@ class LevelSelectionScene: SKScene, SKPhysicsContactDelegate{
         }
     }
     
+    // Handle transitioning to the level a user selected
     func transitionToScene(level: Int) {
         print("Transitionaing to new scene")
+        print("Loading level \(level)")
+        
+        // When the user taps a level, try to load saved level from user's document directory, 
+        // If no saved data exist, load a new game
+        
         if let newScene = GameScene.loadLevel(num: level) as! GameScene? ?? SKScene(fileNamed: "GameScene") as? GameScene  {
             newScene.scaleMode = .aspectFill
             newScene.level = Level(num: level)

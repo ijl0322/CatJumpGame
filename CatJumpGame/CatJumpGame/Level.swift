@@ -11,6 +11,7 @@ import Foundation
 let NumColumns = 8
 let NumRows = 9
 
+// An enumeration that denotes Level Completion Type.
 enum LevelCompleteType: Int, CustomStringConvertible {
     case lose = 0, oneStar, twoStar, threeStar, locked
     
@@ -41,8 +42,10 @@ enum LevelCompleteType: Int, CustomStringConvertible {
     }
 }
 
+// A custom class that loads a level from JSOM file
 
 class Level {
+    
     fileprivate var breads = Array2D<Bread>(columns: NumColumns, rows: NumRows)
     fileprivate var tiles = Array2D<Int>(columns: NumColumns, rows: NumRows)
     
@@ -55,6 +58,9 @@ class Level {
         let filename = "Level_\(num)"
         levelNum = num
         
+        // This will first load from user's document (which is downloaded from firebase)
+        // If this level is not available, fall back to try loading it from the main bundle 
+        // (which has 5 levels in case the user is not connected to the internet at all)
         guard let dictionary = Dictionary<String, AnyObject>.loadJSONFromDocument(filename: filename) else { return }
  
         guard let tilesArray = dictionary["tiles"] as? [[Int]] else { return }
@@ -69,11 +75,16 @@ class Level {
         }
     }
     
+    // Returns the bread at a location
     func breadAt(column: Int, row: Int) -> Bread? {
         assert(column >= 0 && column < NumColumns)
         assert(row >= 0 && row < NumRows)
         return breads[column, row]
     }
+    
+    // Using the values in tiles array (which is number from 1 ... 13), 
+    // the numbers can be used to initialize bread types
+    // More Information of this type can be found in Bread.swift
     
     func loadBread() -> Set<Bread> {
         var set = Set<Bread>()
@@ -96,12 +107,17 @@ class Level {
         return set
     }
     
+    // Return levelCompleteStatus depending on the score
+    // If the score is over 75% of the max score possible of this level, => one star
+    // If it's over 90% => two star
+    // If they obtained the max score, => three star
+    
     func levelCompleteStatus(score: Int) -> LevelCompleteType{
         if Double(score) >= Double(highestScore){
             return .threeStar
         } else if Double(score) >= Double(highestScore) * 0.9 {
             return .twoStar
-        } else if Double(score) >= Double(highestScore) * 0.3 {
+        } else if Double(score) >= Double(highestScore) * 0.75 {
             return .oneStar
         } else {
             return .lose

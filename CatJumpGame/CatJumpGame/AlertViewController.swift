@@ -8,6 +8,8 @@
 
 import UIKit
 
+// Handle showing different alerts for game transfer
+
 class AlertViewController: UIViewController {
     
     var alertType: AlertType?

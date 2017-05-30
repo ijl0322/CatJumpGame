@@ -73,11 +73,6 @@ enum CatType: Int, CustomStringConvertible {
             texture.append(SKTexture(imageNamed: "\(spriteName)_angryMark\(i)"))
         }
         texture.append(SKTexture(imageNamed: "\(spriteName)_angryMark\(1)"))
-        
-        if rawValue == 2 {
-            texture = [SKTexture(imageNamed: "\(spriteName)_angryMark1"), SKTexture(imageNamed: "\(spriteName)_angryMark2"), SKTexture(imageNamed: "\(spriteName)_angryMark2")]
-        }
-        
         return texture
     }
     
@@ -87,6 +82,15 @@ enum CatType: Int, CustomStringConvertible {
             textures.append(SKTexture(imageNamed: "\(spriteName)_sadEyes\(i)"))
         }
         return textures
+    }
+    
+    var openMouth: [SKTexture] {
+        let textureNames = ["\(spriteName)_mouthOpen", "\(spriteName)_smile"]
+        var texture:[SKTexture] = []
+        for image in textureNames {
+            texture.append(SKTexture(imageNamed: image))
+        }
+        return texture
     }
     
     var description: String {
@@ -259,6 +263,8 @@ class CatSpriteNode: SKSpriteNode {
     //MARK: - Animations
     
     func angryAnimation() {
+        
+        // Angry Mark
         let angryMark = SKSpriteNode(texture: self.catType.angryMark[0])
         angryMark.position = CGPoint(x: -58, y: 34)
         angryMark.zPosition = 3
@@ -270,6 +276,7 @@ class CatSpriteNode: SKSpriteNode {
         let fullAnimation = SKAction.sequence([angryAnimation, angryAnimation, waitAnimation])
         angryMark.run(SKAction.repeatForever(fullAnimation), withKey: "angry-mark")
         
+        // Eyes
         let textures = self.catType.angryEyes
         let eyesAnimation = SKAction.animate(with: textures,
                                               timePerFrame: 0.7)
@@ -277,8 +284,16 @@ class CatSpriteNode: SKSpriteNode {
         let sequence = SKAction.sequence([eyesAnimation, eyesAnimation, eyesWaitAnimation])
         eyesNode.run(SKAction.repeatForever(sequence), withKey: "eyes")
         
+        // Mouth
         let sadMouthTexture = SKTexture(imageNamed: self.catType.sadMouth)
         mouthNode.texture = sadMouthTexture
+    }
+    
+    func eatBreadAnimation() {
+        // Open Mouth
+        let mouthTextures = self.catType.openMouth
+        let openMouthAnimation = SKAction.animate(with: mouthTextures, timePerFrame: 0.2)
+        mouthNode.run(openMouthAnimation)
     }
     
     func normalStateAnimation() {
