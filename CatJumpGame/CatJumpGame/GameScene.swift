@@ -59,6 +59,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             addChild(pausedNotice!)
             addMKLabels()
             addCatAndSeesaw()
+            timeLabel.outlinedText = (timeLimit - elapsedTime).secondsToFormatedString()
         }
     
         //view.showsPhysics = true
@@ -208,6 +209,7 @@ extension GameScene {
         score += (gameEndNotificationNode?.animateBonus(time: timeLimit - elapsedTime))!
         UserData.shared.updateHighScoreForLevel(level.levelNum, score: score, levelCompleteType: level.levelCompleteStatus(score: score))
         LeaderBoardManager.sharedInstance.postScore(score, level: level.levelNum)
+        timeLabel.removeAllActions()
     }
     
     // Update the timer's time according to the start/elapsed time
@@ -217,7 +219,17 @@ extension GameScene {
         } else {
             startTime = Int(currentTime) - elapsedTime
         }
+        
         timeLabel.outlinedText = (timeLimit - elapsedTime).secondsToFormatedString()
+        
+        if timeLimit - elapsedTime <= 35 {
+            if timeLabel.action(forKey: "timeout") == nil {
+                let warningAction = SKAction.scale(by: 1.3, duration: 0.5)
+                let reversedAction = warningAction.reversed()
+                let sequence = SKAction.sequence([warningAction, reversedAction])
+                timeLabel.run(SKAction.repeatForever(sequence), withKey: "timeout")
+            }
+        }
     }
     
     // Handles transitioning to a new game scene
