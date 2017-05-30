@@ -59,6 +59,7 @@ class SettingsViewController: UIViewController {
             print("Detached presented")
         }
     }
+
 }
 
 extension SettingsViewController : UITextFieldDelegate {

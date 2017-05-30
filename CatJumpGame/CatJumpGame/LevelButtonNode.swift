@@ -49,11 +49,11 @@ class LevelButtonNode: SKSpriteNode {
             starsNode?.zPosition = 1
             addChild(starsNode!)
             
-//            let levelTouchSensorNode = SKSpriteNode(texture: nil, color: UIColor.clear, size: CGSize(width: 910, height: 1270))
-//            levelTouchSensorNode.position = CGPoint(x: 0, y: 0)
-//            levelTouchSensorNode.zPosition = 100
-//            levelTouchSensorNode.name = "levelButton"
-//            addChild(levelTouchSensorNode)
+            let levelTouchSensorNode = SKSpriteNode(texture: nil, color: UIColor.clear, size: CGSize(width: 150, height: 150))
+            levelTouchSensorNode.position = CGPoint(x: 0, y: 0)
+            levelTouchSensorNode.zPosition = 100
+            levelTouchSensorNode.name = "levelButton"
+            addChild(levelTouchSensorNode)
         }
     }
     

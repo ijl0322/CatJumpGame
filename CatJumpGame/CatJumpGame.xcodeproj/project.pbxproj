@@ -26,7 +26,6 @@
 		0E47E4841EDBDCBD0026CC7F /* Level_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E47E47F1EDBDCBD0026CC7F /* Level_1.json */; };
 		0E47E4851EDBDCBD0026CC7F /* Level_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E47E4801EDBDCBD0026CC7F /* Level_2.json */; };
 		0E47E4861EDBDCBD0026CC7F /* Level_3.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E47E4811EDBDCBD0026CC7F /* Level_3.json */; };
-		0E47E4871EDBDCBD0026CC7F /* Level_4.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E47E4821EDBDCBD0026CC7F /* Level_4.json */; };
 		0E47E4881EDBDCBD0026CC7F /* Level_5.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E47E4831EDBDCBD0026CC7F /* Level_5.json */; };
 		0E51127A1EDA2D7D00CA19C6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E5112791EDA2D7D00CA19C6 /* GoogleService-Info.plist */; };
 		0E51127E1EDA301900CA19C6 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E51127D1EDA301900CA19C6 /* FirebaseManager.swift */; };
@@ -44,11 +43,13 @@
 		0E511C631ECE008A00F3E7A9 /* SKTTimingFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E511C571ECE008A00F3E7A9 /* SKTTimingFunctions.swift */; };
 		0E511C641ECE008A00F3E7A9 /* Vector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E511C581ECE008A00F3E7A9 /* Vector3.swift */; };
 		0E511C681ECE0FBF00F3E7A9 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E511C671ECE0FBF00F3E7A9 /* Int+Extension.swift */; };
+		0E6332E11EDD2D9A00A48044 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0E6332E01EDD2D9A00A48044 /* Settings.bundle */; };
 		0E68670C1ED518C5002E7886 /* BradBunR.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E68670B1ED51850002E7886 /* BradBunR.ttf */; };
 		0E68670E1ED51B9E002E7886 /* MKOutlinedLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E68670D1ED51B9E002E7886 /* MKOutlinedLabelNode.swift */; };
 		0E6F45911ECE18A80071F818 /* BreadNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6F45901ECE18A80071F818 /* BreadNode.swift */; };
 		0E8441B61ED9147C00F58E42 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8441B51ED9147C00F58E42 /* RootViewController.swift */; };
 		0E8441B81ED914A700F58E42 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8441B71ED914A700F58E42 /* MenuViewController.swift */; };
+		0EA4CC541EDD1C74000515EB /* Level_4.json in Resources */ = {isa = PBXBuildFile; fileRef = 0EA4CC531EDD1C74000515EB /* Level_4.json */; };
 		0EB857B41ED87E530003B4BD /* Resume.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0EB857B31ED87E530003B4BD /* Resume.sks */; };
 		0EB857B61ED87F9E0003B4BD /* GamePausedNotificationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB857B51ED87F9E0003B4BD /* GamePausedNotificationNode.swift */; };
 		0ECBA3D11ED38EDE0067C983 /* Cat.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0ECBA3D01ED38EDD0067C983 /* Cat.sks */; };
@@ -84,7 +85,6 @@
 		0E47E47F1EDBDCBD0026CC7F /* Level_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_1.json; sourceTree = "<group>"; };
 		0E47E4801EDBDCBD0026CC7F /* Level_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_2.json; sourceTree = "<group>"; };
 		0E47E4811EDBDCBD0026CC7F /* Level_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_3.json; sourceTree = "<group>"; };
-		0E47E4821EDBDCBD0026CC7F /* Level_4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_4.json; sourceTree = "<group>"; };
 		0E47E4831EDBDCBD0026CC7F /* Level_5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_5.json; sourceTree = "<group>"; };
 		0E5112791EDA2D7D00CA19C6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0E51127D1EDA301900CA19C6 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
@@ -102,11 +102,13 @@
 		0E511C571ECE008A00F3E7A9 /* SKTTimingFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTTimingFunctions.swift; sourceTree = "<group>"; };
 		0E511C581ECE008A00F3E7A9 /* Vector3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector3.swift; sourceTree = "<group>"; };
 		0E511C671ECE0FBF00F3E7A9 /* Int+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
+		0E6332E01EDD2D9A00A48044 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		0E68670B1ED51850002E7886 /* BradBunR.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BradBunR.ttf; sourceTree = "<group>"; };
 		0E68670D1ED51B9E002E7886 /* MKOutlinedLabelNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKOutlinedLabelNode.swift; sourceTree = "<group>"; };
 		0E6F45901ECE18A80071F818 /* BreadNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreadNode.swift; sourceTree = "<group>"; };
 		0E8441B51ED9147C00F58E42 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		0E8441B71ED914A700F58E42 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		0EA4CC531EDD1C74000515EB /* Level_4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_4.json; sourceTree = "<group>"; };
 		0EB857B31ED87E530003B4BD /* Resume.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Resume.sks; sourceTree = "<group>"; };
 		0EB857B51ED87F9E0003B4BD /* GamePausedNotificationNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePausedNotificationNode.swift; sourceTree = "<group>"; };
 		0ECBA3D01ED38EDD0067C983 /* Cat.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Cat.sks; sourceTree = "<group>"; };
@@ -142,7 +144,7 @@
 				0E47E47F1EDBDCBD0026CC7F /* Level_1.json */,
 				0E47E4801EDBDCBD0026CC7F /* Level_2.json */,
 				0E47E4811EDBDCBD0026CC7F /* Level_3.json */,
-				0E47E4821EDBDCBD0026CC7F /* Level_4.json */,
+				0EA4CC531EDD1C74000515EB /* Level_4.json */,
 				0E47E4831EDBDCBD0026CC7F /* Level_5.json */,
 			);
 			name = Levels;
@@ -251,6 +253,7 @@
 				0E47E4461EDB70CE0026CC7F /* AlertViewController.swift */,
 				0E47E4751EDBA82B0026CC7F /* AllLevels.swift */,
 				0E214FB81EDCBA060081D6F0 /* LeaderBoardManager.swift */,
+				0E6332E01EDD2D9A00A48044 /* Settings.bundle */,
 			);
 			path = CatJumpGame;
 			sourceTree = "<group>";
@@ -348,10 +351,11 @@
 				0E14EA611ED92A8E00716762 /* LevelSelectionScene.sks in Resources */,
 				0E51127A1EDA2D7D00CA19C6 /* GoogleService-Info.plist in Resources */,
 				0ED507DE1ECBDDA600E141C3 /* LaunchScreen.storyboard in Resources */,
+				0EA4CC541EDD1C74000515EB /* Level_4.json in Resources */,
 				0E47E4881EDBDCBD0026CC7F /* Level_5.json in Resources */,
 				0EB857B41ED87E530003B4BD /* Resume.sks in Resources */,
+				0E6332E11EDD2D9A00A48044 /* Settings.bundle in Resources */,
 				0E0A72E81ECCEF8300022BCE /* Seesaw.sks in Resources */,
-				0E47E4871EDBDCBD0026CC7F /* Level_4.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

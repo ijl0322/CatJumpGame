@@ -20,6 +20,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
         FirebaseManager.sharedInstance.loadAllLevels()
         AllLevels.shared.countAvailableLevels()
+        
+        //Setting First Launch Date if it has not been set
+        if let firstLaunch = UserDefaults.standard.object(forKey: "firstLaunchDate") {
+            print("First Launch Date is set already to \(firstLaunch)")
+        } else {
+            print("\(NSDate())")
+            let today = NSDate()
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            formatter.timeStyle = .none
+            let new = formatter.string(from: today as Date)
+            UserDefaults.standard.set(new, forKey: "firstLaunchDate")
+        }
+        
         return true
     }
 

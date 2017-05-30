@@ -29,8 +29,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homeBackground" translatesAutoresizingMaskIntoConstraints="NO" id="SsX-G8-b86">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qyr-tg-QN2">
-                                <rect key="frame" x="132" y="318" width="110" height="30"/>
+                                <rect key="frame" x="43" y="613" width="110" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Play"/>
@@ -39,7 +42,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRt-jK-xs5">
-                                <rect key="frame" x="123" y="422" width="119" height="30"/>
+                                <rect key="frame" x="209" y="613" width="119" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Settings"/>
                                 <connections>
@@ -48,6 +51,12 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="yWb-0a-xZL" firstAttribute="top" secondItem="SsX-G8-b86" secondAttribute="bottom" id="09z-8i-s1s"/>
+                            <constraint firstAttribute="trailing" secondItem="SsX-G8-b86" secondAttribute="trailing" id="BtM-6i-RVP"/>
+                            <constraint firstItem="SsX-G8-b86" firstAttribute="leading" secondItem="E4q-aD-n4G" secondAttribute="leading" id="IR5-Nc-GGk"/>
+                            <constraint firstItem="SsX-G8-b86" firstAttribute="top" secondItem="E4q-aD-n4G" secondAttribute="top" id="ZSL-Ug-vuW"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HIT-bG-2O5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -289,6 +298,7 @@
     </scenes>
     <resources>
         <image name="alert" width="900" height="800"/>
+        <image name="homeBackground" width="1532" height="2048"/>
         <image name="homeButton" width="160" height="160"/>
         <image name="landscapeBackground" width="1532" height="2048"/>
         <image name="noButton" width="160" height="160"/>

@@ -65,13 +65,13 @@ class LevelSelectionScene: SKScene, SKPhysicsContactDelegate{
         
         if let touchedNode =
             atPoint(touch.location(in: self)) as? SKSpriteNode {
-//            if touchedNode.name == "levelButton" {
-//                let levelButton = touchedNode.parent as? LevelButtonNode
-//                if levelButton?.levelCompleteType != .locked {
-//                    print("Level button is \((levelButton?.level)!)")
-//                    transitionToScene(level: (levelButton?.level)!)
-//                }
-//            }
+            if touchedNode.name == "levelButton" {
+                let levelButton = touchedNode.parent as? LevelButtonNode
+                if levelButton?.levelCompleteType != .locked {
+                    print("Level button is \((levelButton?.level)!)")
+                    transitionToScene(level: (levelButton?.level)!)
+                }
+            }
             if touchedNode.name == "level" {
                 let levelButton = touchedNode as? LevelButtonNode
                 if levelButton?.levelCompleteType != .locked {
