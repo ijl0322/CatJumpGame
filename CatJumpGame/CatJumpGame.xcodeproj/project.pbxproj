@@ -14,6 +14,7 @@
 		0E12EEAA1ED13F0C00B1BB40 /* Dictionary+JsonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E12EEA91ED13F0C00B1BB40 /* Dictionary+JsonExtension.swift */; };
 		0E12EEAC1ED140F600B1BB40 /* Bread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E12EEAB1ED140F600B1BB40 /* Bread.swift */; };
 		0E12EEAE1ED143D600B1BB40 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E12EEAD1ED143D600B1BB40 /* Level.swift */; };
+		0E139B1D1EDDF72800304128 /* TutorialScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E139B1C1EDDF72800304128 /* TutorialScene.swift */; };
 		0E14EA611ED92A8E00716762 /* LevelSelectionScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0E14EA601ED92A8E00716762 /* LevelSelectionScene.sks */; };
 		0E14EA631ED92AF500716762 /* LevelSelectionScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E14EA621ED92AF500716762 /* LevelSelectionScene.swift */; };
 		0E1DD8301ED76BDA003AE270 /* GameEndNotificationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1DD82F1ED76BDA003AE270 /* GameEndNotificationNode.swift */; };
@@ -52,7 +53,7 @@
 		0EA4CC541EDD1C74000515EB /* Level_4.json in Resources */ = {isa = PBXBuildFile; fileRef = 0EA4CC531EDD1C74000515EB /* Level_4.json */; };
 		0EB857B41ED87E530003B4BD /* Resume.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0EB857B31ED87E530003B4BD /* Resume.sks */; };
 		0EB857B61ED87F9E0003B4BD /* GamePausedNotificationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB857B51ED87F9E0003B4BD /* GamePausedNotificationNode.swift */; };
-		0EC679EF1EDDEBCC002B03FD /* TutorialScene1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0EC679EE1EDDEBCC002B03FD /* TutorialScene1.sks */; };
+		0EC679F11EDDF3AC002B03FD /* TutorialScene1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0EC679F01EDDF3AC002B03FD /* TutorialScene1.sks */; };
 		0ECBA3D11ED38EDE0067C983 /* Cat.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0ECBA3D01ED38EDD0067C983 /* Cat.sks */; };
 		0ED507CE1ECBDDA600E141C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED507CD1ECBDDA600E141C3 /* AppDelegate.swift */; };
 		0ED507D01ECBDDA600E141C3 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0ED507CF1ECBDDA600E141C3 /* GameScene.sks */; };
@@ -74,6 +75,7 @@
 		0E12EEA91ED13F0C00B1BB40 /* Dictionary+JsonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+JsonExtension.swift"; sourceTree = "<group>"; };
 		0E12EEAB1ED140F600B1BB40 /* Bread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bread.swift; sourceTree = "<group>"; };
 		0E12EEAD1ED143D600B1BB40 /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
+		0E139B1C1EDDF72800304128 /* TutorialScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialScene.swift; sourceTree = "<group>"; };
 		0E14EA601ED92A8E00716762 /* LevelSelectionScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelSelectionScene.sks; sourceTree = "<group>"; };
 		0E14EA621ED92AF500716762 /* LevelSelectionScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelSelectionScene.swift; sourceTree = "<group>"; };
 		0E1DD82F1ED76BDA003AE270 /* GameEndNotificationNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEndNotificationNode.swift; sourceTree = "<group>"; };
@@ -112,7 +114,7 @@
 		0EA4CC531EDD1C74000515EB /* Level_4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_4.json; sourceTree = "<group>"; };
 		0EB857B31ED87E530003B4BD /* Resume.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Resume.sks; sourceTree = "<group>"; };
 		0EB857B51ED87F9E0003B4BD /* GamePausedNotificationNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePausedNotificationNode.swift; sourceTree = "<group>"; };
-		0EC679EE1EDDEBCC002B03FD /* TutorialScene1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TutorialScene1.sks; sourceTree = "<group>"; };
+		0EC679F01EDDF3AC002B03FD /* TutorialScene1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TutorialScene1.sks; sourceTree = "<group>"; };
 		0ECBA3D01ED38EDD0067C983 /* Cat.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Cat.sks; sourceTree = "<group>"; };
 		0ED507CA1ECBDDA600E141C3 /* CatJumpGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatJumpGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ED507CD1ECBDDA600E141C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -238,7 +240,8 @@
 				0E511C4C1ECE008A00F3E7A9 /* SKTUtils */,
 				0ED507CD1ECBDDA600E141C3 /* AppDelegate.swift */,
 				0ED507CF1ECBDDA600E141C3 /* GameScene.sks */,
-				0EC679EE1EDDEBCC002B03FD /* TutorialScene1.sks */,
+				0EC679F01EDDF3AC002B03FD /* TutorialScene1.sks */,
+				0E139B1C1EDDF72800304128 /* TutorialScene.swift */,
 				0ED507D31ECBDDA600E141C3 /* GameScene.swift */,
 				0ED507D71ECBDDA600E141C3 /* Main.storyboard */,
 				0ED507DA1ECBDDA600E141C3 /* Assets.xcassets */,
@@ -341,13 +344,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EC679F11EDDF3AC002B03FD /* TutorialScene1.sks in Resources */,
 				0ED507D91ECBDDA600E141C3 /* Main.storyboard in Resources */,
 				0E47E4861EDBDCBD0026CC7F /* Level_3.json in Resources */,
 				0E47E4851EDBDCBD0026CC7F /* Level_2.json in Resources */,
 				0ED507D01ECBDDA600E141C3 /* GameScene.sks in Resources */,
 				0ECBA3D11ED38EDE0067C983 /* Cat.sks in Resources */,
 				0E47E4841EDBDCBD0026CC7F /* Level_1.json in Resources */,
-				0EC679EF1EDDEBCC002B03FD /* TutorialScene1.sks in Resources */,
 				0EEC293D1ECBED900003623D /* Cat1.sks in Resources */,
 				0E1DD8321ED77279003AE270 /* gameEndNotification.sks in Resources */,
 				0ED507DB1ECBDDA600E141C3 /* Assets.xcassets in Resources */,
@@ -439,6 +442,7 @@
 				0E12EEA51ED13EB600B1BB40 /* Array2D.swift in Sources */,
 				0E511C631ECE008A00F3E7A9 /* SKTTimingFunctions.swift in Sources */,
 				0E511C5E1ECE008A00F3E7A9 /* SKAction+SpecialEffects.swift in Sources */,
+				0E139B1D1EDDF72800304128 /* TutorialScene.swift in Sources */,
 				0E511C5C1ECE008A00F3E7A9 /* Int+Extensions.swift in Sources */,
 				0E511C641ECE008A00F3E7A9 /* Vector3.swift in Sources */,
 				0EB857B61ED87F9E0003B4BD /* GamePausedNotificationNode.swift in Sources */,

@@ -31,13 +31,26 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let view = self.view as! SKView? {
-            if let scene = SKScene(fileNamed: "LevelSelectionScene") as? LevelSelectionScene  {
-                scene.scaleMode = .aspectFill
-                view.presentScene(scene)
+        if UserDefaults.standard.bool(forKey: "notFirstLaunch") {
+            if let view = self.view as! SKView? {
+                if let scene = SKScene(fileNamed: "LevelSelectionScene") as? LevelSelectionScene  {
+                    scene.scaleMode = .aspectFill
+                    view.presentScene(scene)
+                }
+                
+                view.ignoresSiblingOrder = true
             }
             
-            view.ignoresSiblingOrder = true
+        } else {
+            if let view = self.view as! SKView? {
+                if let scene = SKScene(fileNamed: "TutorialScene1") {
+                    scene.scaleMode = .aspectFill
+                    view.presentScene(scene)
+                }
+    
+                view.ignoresSiblingOrder = true
+            }
+            UserDefaults.standard.set(true, forKey: "notFirstLaunch")
         }
     }
 }
