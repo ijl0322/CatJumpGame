@@ -32,29 +32,43 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homeBackground" translatesAutoresizingMaskIntoConstraints="NO" id="SsX-G8-b86">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qyr-tg-QN2">
-                                <rect key="frame" x="43" y="613" width="110" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <state key="normal" title="Play"/>
-                                <connections>
-                                    <segue destination="INx-Be-wpI" kind="show" id="mW2-eT-a72"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRt-jK-xs5">
-                                <rect key="frame" x="209" y="613" width="119" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Settings"/>
-                                <connections>
-                                    <segue destination="vZA-n9-Iyb" kind="show" id="jgd-Fr-gP5"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="YLb-2p-EHq">
+                                <rect key="frame" x="27" y="602.5" width="321" height="49.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qyr-tg-QN2" userLabel="playButton">
+                                        <rect key="frame" x="0.0" y="0.0" width="110.5" height="49.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Qyr-tg-QN2" secondAttribute="height" multiplier="20:9" id="fmP-dY-MaH"/>
+                                        </constraints>
+                                        <state key="normal" image="playButton"/>
+                                        <connections>
+                                            <segue destination="INx-Be-wpI" kind="show" id="mW2-eT-a72"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRt-jK-xs5" userLabel="settingsButton">
+                                        <rect key="frame" x="210.5" y="0.0" width="110.5" height="49.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="FRt-jK-xs5" secondAttribute="height" multiplier="20:9" id="hmp-iU-0iD"/>
+                                        </constraints>
+                                        <state key="normal" image="settingsButton"/>
+                                        <connections>
+                                            <segue destination="vZA-n9-Iyb" kind="show" id="jgd-Fr-gP5"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Qyr-tg-QN2" firstAttribute="width" secondItem="YLb-2p-EHq" secondAttribute="width" multiplier="0.3" constant="14.200000000000003" id="Hhb-Jw-8gT"/>
+                                    <constraint firstItem="FRt-jK-xs5" firstAttribute="width" secondItem="YLb-2p-EHq" secondAttribute="width" multiplier="0.3" constant="14.200000000000003" id="wHA-vg-IJS"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="yWb-0a-xZL" firstAttribute="top" secondItem="SsX-G8-b86" secondAttribute="bottom" id="09z-8i-s1s"/>
                             <constraint firstAttribute="trailing" secondItem="SsX-G8-b86" secondAttribute="trailing" id="BtM-6i-RVP"/>
+                            <constraint firstItem="YLb-2p-EHq" firstAttribute="centerX" secondItem="E4q-aD-n4G" secondAttribute="centerX" id="FLx-pq-mSZ"/>
                             <constraint firstItem="SsX-G8-b86" firstAttribute="leading" secondItem="E4q-aD-n4G" secondAttribute="leading" id="IR5-Nc-GGk"/>
+                            <constraint firstItem="yWb-0a-xZL" firstAttribute="top" secondItem="YLb-2p-EHq" secondAttribute="bottom" constant="15" id="O00-hi-1lG"/>
                             <constraint firstItem="SsX-G8-b86" firstAttribute="top" secondItem="E4q-aD-n4G" secondAttribute="top" id="ZSL-Ug-vuW"/>
                         </constraints>
                     </view>
@@ -239,7 +253,10 @@
                                 <rect key="frame" x="36" y="70" width="303" height="40"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zvo-ZJ-eea">
-                                <rect key="frame" x="36" y="135" width="303" height="397"/>
+                                <rect key="frame" x="37.5" y="135" width="300" height="397"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="SmA-Qy-Iw9"/>
+                                </constraints>
                                 <string key="text">Game transfer allows you to keep your game progress when you switch devices. By clicking on the "Show Game Transfer Code” button on the settings page, you will receive a unique code that represents your game progress on your current device. On the new device that you wish to transfer your progress to, enter the code in the settings page. This will replace all of your new device’s progress with that of the device that generated the code. Internet connection is needed for successful transfer!</string>
                                 <fontDescription key="fontDescription" name="BradyBunchRemastered" family="Brady Bunch Remastered" pointSize="20"/>
                                 <nil key="textColor"/>
@@ -249,16 +266,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="akD-y1-Jcn" secondAttribute="trailing" id="8nf-a2-hbL"/>
-                            <constraint firstItem="Zvo-ZJ-eea" firstAttribute="leading" secondItem="wUL-xY-BDb" secondAttribute="leadingMargin" constant="20" id="DW8-kw-y6h"/>
                             <constraint firstItem="6PX-U5-ONc" firstAttribute="centerX" secondItem="wUL-xY-BDb" secondAttribute="centerX" id="IKM-GG-hKA"/>
                             <constraint firstItem="Zvo-ZJ-eea" firstAttribute="top" secondItem="VE9-Tl-aev" secondAttribute="bottom" constant="25" id="LcP-bu-69K"/>
                             <constraint firstItem="akD-y1-Jcn" firstAttribute="leading" secondItem="wUL-xY-BDb" secondAttribute="leading" id="QJU-oC-XqA"/>
                             <constraint firstItem="5Mc-7l-110" firstAttribute="top" secondItem="akD-y1-Jcn" secondAttribute="bottom" id="TRD-tA-piX"/>
+                            <constraint firstItem="Zvo-ZJ-eea" firstAttribute="centerX" secondItem="wUL-xY-BDb" secondAttribute="centerX" id="VX9-jh-fcN"/>
                             <constraint firstItem="akD-y1-Jcn" firstAttribute="top" secondItem="wUL-xY-BDb" secondAttribute="top" id="fx0-Hh-xUC"/>
                             <constraint firstItem="VE9-Tl-aev" firstAttribute="top" secondItem="VCS-ne-MQ2" secondAttribute="bottom" constant="50" id="iT6-66-Xhg"/>
                             <constraint firstItem="6PX-U5-ONc" firstAttribute="top" secondItem="Zvo-ZJ-eea" secondAttribute="bottom" constant="20" id="isl-jq-XCE"/>
                             <constraint firstItem="VE9-Tl-aev" firstAttribute="leading" secondItem="wUL-xY-BDb" secondAttribute="leadingMargin" constant="20" id="mLL-9c-8hQ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Zvo-ZJ-eea" secondAttribute="trailing" constant="20" id="q0T-af-t5a"/>
                             <constraint firstItem="5Mc-7l-110" firstAttribute="top" secondItem="6PX-U5-ONc" secondAttribute="bottom" constant="70" id="w6s-5s-uEb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="VE9-Tl-aev" secondAttribute="trailing" constant="20" id="zD1-C5-x4X"/>
                         </constraints>
@@ -412,6 +428,8 @@
         <image name="landscapeBackground" width="1532" height="2048"/>
         <image name="noButton" width="160" height="160"/>
         <image name="okButton" width="274" height="122"/>
+        <image name="playButton" width="274" height="122"/>
+        <image name="settingsButton" width="274" height="122"/>
         <image name="yesButton" width="160" height="160"/>
     </resources>
 </document>
