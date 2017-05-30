@@ -24,3 +24,4 @@ The are two folders in my CatJumpGame that contains code that is not written by 
 The background image of my game are from http://www.freepik.com/ under free license agreement. 
 The buttons/game UI elements templates are under paid license, which I purchased for this game. 
 The cats/ sprites/ other images are my own art work. 
+
