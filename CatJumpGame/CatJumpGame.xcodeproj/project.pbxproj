@@ -19,6 +19,8 @@
 		0E139B251EDE194400304128 /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E139B241EDE194400304128 /* SplashScreenViewController.swift */; };
 		0E139B271EDE262100304128 /* MaltShopBop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0E139B261EDE262100304128 /* MaltShopBop.mp3 */; };
 		0E139B2A1EDE367500304128 /* tink.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0E139B291EDE367500304128 /* tink.mp3 */; };
+		0E139B2D1EDE54C800304128 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E139B2C1EDE54C800304128 /* CloudKit.framework */; };
+		0E139B2F1EDE551E00304128 /* CloudkitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E139B2E1EDE551E00304128 /* CloudkitManager.swift */; };
 		0E14EA611ED92A8E00716762 /* LevelSelectionScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0E14EA601ED92A8E00716762 /* LevelSelectionScene.sks */; };
 		0E14EA631ED92AF500716762 /* LevelSelectionScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E14EA621ED92AF500716762 /* LevelSelectionScene.swift */; };
 		0E1DD8301ED76BDA003AE270 /* GameEndNotificationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1DD82F1ED76BDA003AE270 /* GameEndNotificationNode.swift */; };
@@ -84,6 +86,9 @@
 		0E139B241EDE194400304128 /* SplashScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		0E139B261EDE262100304128 /* MaltShopBop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MaltShopBop.mp3; sourceTree = "<group>"; };
 		0E139B291EDE367500304128 /* tink.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tink.mp3; sourceTree = "<group>"; };
+		0E139B2B1EDE54BE00304128 /* CatJumpGame.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CatJumpGame.entitlements; sourceTree = "<group>"; };
+		0E139B2C1EDE54C800304128 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		0E139B2E1EDE551E00304128 /* CloudkitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudkitManager.swift; sourceTree = "<group>"; };
 		0E14EA601ED92A8E00716762 /* LevelSelectionScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelSelectionScene.sks; sourceTree = "<group>"; };
 		0E14EA621ED92AF500716762 /* LevelSelectionScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelSelectionScene.swift; sourceTree = "<group>"; };
 		0E1DD82F1ED76BDA003AE270 /* GameEndNotificationNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEndNotificationNode.swift; sourceTree = "<group>"; };
@@ -144,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C12C7C68C161058C55D64D85 /* Pods_CatJumpGame.framework in Frameworks */,
+				0E139B2D1EDE54C800304128 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +209,7 @@
 			children = (
 				0E51127D1EDA301900CA19C6 /* FirebaseManager.swift */,
 				0E214FB81EDCBA060081D6F0 /* LeaderBoardManager.swift */,
+				0E139B2E1EDE551E00304128 /* CloudkitManager.swift */,
 			);
 			name = NetworkManager;
 			sourceTree = "<group>";
@@ -286,6 +293,7 @@
 		0ED507CC1ECBDDA600E141C3 /* CatJumpGame */ = {
 			isa = PBXGroup;
 			children = (
+				0E139B2B1EDE54BE00304128 /* CatJumpGame.entitlements */,
 				0E139B211EDE171600304128 /* NetworkManager */,
 				0E139B201EDE16E500304128 /* ViewControllers */,
 				0E139B1F1EDE16C600304128 /* CustomClasses */,
@@ -320,6 +328,7 @@
 		8D85C2569EB3264E7D2C01F8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0E139B2C1EDE54C800304128 /* CloudKit.framework */,
 				9F6196CAA3420BBD19F27673 /* Pods_CatJumpGame.framework */,
 			);
 			name = Frameworks;
@@ -362,6 +371,17 @@
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = K39564QAF6;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -498,6 +518,7 @@
 				0E12EEAA1ED13F0C00B1BB40 /* Dictionary+JsonExtension.swift in Sources */,
 				0E47E4471EDB70CE0026CC7F /* AlertViewController.swift in Sources */,
 				0E511C5F1ECE008A00F3E7A9 /* SKColor+Extensions.swift in Sources */,
+				0E139B2F1EDE551E00304128 /* CloudkitManager.swift in Sources */,
 				0E139B251EDE194400304128 /* SplashScreenViewController.swift in Sources */,
 				0E8441B61ED9147C00F58E42 /* RootViewController.swift in Sources */,
 				0E511C5B1ECE008A00F3E7A9 /* CGVector+Extensions.swift in Sources */,
@@ -631,6 +652,7 @@
 			baseConfigurationReference = 094B41AF39657125CECC1517 /* Pods-CatJumpGame.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CatJumpGame/CatJumpGame.entitlements;
 				DEVELOPMENT_TEAM = K39564QAF6;
 				INFOPLIST_FILE = CatJumpGame/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -645,6 +667,7 @@
 			baseConfigurationReference = 9D420646326DF16C9275D278 /* Pods-CatJumpGame.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CatJumpGame/CatJumpGame.entitlements;
 				DEVELOPMENT_TEAM = K39564QAF6;
 				INFOPLIST_FILE = CatJumpGame/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -8,9 +8,10 @@
 
 import UIKit
 import Firebase
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
@@ -33,6 +34,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let new = formatter.string(from: today as Date)
             UserDefaults.standard.set(new, forKey: "firstLaunchDate")
         }
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {(accepted, error) in
+            if !accepted {
+                print("Notification access denied.")
+            } else {
+                application.registerForRemoteNotifications()
+            }
+        }
+        UNUserNotificationCenter.current().delegate = self
+        
+        ClouldKitManager.sharedInstance.registerNewSubscriptionsWithIdentifier("id5")
         
         return true
     }
@@ -58,7 +70,65 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .badge, .sound])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                with completionHandler: @escaping () -> Void){
+        let response = response.notification.request.content
+        print(response)
+        completionHandler()
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        let aps = userInfo["aps"] as! [String: AnyObject]
+        //dump(userInfo)
+        if aps["content-available"] as! NSNumber == 1 {
+            let cloudKit = userInfo["ck"] as! [String: AnyObject]
+            //let recordId = cloudKit["qry"]?["rid"] as! String
+            let field = cloudKit["qry"]?["af"] as! [String: AnyObject]
+            let message = field["Message"] as? String
+            
+            let content = UNMutableNotificationContent()
+            content.title = "Message from the developer!"
+            content.body = "Hello from developer!"
+            if let message = message {
+                content.body = "\(message)"
+            }
+            
+            print(message ?? "No message")
+            content.sound = UNNotificationSound.default()
+            
+            UIApplication.shared.applicationIconBadgeNumber = 0
+            
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 2, repeats: false)
+            let center = UNUserNotificationCenter.current()
+            let identifier = String(Date().timeIntervalSinceReferenceDate)
+            let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+            center.add(request, withCompletionHandler: { (error) in
+                if let error = error {
+                    print("An Error Occured: \(error)")
+                } else {
+                    print("Sending local notification")
+                }
+            })
+            completionHandler(.newData)
+        } else  {
+            completionHandler(.newData)
+        }
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        
+        let response = response.notification.request.content
+        print("Notification: \(response)")
+        completionHandler()
+    }
 }
 
