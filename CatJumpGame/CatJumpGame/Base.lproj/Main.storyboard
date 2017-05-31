@@ -92,8 +92,8 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="landscapeBackground" translatesAutoresizingMaskIntoConstraints="NO" id="o4u-pM-NPp">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="Grh-mU-end">
-                                <rect key="frame" x="24.5" y="128" width="326" height="411"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="Grh-mU-end">
+                                <rect key="frame" x="24.5" y="95.5" width="326" height="476"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VIA-CP-p4e">
                                         <rect key="frame" x="0.0" y="0.0" width="326" height="55"/>
@@ -118,8 +118,33 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Rxe-nd-642">
+                                        <rect key="frame" x="0.0" y="95" width="326" height="55"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Music" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dsn-K7-S9q">
+                                                <rect key="frame" x="0.0" y="0.0" width="256" height="55"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="55" id="qoq-Lz-FMJ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="BradyBunchRemastered" family="Brady Bunch Remastered" pointSize="40"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jEG-e7-0Jb" userLabel="musicButton">
+                                                <rect key="frame" x="256" y="8.5" width="70" height="38"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="38" id="baN-Yr-EF4"/>
+                                                    <constraint firstAttribute="width" constant="70" id="gtp-e5-KU5"/>
+                                                </constraints>
+                                                <state key="normal" image="switchOn"/>
+                                                <connections>
+                                                    <action selector="musicButtonTapped:" destination="vZA-n9-Iyb" eventType="touchUpInside" id="KMH-mh-d9T"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="nMd-Bo-6cF">
-                                        <rect key="frame" x="0.0" y="105" width="326" height="86"/>
+                                        <rect key="frame" x="0.0" y="190" width="326" height="86"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JLZ-aM-7gg">
                                                 <rect key="frame" x="0.0" y="0.0" width="326" height="30"/>
@@ -148,7 +173,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="qmg-zw-jUW">
-                                        <rect key="frame" x="0.0" y="241" width="326" height="80"/>
+                                        <rect key="frame" x="0.0" y="316" width="326" height="80"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Code Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="31b-3x-DI3">
                                                 <rect key="frame" x="0.0" y="0.0" width="326" height="30"/>
@@ -177,7 +202,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dxf-kn-gDp">
-                                        <rect key="frame" x="0.0" y="371" width="326" height="40"/>
+                                        <rect key="frame" x="0.0" y="436" width="326" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="CdV-mw-xcS"/>
                                         </constraints>
@@ -214,6 +239,7 @@
                     </view>
                     <connections>
                         <outlet property="gameTransferCodeLabel" destination="KOc-gJ-f5C" id="4kZ-m7-ASN"/>
+                        <outlet property="musicButton" destination="jEG-e7-0Jb" id="d2n-FO-xh0"/>
                         <outlet property="nickNameTextField" destination="b8J-0S-GYC" id="eAW-5B-uZz"/>
                         <outlet property="transferCodeTextField" destination="31b-3x-DI3" id="yen-er-5h4"/>
                     </connections>
@@ -430,6 +456,7 @@
         <image name="okButton" width="274" height="122"/>
         <image name="playButton" width="274" height="122"/>
         <image name="settingsButton" width="274" height="122"/>
+        <image name="switchOn" width="105" height="56"/>
         <image name="yesButton" width="160" height="160"/>
     </resources>
 </document>

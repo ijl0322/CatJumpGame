@@ -57,7 +57,7 @@ class BreadNode: SKSpriteNode {
             print("Ate bread")
             print("Got points: \(points)")
             notAte = false
-            //SKAction.playSoundFileNamed("pop.mp3",waitForCompletion: false),
+            //SKAction.playSoundFileNamed("tink.mp3",waitForCompletion: false),
             run(SKAction.sequence([
                 SKAction.scale(to: 0.8, duration: 0.3),
                 SKAction.removeFromParent()

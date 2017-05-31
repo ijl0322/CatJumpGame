@@ -61,7 +61,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             addCatAndSeesaw()
             timeLabel.outlinedText = (timeLimit - elapsedTime).secondsToFormatedString()
         }
-    
         //view.showsPhysics = true
     }
     
@@ -200,7 +199,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
 
 extension GameScene {
     
-    //Mark: - Game State Manegement Helper
+    //MARK: - Game State Manegement Helper
     func endGame() {
         gameEndNotificationNode = GameEndNotificationNode(score: score, levelStatus: level.levelCompleteStatus(score: score), time: timeLimit - elapsedTime, level: level.levelNum)
         gameEndNotificationNode?.zPosition = 150
@@ -222,7 +221,7 @@ extension GameScene {
         
         timeLabel.outlinedText = (timeLimit - elapsedTime).secondsToFormatedString()
         
-        if timeLimit - elapsedTime <= 35 {
+        if timeLimit - elapsedTime <= 5 {
             if timeLabel.action(forKey: "timeout") == nil {
                 let warningAction = SKAction.scale(by: 1.3, duration: 0.5)
                 let reversedAction = warningAction.reversed()
@@ -485,7 +484,7 @@ extension GameScene {
     }
 }
 
-//MARK: - Game State Handling
+//MARK: - Game Archieving
 
 extension GameScene {
     

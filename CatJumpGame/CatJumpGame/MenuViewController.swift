@@ -31,6 +31,11 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let status = UserDefaults.standard.integer(forKey: "musicStatus")
+        if status == 0 {
+            SKTAudio.sharedInstance().playBackgroundMusic("MaltShopBop.mp3")
+        }
+        
         if UserDefaults.standard.bool(forKey: "notFirstLaunch") {
             if let view = self.view as! SKView? {
                 if let scene = SKScene(fileNamed: "LevelSelectionScene") as? LevelSelectionScene  {
@@ -52,5 +57,10 @@ class MenuViewController: UIViewController {
             }
             UserDefaults.standard.set(true, forKey: "notFirstLaunch")
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        SKTAudio.sharedInstance().pauseBackgroundMusic()
     }
 }
