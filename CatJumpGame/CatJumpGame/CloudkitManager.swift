@@ -106,7 +106,7 @@ class ClouldKitManager {
         // Create the notification that will be delivered
         let notificationInfo = CKNotificationInfo()
         notificationInfo.alertBody = "A message was updated."
-        notificationInfo.shouldBadge = true
+        //notificationInfo.shouldBadge = true
         notificationInfo.shouldSendContentAvailable = true
         notificationInfo.desiredKeys = ["Message"]
         

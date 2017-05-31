@@ -63,6 +63,8 @@ class SettingsViewController: UIViewController {
         nickNameTextField.text = UserData.shared.nickName
         nickNameTextField.font = UIFont(name: "BradyBunchRemastered", size: 30)
         
+        transferCodeTextField.delegate = self
+        
         let status = UserDefaults.standard.integer(forKey: "musicStatus")
         if status == 1 {
             musicButton.setImage(UIImage(named: "switchOff"), for: .normal)
